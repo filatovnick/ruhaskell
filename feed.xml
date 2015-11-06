@@ -7,8 +7,24 @@
         <description><![CDATA[Русскоязычное сообщество Haskell-разработчиков]]></description>
         <atom:link href="http://ruhaskell.org/feed.xml" rel="self"
                    type="application/rss+xml" />
-        <lastBuildDate>Wed, 21 Oct 2015 00:00:00 UT</lastBuildDate>
+        <lastBuildDate>Thu, 05 Nov 2015 00:00:00 UT</lastBuildDate>
         <item>
+    <title>Регистрация на зимнюю московскую встречу</title>
+    <link>http://ruhaskell.org/posts/events/2015/11/05/meetup-winter-register.html</link>
+    <description><![CDATA[Регистрация на зимнюю московскую встречу открыта. Приходите, приводите друзей. Можно пожертвовать немножко на наём оператора.]]></description>
+    <pubDate>Thu, 05 Nov 2015 00:00:00 UT</pubDate>
+    <guid>http://ruhaskell.org/posts/events/2015/11/05/meetup-winter-register.html</guid>
+    <dc:creator>Денис Шевченко</dc:creator>
+</item>
+<item>
+    <title>Nix: знакомство</title>
+    <link>http://ruhaskell.org/posts/utils/2015/10/28/nix.html</link>
+    <description><![CDATA[Nix - инструмент, заслуживающий нашего с ним знакомства.]]></description>
+    <pubDate>Wed, 28 Oct 2015 00:00:00 UT</pubDate>
+    <guid>http://ruhaskell.org/posts/utils/2015/10/28/nix.html</guid>
+    <dc:creator>Денис Шевченко</dc:creator>
+</item>
+<item>
     <title>Haskell + Lua = дружба!</title>
     <link>http://ruhaskell.org/posts/packages/2015/10/21/HaskellLuaHowTo.html</link>
     <description><![CDATA[Использование Lua-скриптов в Haskell-программах]]></description>
@@ -70,22 +86,6 @@
     <description><![CDATA[Экспериментальный интерпретатор языка Lisp, реализованный на Haskell.]]></description>
     <pubDate>Fri, 04 Sep 2015 00:00:00 UT</pubDate>
     <guid>http://ruhaskell.org/posts/projects/2015/09/04/liscript.html</guid>
-    <dc:creator>Денис Шевченко</dc:creator>
-</item>
-<item>
-    <title>Выпуск 4</title>
-    <link>http://ruhaskell.org/posts/cast/2015/09/04/issue4.html</link>
-    <description><![CDATA[Четвёртый выпуск нашего подкаста, посвящённого Haskell и всему вокруг него.]]></description>
-    <pubDate>Fri, 04 Sep 2015 00:00:00 UT</pubDate>
-    <guid>http://ruhaskell.org/posts/cast/2015/09/04/issue4.html</guid>
-    <dc:creator>Денис Шевченко</dc:creator>
-</item>
-<item>
-    <title>RPC на основе WAI</title>
-    <link>http://ruhaskell.org/posts/web/2015/09/01/wai-rpc.html</link>
-    <description><![CDATA[Демонстрация создания простого сервиса с помошью WAI]]></description>
-    <pubDate>Tue, 01 Sep 2015 00:00:00 UT</pubDate>
-    <guid>http://ruhaskell.org/posts/web/2015/09/01/wai-rpc.html</guid>
     <dc:creator>Денис Шевченко</dc:creator>
 </item>
 

@@ -202,7 +202,7 @@
 </div>
 
 <p>Это руководство описывает общую архитектуру, которую вы встретите во всех приложениях на <a href="http://elm-lang.org/">Elm</a>, от <a href="https://github.com/evancz/elm-todomvc">TodoMVC</a> до <a href="https://github.com/rtfeldman/dreamwriter#dreamwriter">dreamwriter</a>.</p>
-<p>Мы изучим очень простой способ компоновки прилоложения, представляющий собой бесконечно вкладываемые блоки. Он сильно улучшает модульность, упрощает повторное использование кода и тестирование. С его помощью можно создавать сложные приложения, разбивая их на составные части. Мы начнём с маленького примера и будем постепенно расширять его, используя эти базовые принципы.</p>
+<p>Мы изучим очень простой способ компоновки приложения, представляющий собой бесконечно вкладываемые блоки. Он сильно улучшает модульность, упрощает повторное использование кода и тестирование. С его помощью можно создавать сложные приложения, разбивая их на составные части. Мы начнём с маленького примера и будем постепенно расширять его, используя эти базовые принципы.</p>
 <p>Интересно, что подобная архитектура <em>возникает</em> в Elm естественным образом. Дизайн языка сам подводит вас к ней, читали ли вы этот текст или нет. Я и сам обнаружил этот паттерн просто используя Elm и был шокирован его простотой и силой.</p>
 <p><strong>Замечание</strong>: Чтобы опробовать приведённый здесь код вам потребуется <a href="http://elm-lang.org/Install.elm">установить Elm</a> и форкнуть <a href="https://github.com/evancz/elm-architecture-tutorial">репозиторий</a>. Каждый пример имеет инструкцию как запустить код.</p>
 <h2 id="основной-приём">Основной приём</h2>
@@ -252,8 +252,8 @@ view address model <span class="fu">=</span>
 countStyle <span class="fu">:</span> <span class="dt">Attribute</span>
 countStyle <span class="fu">=</span>
   <span class="fu">...</span></code></pre></div>
-<p>Самая сложная часть функции <code>view</code> это <code>Signal.Address</code>. Мы займёмся этим в следующем части, а пока я хочу, чтобы вы отметили, что этот код является <strong>полностью декларативным</strong>. Мы берём <code>Model</code> и выдаём некий <code>Html</code>. И всё. Ни в каком месте мы не занимаемся ручным изменением DOM, что открывает библиотеке <a href="http://elm-lang.org/blog/Blazing-Fast-Html.elm">большой простор для оптимизации</a> и даже значительно всё ускоряет. Это просто здорово. Более того, функция <code>view</code> это самая обычная функция и при её создании мы можем пользоваться всей мощью системы модулей Elm, фреймворками для тестирования и библиотеками.</p>
-<p>Это и есть суть компоновки любых приложений в Elm. Все примеры которые мы далее увидим будут лишь небольшими вариациями этого базвого паттерна: модель (<code>Model</code>), обновление (<code>update</code>), отображение (<code>view</code>).</p>
+<p>Самая сложная часть функции <code>view</code> это <code>Signal.Address</code>. Мы займёмся этим в следующей части, а пока я хочу, чтобы вы отметили, что этот код является <strong>полностью декларативным</strong>. Мы берём <code>Model</code> и выдаём некий <code>Html</code>. И всё. Ни в каком месте мы не занимаемся ручным изменением DOM, что открывает библиотеке <a href="http://elm-lang.org/blog/Blazing-Fast-Html.elm">большой простор для оптимизации</a> и даже значительно всё ускоряет. Это просто здорово. Более того, функция <code>view</code> это самая обычная функция и при её создании мы можем пользоваться всей мощью системы модулей Elm, фреймворками для тестирования и библиотеками.</p>
+<p>Это и есть суть компоновки любых приложений в Elm. Все примеры, которые мы далее увидим, будут лишь небольшими вариациями этого базвого паттерна: модель (<code>Model</code>), обновление (<code>update</code>), отображение (<code>view</code>).</p>
 <h2 id="отступление-оживление-вашего-приложения-с-помощью-сигналов">Отступление: оживление вашего приложения с помощью сигналов</h2>
 <p>Теперь разберём часть кода с <code>Signal.Address</code>.</p>
 <p>До этого мы говорили только о чистых функциях и неизменяемых данных. Это здорово, но нам надо также и реагировать на события из внешнего мира. В Elm этим занимаются <a href="http://elm-lang.org/learn/Using-Signals.elm">сигналы</a>. Сигнал это значение, которое изменяется со временем, что позволяет нам говорить о том, как будет изменяться наша модель.</p>
@@ -320,7 +320,7 @@ init top bottom <span class="fu">=</span>
     <span class="fu">=</span> <span class="dt">Reset</span>
     <span class="fu">|</span> <span class="dt">Top</span>    <span class="dt">Counter.Action</span>
     <span class="fu">|</span> <span class="dt">Bottom</span> <span class="dt">Counter.Action</span></code></pre></div>
-<p>Обратите внимание, что наш <a href="http://elm-lang.org/learn/Union-Types.elm">тип-объединение</a> указывает на тип <code>Counter.Action</code>, но мы не знанием подброностей этих действий. Когда мы создаём функцию <code>update</code> мы просто отправляем эти действия в правильное место:</p>
+<p>Обратите внимание, что наш <a href="http://elm-lang.org/learn/Union-Types.elm">тип-объединение</a> указывает на тип <code>Counter.Action</code>, но мы не знаем подброностей этих действий. Когда мы создаём функцию <code>update</code> мы просто отправляем эти действия в правильное место:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">update <span class="fu">:</span> <span class="dt">Action</span> <span class="ot">-&gt;</span> <span class="dt">Model</span> <span class="ot">-&gt;</span> <span class="dt">Model</span>
 update action model <span class="fu">=</span>
   <span class="kw">case</span> action <span class="kw">of</span>
@@ -344,7 +344,7 @@ view address model <span class="fu">=</span>
     , button [ onClick address <span class="dt">Reset</span> ] [ text <span class="st">&quot;RESET&quot;</span> ]
     ]</code></pre></div>
 <p>Здорово, что мы смогли использовать функцию <code>Counter.view</code> для обоих счётчиков. Для каждого счётчика мы создаём адрес пересылки. Сообщения на этот адрес будут отмечены как <code>Top</code> или <code>Bottom</code>, чтобы мы могли их различать.</p>
-<p>Вот и всё. С помощью локальных каналов мы можем сколько угодно вкладывать наш паттерн модель/обновлние/отображение. Например можно взять модуль <code>CounterPair</code>, опубликовать ключевые значения и функции, а затем создать пару пар счётчиков или что нам будет ещё угодно.</p>
+<p>Вот и всё. С помощью локальных каналов мы можем сколько угодно вкладывать наш паттерн модель/обновлние/отображение. Например, можно взять модуль <code>CounterPair</code>, опубликовать ключевые значения и функции, а затем создать <code>CounterPairPair</code> или что нам будет ещё угодно.</p>
 <h2 id="пример-3-динамический-список-счётчиков">Пример №3: Динамический список счётчиков</h2>
 <p>Пара счётчиков это круто, но как насчёт списка счётчиков, в который можно добавлять новые и удалять по требованию? Будет ли наш приём работать и тут?</p>
 <p>Чтобы посмотреть пример №2 в действии, зайдите в каталог <code>3/</code> и запустите там <code>elm-reactor</code>, после чего откройте <a href="http://localhost:8000/CounterList.elm?debug" class="uri">http://localhost:8000/CounterList.elm?debug</a>.</p>
@@ -357,7 +357,7 @@ view address model <span class="fu">=</span>
     }
 
 <span class="kw">type</span> alias <span class="dt">ID</span> <span class="fu">=</span> <span class="dt">Int</span></code></pre></div>
-<p>Теперь наша модель это список счётчиков, каждый со своим уникальным ID. Эти идентификакторы позволяют нам различать счётчики и когда мы захотим обновить четвёртый, у нас будет простой способ это сделать. (Кроме того эти ID дают удобный способ определять уникальный <a href="http://package.elm-lang.org/packages/evancz/elm-html/latest/Html-Attributes#key"><code>ключ</code></a> когда мы задумаемся об оптимизации отрисовки компонентов, но это мы не будем сейчас особо останавливаться на этой теме.) Кроме того, у модели есть поле <code>nextId</code>, помогающее нам назначать уникальные идентификаторы при добавлении новых счётчиков.</p>
+<p>Теперь наша модель это список счётчиков, каждый со своим уникальным ID. Эти идентификакторы позволяют нам различать счётчики и когда мы захотим обновить четвёртый, у нас будет простой способ это сделать. (Кроме того эти ID дают удобный способ определять уникальный <a href="http://package.elm-lang.org/packages/evancz/elm-html/latest/Html-Attributes#key"><code>ключ</code></a> когда мы задумаемся об оптимизации отрисовки компонентов, но это мы не будем сейчас особо останавливаться на этой теме). Кроме того, у модели есть поле <code>nextId</code>, помогающее нам назначать уникальные идентификаторы при добавлении новых счётчиков.</p>
 <p>Опишем набор действий, которые мы можем применять к нашей модели. Мы хотим иметь возможность добавлять счётчики, удалять их, а так же изменять значения отдельных счётчиков.</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">Action</span>
     <span class="fu">=</span> <span class="dt">Insert</span>
@@ -407,12 +407,12 @@ viewCounter address (id, model) <span class="fu">=</span>
   Counter.view (Signal.forwardTo address (<span class="dt">Modify</span> id)) model</code></pre></div>
 <p>Забавно, что функция <code>viewCounter</code> использует всё ту же функцию <code>Counter.view</code>, но в этот раз мы используем адрес пересылки, помечающий все сообщения выводящегося в данный момент счётчика его идентификатором.</p>
 <p>Когда мы создаём функцию <code>view</code> приложения, мы применяем функцию <code>viewCounter</code> на каждый элемент списка. А когда мы создаём кнопки добавления и удаления, которые шлют сообщения в канал приложения <code>address</code> напрямую.</p>
-<p>Подобный трюк с ID может быть использован в любом месте, где вам нужно динамическое количество вложенных компонентов. Счётчики это довольно просто, но такой паттерн будет работать в точности одинаково если у вас будет список профилей пользователей, твитов, элементов ленты новостей или продуктов.</p>
+<p>Подобный трюк с ID может быть использован в любом месте, где вам нужно динамическое количество вложенных компонентов. Счётчики это довольно просто, но такой паттерн будет работать в точности одинаково, если у вас будет список профилей пользователей, твитов, элементов ленты новостей или продуктов.</p>
 <h2 id="пример-4-продвинутый-список-счётчиков">Пример №4: Продвинутый список счётчиков</h2>
 <p>Окей, держать вещи простыми и модульными для списка счётчиков это здорово, но что если вместо общей кнопки сброса у каждого счётчика будет своя кнопка удаления? Уж это наверняка всё сломает!</p>
 <p>Не, всё работает.</p>
 <p>Чтобы посмотреть пример №4 в действии, зайдите в каталог <code>4/</code> и запустите там <code>elm-reactor</code>, после чего откройте <a href="http://localhost:8000/CounterList.elm?debug" class="uri">http://localhost:8000/CounterList.elm?debug</a>.</p>
-<p>В данном случае нам потребуется новый способ создавать счётчики вместе с их кнопками. Мы можем оставить старую функцию <code>view</code> и просто добавить новую <code>viewWithRemoveButton</code>, которая будет немного по-другому рисовать модель. Нам не потребуется дублировать код или делать сумашедшие трюки с наследованием или перегрузкой. Мы просто добавим в публичный интерфейс модуля новую функцию, реализующую новую функциональность!</p>
+<p>В данном случае нам потребуется новый способ создавать счётчики вместе с их кнопками. Мы можем оставить старую функцию <code>view</code> и просто добавить новую <code>viewWithRemoveButton</code>, которая будет немного по-другому рисовать модель. Нам не потребуется дублировать код или делать сумасшедшие трюки с наследованием или перегрузкой. Мы просто добавим в публичный интерфейс модуля новую функцию, реализующую новую функциональность!</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Counter</span> (<span class="dt">Model</span>, init, <span class="dt">Action</span>, update, view, viewWithRemoveButton, <span class="dt">Context</span>) <span class="kw">where</span>
 
 <span class="fu">...</span>
@@ -466,7 +466,7 @@ update action model <span class="fu">=</span>
                 <span class="kw">else</span> (counterID, counterModel)
       <span class="kw">in</span>
           { model <span class="fu">|</span> counters <span class="ot">&lt;-</span> List.map updateCounter model<span class="fu">.</span>counters }</code></pre></div>
-<p>Когда приходит <code>Remove</code> мы убираем счётчик имеющий ID того, который мы должны убрать. В остальном, всё примерно тоже самое.</p>
+<p>Когда приходит <code>Remove</code> мы убираем счётчик имеющий ID того, который мы должны убрать. В остальном, всё примерно то же самое.</p>
 <p>И наконец, мы собираем всё это вместе в функции <code>view</code>:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">view <span class="fu">:</span> <span class="dt">Signal.Address</span> <span class="dt">Action</span> <span class="ot">-&gt;</span> <span class="dt">Model</span> <span class="ot">-&gt;</span> <span class="dt">Html</span>
 view address model <span class="fu">=</span>
@@ -482,7 +482,7 @@ viewCounter address (id, model) <span class="fu">=</span>
           (Signal.forwardTo address (always (<span class="dt">Remove</span> id)) actionChannel)
   <span class="kw">in</span>
       Counter.viewWithRemoveButton context model</code></pre></div>
-<p>В функции <code>viewCounter</code> мы создаём <code>Counter.Context</code> и передаём туда обратный адрес. В обоих случаях мы помечаем <code>Counter.Action</code> чтобы знать кого обновлять или удалять.</p>
+<p>В функции <code>viewCounter</code> мы создаём <code>Counter.Context</code> и передаём туда обратный адрес. В обоих случаях мы помечаем <code>Counter.Action</code>, чтобы знать кого обновлять или удалять.</p>
 <h2 id="основые-уроки">Основые уроки</h2>
 <p><strong>Базовый приём</strong> — Всё строится вокруг типа <code>Model</code>, функции <code>update</code> для её обновления и функции <code>view</code> для отображения. Дальше идут только вариации этого приёма.</p>
 <p><strong>Вложенные модули</strong> — Адрес пересылки позволяет с лёгкостью углублять основной приём, полностью скрывая детали реализации. Мы можем строить какие угодно глубокие компоненты и каждый уровень должен знать только о том, что находится непосредственно внутри него.</p>
@@ -490,16 +490,16 @@ viewCounter address (id, model) <span class="fu">=</span>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">update <span class="fu">:</span> <span class="dt">Context</span> <span class="ot">-&gt;</span> <span class="dt">Action</span> <span class="ot">-&gt;</span> <span class="dt">Model</span> <span class="ot">-&gt;</span> <span class="dt">Model</span>
 
 view <span class="fu">:</span> <span class="dt">Context'</span> <span class="ot">-&gt;</span> <span class="dt">Model</span> <span class="ot">-&gt;</span> <span class="dt">Html</span></code></pre></div>
-<p>На каждом уровне вложенности мы можем определить тот <code>Context</code> который нужен для внутренних компонентов.</p>
-<p><strong>Простота тестирования</strong> — Все функции являются <a href="http://en.wikipedia.org/wiki/Pure_function">чистыми</a>. Это позволяет их очень просто тестировать - не требуется никакой особой инициалиазции или искуственного окружения, просто передайте им аргументы которые вы хотите опробовать.</p>
+<p>На каждом уровне вложенности мы можем определить тот <code>Context</code>, который нужен для внутренних компонентов.</p>
+<p><strong>Простота тестирования</strong> — Все функции являются <a href="http://en.wikipedia.org/wiki/Pure_function">чистыми</a>. Это позволяет их очень просто тестировать - не требуется никакой особой инициалиазции или искуственного окружения, просто передайте им аргументы, которые вы хотите опробовать.</p>
 <h2 id="ещё-один-шаблон">Ещё один шаблон</h2>
-<p>Существует ещё один важный способ расширить основной приём. К примеру, вам может потребоваться обновить компонент и, в зависимости от результата, надо поменять что-то ещё в другой части программы. Вы можете расширить функцию <code>update</code> чтобы она возвращала больше информации.</p>
+<p>Существует ещё один важный способ расширить основной приём. К примеру, вам может потребоваться обновить компонент и, в зависимости от результата, надо поменять что-то ещё в другой части программы. Вы можете расширить функцию <code>update</code>, чтобы она возвращала больше информации.</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">Request</span> <span class="fu">=</span> <span class="dt">RefreshPage</span> <span class="fu">|</span> <span class="dt">Print</span>
 
 update <span class="fu">:</span> <span class="dt">Action</span> <span class="ot">-&gt;</span> <span class="dt">Model</span> <span class="ot">-&gt;</span> (<span class="dt">Model</span>, <span class="dt">Maybe</span> <span class="dt">Request</span>)</code></pre></div>
-<p>В зависимости от логики обработки <code>update</code> мы можем сказать кому-то выше обновить содержимое или вывести что-нибудь. Похожим образом компонент может удалить себя:</p>
+<p>В зависимости от логики обработки <code>update</code>, мы можем сказать кому-то выше обновить содержимое или вывести что-нибудь. Похожим образом компонент может удалить себя:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">update <span class="fu">:</span> <span class="dt">Action</span> <span class="ot">-&gt;</span> <span class="dt">Model</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Model</span></code></pre></div>
-<p>Если не очень понятно как это работает, я может быть напишу пример 5, использующий этот приём. А пока вы можете посмотреть похожие примеры в <a href="https://github.com/evancz/elm-todomvc/blob/trim/Todo.elm">забавной версии приложения TodoMVC на Elm</a>.</p>
+<p>Если не очень понятно как это работает, я, может быть, напишу пример 5, использующий этот приём. А пока, вы можете посмотреть похожие примеры в <a href="https://github.com/evancz/elm-todomvc/blob/trim/Todo.elm">забавной версии приложения TodoMVC на Elm</a>.</p>
 
 <div id="socialButtons">
     <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ru">Твитнуть</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
