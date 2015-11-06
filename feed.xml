@@ -17,14 +17,6 @@
     <dc:creator>Денис Шевченко</dc:creator>
 </item>
 <item>
-    <title>Nix: знакомство</title>
-    <link>http://ruhaskell.org/posts/utils/2015/10/28/nix.html</link>
-    <description><![CDATA[Nix - инструмент, заслуживающий нашего с ним знакомства.]]></description>
-    <pubDate>Wed, 28 Oct 2015 00:00:00 UT</pubDate>
-    <guid>http://ruhaskell.org/posts/utils/2015/10/28/nix.html</guid>
-    <dc:creator>Денис Шевченко</dc:creator>
-</item>
-<item>
     <title>Haskell + Lua = дружба!</title>
     <link>http://ruhaskell.org/posts/packages/2015/10/21/HaskellLuaHowTo.html</link>
     <description><![CDATA[Использование Lua-скриптов в Haskell-программах]]></description>
@@ -86,6 +78,14 @@
     <description><![CDATA[Экспериментальный интерпретатор языка Lisp, реализованный на Haskell.]]></description>
     <pubDate>Fri, 04 Sep 2015 00:00:00 UT</pubDate>
     <guid>http://ruhaskell.org/posts/projects/2015/09/04/liscript.html</guid>
+    <dc:creator>Денис Шевченко</dc:creator>
+</item>
+<item>
+    <title>Выпуск 4</title>
+    <link>http://ruhaskell.org/posts/cast/2015/09/04/issue4.html</link>
+    <description><![CDATA[Четвёртый выпуск нашего подкаста, посвящённого Haskell и всему вокруг него.]]></description>
+    <pubDate>Fri, 04 Sep 2015 00:00:00 UT</pubDate>
+    <guid>http://ruhaskell.org/posts/cast/2015/09/04/issue4.html</guid>
     <dc:creator>Денис Шевченко</dc:creator>
 </item>
 
