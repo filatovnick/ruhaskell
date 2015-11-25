@@ -7,8 +7,16 @@
         <description><![CDATA[Русскоязычное сообщество Haskell-разработчиков]]></description>
         <atom:link href="http://ruhaskell.org/feed.xml" rel="self"
                    type="application/rss+xml" />
-        <lastBuildDate>Wed, 25 Nov 2015 00:00:00 UT</lastBuildDate>
+        <lastBuildDate>Thu, 26 Nov 2015 00:00:00 UT</lastBuildDate>
         <item>
+    <title>Nix: начало</title>
+    <link>http://ruhaskell.org/posts/utils/2015/11/26/nix-hello-world.html</link>
+    <description><![CDATA[Пробуем Nix на вкус...]]></description>
+    <pubDate>Thu, 26 Nov 2015 00:00:00 UT</pubDate>
+    <guid>http://ruhaskell.org/posts/utils/2015/11/26/nix-hello-world.html</guid>
+    <dc:creator>Денис Шевченко</dc:creator>
+</item>
+<item>
     <title>Nix: идея</title>
     <link>http://ruhaskell.org/posts/utils/2015/11/25/nix-idea.html</link>
     <description><![CDATA[Первая (и надеюсь, не последняя) статья про Nix. Уж очень интересный инструмент оказался...]]></description>
@@ -78,14 +86,6 @@
     <description><![CDATA[Пятый выпуск нашего подкаста, посвящённого Haskell и всему вокруг него.]]></description>
     <pubDate>Thu, 10 Sep 2015 00:00:00 UT</pubDate>
     <guid>http://ruhaskell.org/posts/cast/2015/09/10/issue5.html</guid>
-    <dc:creator>Денис Шевченко</dc:creator>
-</item>
-<item>
-    <title>Liscript</title>
-    <link>http://ruhaskell.org/posts/projects/2015/09/04/liscript.html</link>
-    <description><![CDATA[Экспериментальный интерпретатор языка Lisp, реализованный на Haskell.]]></description>
-    <pubDate>Fri, 04 Sep 2015 00:00:00 UT</pubDate>
-    <guid>http://ruhaskell.org/posts/projects/2015/09/04/liscript.html</guid>
     <dc:creator>Денис Шевченко</dc:creator>
 </item>
 

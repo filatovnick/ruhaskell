@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content>
+        <meta name="author" content>
+        <link rel="icon" href="../../../../../static/images/favicon.ico">
+
+        <title>Nix: начало</title>
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+        <link href="../../../../../static/css/default.css" rel="stylesheet">
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+        <script>
+          window.___gcfg = {
+            lang: 'ru'
+          };
+        </script>
+
+        <script src="https://apis.google.com/js/platform.js" async defer>
+        </script>
+
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="http://ruhaskell.org/feed.xml" />
+
+        <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+    </head>
+
+  <body>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-58217738-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+    <div class="container">
+        <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <div id="ruhaskell-logo">
+                <a class="navbar-brand" href="../../../../../" title="Домой">
+                  <img alt="ruHaskell" src="../../../../../static/images/logo.png" width="60">
+                </a>
+              </div>
+            </div>
+
+            <div id="navbar" class="collapse navbar-collapse">
+              <ul class="nav navbar-nav">
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Публикации<span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a href="../../../../../archive.html">
+                            <span class="archive-link">
+                                <span class="fa fa-pencil"></span>
+                            </span>Статьи
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../../../../../tags.html">
+                            <span class="tags-link">
+                                <span class="fa fa-tags"></span>
+                            </span>Теги
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../../../../../categories.html">
+                            <span class="categories-link">
+                                <span class="fa fa-star"></span>
+                            </span>Категории
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../../../../../authors.html">
+                            <span class="authors-link">
+                                <span class="fa fa-users"></span>
+                            </span>Авторы
+                        </a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Общение<span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a href="https://gitter.im/ruHaskell/forall" target="_blank">
+                            <span class="chat-link">
+                                <span class="fa fa-smile-o"></span>
+                            </span>Чат
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://forum.ruhaskell.org" target="_blank">
+                            <span class="group-link">
+                                <span class="fa fa-group"></span>
+                            </span>Форум
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../../../../../maillist.html">
+                            <span class="group-link">
+                                <span class="fa fa-group"></span>
+                            </span>Список рассылки
+                        </a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li><a href="../../../../../links.html">Ссылки</a></li>
+              </ul>
+
+              <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Присоединяйтесь!<span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a href="https://twitter.com/RuHaskell" target="_blank">
+                            <span id="twitter-link">
+                                <span class="fa fa-twitter-square"></span>
+                            </span>Twitter
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/ruHaskell/ruhaskell" target="_blank">
+                            <span id="github-link">
+                                <span class="fa fa-github-square"></span>
+                            </span>GitHub
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://plus.google.com/communities/117343381540538069054" target="_blank">
+                            <span id="google-plus-link">
+                                <span class="fa fa-google-plus-square"></span>
+                            </span>Google+
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../../../../../feed.xml">
+                            <span id="rss-link">
+                                <span class="fa fa-rss-square"></span>
+                            </span>RSS
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://bananasandlenses.net/" target="_blank">
+                            <span id="bananasandlenses-link">
+                                <span class="fa fa-headphones"></span>
+                            </span>Подкаст
+                        </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+        <div id="content">
+            <h1>Nix: начало</h1>
+
+<div class="row">
+    <div class="col-xs-9 col-sm-8 col-md-8 col-lg-8">
+        <div class="post-info">
+            <strong>let</strong> author&nbsp;&nbsp;&nbsp;= "<a href="../../../../../authors/%D0%94%D0%B5%D0%BD%D0%B8%D1%81%20%D0%A8%D0%B5%D0%B2%D1%87%D0%B5%D0%BD%D0%BA%D0%BE.html">Денис Шевченко</a>"<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= fromGregorian 2015 nov 26<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;category = "<a href="../../../../../categories/utils.html">Утилиты</a>"<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;tags&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= [&quot;<a href="../../../../../tags/Nix.html">Nix</a>&quot;]
+        </div>
+    </div>
+
+    <div class="col-xs-3 col-sm-4 col-md-4 col-lg-4">
+        
+    </div>
+</div>
+
+<p>Всем привет!</p>
+<p>Итак, от <a href="http://ruhaskell.org/posts/utils/2015/11/25/nix-idea.html">идейной теории</a> перейдём к практике. Надо же, наконец, попробовать этот Nix на вкус…</p>
+<h2 id="платформа">Платформа</h2>
+<p>Я долго думал, где же проводить все свои эксперименты, и решил-таки делать их на NixOS, через VirtualBox. Конечно, заявлено о работе Nix и на OS X, но уж лучше на NixOS, нативнее будет. ;-) Сказано - сделано. Иду <a href="http://nixos.org/nixos/download.html">сюда</a> и скачиваю последний (а именно версии <code>15.09</code>) образ для VB. Импортирую, запускаю, вижу знакомый KDE. Начнём. Все манипуляции проводятся в Konsole.</p>
+<p><strong>ВАЖНО!</strong> У меня нет цели тупо продублировать <a href="http://nixos.org/nix/manual/">официальное Nix-руководство</a> на русском языке. В рамках этой и следующих статей я лишь хочу пройтись по интересующим меня практичным аспектам работы с Nix. Разумеется, особое ударение будет сделано на Haskell-разработку в Nix-среде. ;-)</p>
+<h2 id="устанавливаем-пакет">Устанавливаем пакет</h2>
+<p>В начале мы имеем фактически голую систему, в которой нет даже Vim. Вот с него и начнём.</p>
+<p>Простейший способ установить какой-либо пакет на NixOS таков: идём <a href="http://nixos.org/nixos/packages.html">сюда</a> и ищем пакет. Нахожу <code>vim-7.4.827</code>, нажимаю на него - и вижу следующее:</p>
+<pre><code>Install command:    $ nix-env -iA nixos.pkgs.vim (NixOS channel)
+Nix expression:     pkgs/applications/editors/vim/default.nix
+Platforms:          i686-linux, x86_64-linux
+Homepage:           http://www.vim.org
+License:            Not specified
+Maintainers:        Jason O'Conal &lt;jason@oconal.id.au&gt;
+Long description:   Not specified</code></pre>
+<p>Первая строка - то что нам нужно, название <code>Install command</code> говорит само за себя. Ввожу:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">nix-env</span> -iA nixos.pkgs.vim
+<span class="kw">installing</span> ‘vim-7.4.827’
+<span class="kw">these</span> paths will be fetched (5.65 MiB download, 27.06 MiB unpacked)<span class="kw">:</span>
+  <span class="kw">/nix/store/yblqgyrn4jgwfg89qp9041i0n2z26v5b-vim-7.4.827</span>
+<span class="kw">fetching</span> path ‘/nix/store/yblqgyrn4jgwfg89qp9041i0n2z26v5b-vim-7.4.827’...
+
+<span class="kw">***</span> Downloading ‘https://cache.nixos.org/nar/1pxi5nvpvfn27lxi789qjqb5gp2dbsabagc2y7ldnj8c20py9ix1.nar.xz’ (signed by ‘cache.nixos.org-1’) <span class="kw">to</span> ‘/nix/store/yblqgyrn4jgwfg89qp9041i0n2z26v5b-vim-7.4.827’...
+  <span class="kw">%</span> Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 <span class="kw">Dload</span>  Upload   Total   Spent    Left  Speed
+<span class="kw">100</span> 5782k  100 5782k    0     0   601k      0  0:00:09  0:00:09 --:--:--  681k
+
+<span class="kw">building</span> path(s) ‘<span class="kw">/nix/store</span>/<span class="kw">77qhgp784j2qia0v9dj98b76cra70qmm-user-environment</span>’                                                                              
+<span class="kw">created</span> 2 symlinks in user environment</code></pre></div>
+<p>Сразу после этого команда <code>vim</code> уже доступна в консоли. А теперь давайте разбираться.</p>
+<h2 id="где">Где</h2>
+<p>Во-первых, куда именно установился <code>vim</code>? Как мы уже знаем, Nix устанавливает каждый пакет в своё уникальное место, где-то в недрах <code>/nix/store/</code>. Более того, мы уже видели это место, оно было показано нам в сообщении при установке:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">these</span> paths will be fetched (5.65 MiB download, 27.06 MiB unpacked)<span class="kw">:</span>
+  <span class="kw">/nix/store/yblqgyrn4jgwfg89qp9041i0n2z26v5b-vim-7.4.827</span></code></pre></div>
+<p>Давайте проверим:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span> /nix/store/ <span class="kw">|</span> <span class="kw">grep</span> vim
+<span class="kw">yblqgyrn4jgwfg89qp9041i0n2z26v5b-vim-7.4.827</span></code></pre></div>
+<p>Да, это тот самый хэш. Заглянем внутрь:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span> /nix/store/yblqgyrn4jgwfg89qp9041i0n2z26v5b-vim-7.4.827/
+<span class="kw">bin</span> share</code></pre></div>
+<p>Вполне ожидаемое содержимое: внутри <code>bin</code> лежат исполняемые файлы (такие как <code>vim</code>, <code>vimdiff</code>, <code>vimtutor</code>), а внутри <code>share/vim/vim74/</code> - Vim-плагины.</p>
+<h2 id="профиль-и-окружение">Профиль и окружение</h2>
+<p>Итак, <code>vim</code> теперь живёт в своём уютном мирке. Однако если мы проверим, откуда доступна команда <code>vim</code>, то увидим следующее:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">which</span> vim
+<span class="kw">/home/demo/.nix-profile/bin/vim</span></code></pre></div>
+<p>Хм… Странно. Разве мы не должны были увидеть <code>/nix/store/yblqgyrn4jgwfg89qp9041i0n2z26v5b-vim-7.4.827/bin/vim</code>? Что это за <code>~/.nix-profile/</code> такой?</p>
+<p>Посмотрим-ка на него внимательнее:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span> -al ~/.nix-profile
+<span class="kw">...</span> .nix-profile -<span class="kw">&gt;</span> /nix/var/nix/profiles/per-user/demo/profile</code></pre></div>
+<p>Ага, перед нами символьная ссылка, и ведёт она куда-то в недра <code>/nix</code>. Заглянем поглубже:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span> -al /nix/var/nix/profiles/per-user/demo/profile
+<span class="kw">...</span> /nix/var/nix/profiles/per-user/demo/profile -<span class="kw">&gt;</span> profile-1-link</code></pre></div>
+<p>Опять ссылка. Глубже:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span> -al /nix/var/nix/profiles/per-user/demo/profile-1-link
+<span class="kw">...</span> /nix/var/nix/profiles/per-user/demo/profile-1-link -<span class="kw">&gt;</span> /nix/store/77qhgp784j2qia0v9dj98b76cra70qmm-user-environment</code></pre></div>
+<p>И вновь ссылка, на этот раз на нечто любопытное: в хранилище <code>/nix/store</code> мы видим некое <code>user-environment</code>. Так, пользовательское окружение… Уж не то ли самое это окружение, куда устанавливается мой софт? Проверим:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span> -al /nix/store/77qhgp784j2qia0v9dj98b76cra70qmm-user-environment/
+<span class="kw">total</span> 92
+<span class="kw">...</span> bin -<span class="kw">&gt;</span> /nix/store/yblqgyrn4jgwfg89qp9041i0n2z26v5b-vim-7.4.827/bin
+<span class="kw">...</span> manifest.nix -<span class="kw">&gt;</span> /nix/store/2i6jvy2q2m8gcgiszsh4zw5dvx7133hd-env-manifest.nix
+<span class="kw">...</span> share -<span class="kw">&gt;</span> /nix/store/yblqgyrn4jgwfg89qp9041i0n2z26v5b-vim-7.4.827/share</code></pre></div>
+<p>Так вот же оно! Внутри моего окружения я вижу ссылки на части установленного мною <code>vim</code>. Теперь-то понятно, почему команда <code>vim</code> была доступна через <code>~/.nix-profile/</code>: это просто цепочка ссылок. Концептуально её можно изобразить так:</p>
+<pre><code>my-profile -&gt; user-environment -&gt; software</code></pre>
+<p>Только что мы узнали нечто очень важное. Оказывается, утверждение, что “у каждого пользователя есть своё собственное окружение, куда он устанавливает софт”, не совсем корректно, ибо может ввести нас в заблуждение. Складывается впечатление, будто в моём домашнем каталоге есть какой-то особый каталог, в который устанавливаются мои пакеты, типа <code>/home/demo/.my-nix-packages/trali-vali/vim-7.4.827/</code>. В действительности же это не так: все пакеты хранятся в <code>/nix/store</code>, а в моём профиле есть лишь <em>упоминание</em> о некоторых из них.</p>
+<p>Кстати, а давайте проверим эту догадку. Вдруг мы неправы?</p>
+<h2 id="общий-vim">Общий vim</h2>
+<p>Создадим-ка второго пользователя, по имени <code>demo2</code>, и, войдя под ним, проверим:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">vim</span>
+<span class="kw">vim</span>: command not found</code></pre></div>
+<p>Мы знаем, что <code>vim</code> в системе уже существует, но пользователь <code>demo2</code> не знает об этом. Давайте повторим процедуру установки <code>vim</code>:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">nix-env</span> -iA nixos.pkgs.vim
+<span class="kw">installing</span> ‘vim-7.4.827’</code></pre></div>
+<p>Опа, как мы и предполагали! Пользователь <code>demo2</code> запросил установку пакета <code>vim</code>, но поскольку этот пакет уже живёт в нашей системе, никакой установки в действительности не произошло. Уверен, вы уже догадались, что же произошло на самом деле: в окружении пользователя <code>demo2</code> просто появились символьные ссылки на <em>тот же самый</em> пакет <code>vim</code>. Убедимся же в этом:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">which</span> vim
+<span class="kw">/home/demo2/.nix-profile/bin/vim</span>
+
+$ <span class="kw">ls</span> -al ~/.nix-profile
+<span class="kw">...</span> /home/demo2/.nix-profile -<span class="kw">&gt;</span> /nix/var/nix/profiles/per-user/demo2/profile
+
+$ <span class="kw">ls</span> -al /nix/var/nix/profiles/per-user/demo2/profile
+<span class="kw">...</span> /nix/var/nix/profiles/per-user/demo2/profile -<span class="kw">&gt;</span> profile-1-link
+
+$ <span class="kw">ls</span> -al /nix/var/nix/profiles/per-user/demo2/profile-1-link
+<span class="kw">...</span> /nix/var/nix/profiles/per-user/demo2/profile-1-link -<span class="kw">&gt;</span> /nix/store/77qhgp784j2qia0v9dj98b76cra70qmm-user-environment
+
+$ <span class="kw">ls</span> -al /nix/store/77qhgp784j2qia0v9dj98b76cra70qmm-user-environment
+<span class="kw">total</span> 92
+<span class="kw">...</span> bin -<span class="kw">&gt;</span> /nix/store/yblqgyrn4jgwfg89qp9041i0n2z26v5b-vim-7.4.827/bin
+<span class="kw">...</span> manifest.nix -<span class="kw">&gt;</span> /nix/store/2i6jvy2q2m8gcgiszsh4zw5dvx7133hd-env-manifest.nix
+<span class="kw">...</span> share -<span class="kw">&gt;</span> /nix/store/yblqgyrn4jgwfg89qp9041i0n2z26v5b-vim-7.4.827/share</code></pre></div>
+<p>Это именно то, что мы и ожидали увидеть: тот же самый хэш, та же самая версия <code>vim</code>! Таким образом, концептуально сложившуюся ситуацию можно изобразить так:</p>
+<pre><code>demo-profile  -&gt; /nix/store/user-environment -&gt; /nix/store/vim-7.4.827
+              /                          
+demo2-profile </code></pre>
+<p>Два пользователя пользуются общим пакетом <code>vim</code>! Это в высшей степени рациональный подход, поскольку нет никакого дубляжа. Даже если бы в нашей системе было сто пользователей, то, когда все они запросят установку пакета <code>vim</code> одной и той же версии, тогда один-единственный пакет <code>vim</code> просто расшарится между ними, через ссылки в их профилях.</p>
+<h2 id="видит-око-да-зуб-неймёт">Видит око, да зуб неймёт</h2>
+<p>Постойте, возразите вы, но если два пользователя <code>demo</code> и <code>demo2</code> пользуются одним и тем же пакетом <code>vim</code> - это же опасно! А что если <code>demo2</code> возьмёт и удалит его! Ну или сломает чего-нибудь! Это что же, у <code>demo</code> <code>vim</code> тоже исчезнет или поломается??!</p>
+<p>Резонное возражение. Давайте похулиганим от имени <code>demo2</code>. Попробуем переименовать исполняемый файл <code>vim</code>:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cd</span> /nix/store/yblqgyrn4jgwfg89qp9041i0n2z26v5b-vim-7.4.827/bin
+
+$ <span class="kw">mv</span> vim vimTraliVali
+<span class="kw">mv</span>: cannot move ‘vim’ to ‘vimTraliVali’: Read-only file system</code></pre></div>
+<p>Ага, разбежались! Вы должны помнить из предыдущей статьи, что Nix воспринимает пакеты так же, как значения в Haskell-коде: будучи единожды созданными, они уже не могут быть изменены. В этом и заключается Nix-чистота (purity). Оба пользователя ссылаются на пакет <code>vim</code>, но ни один из них не <em>владеет</em> им.</p>
+<p>Ну хорошо, возразите вы вновь, но ведь Nix же умеет удалять пакеты?! Ладно, не будем ничего ломать, но что произойдёт, если <code>demo2</code> удалит <code>vim</code>?</p>
+<p>Разумеется, Nix умеет удалять пакеты, сделаем же это:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">nix-env</span> --uninstall vim
+<span class="kw">uninstalling</span> ‘vim-7.4.827’
+<span class="kw">building</span> path(s) ‘<span class="kw">/nix/store</span>/<span class="kw">0fw4wpbrgix115lh93ahfik2r0hvv7n0-user-environment</span>’
+<span class="kw">created</span> 0 symlinks in user environment
+
+$ <span class="kw">vim</span>
+<span class="kw">vim</span>: command not found</code></pre></div>
+<p>О нет, что же мы натворили-то?! Как же теперь быть бедному <code>demo</code>? А давайте проверим. Перелогинимся под <code>demo</code> и:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">vim</span> --version
+<span class="kw">VIM</span> - Vi IMproved 7.4 (2013 Aug 10, compiled Jan 01 1970 00:00:01)
+<span class="kw">Included</span> patches: 1-827</code></pre></div>
+<p>Магия? Вовсе нет. Когда мы выполнили команду:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">nix-env</span> --uninstall vim</code></pre></div>
+<p>никакого удаления в действительности не произошло. В самом деле, если бы пакет <code>vim</code> реально исчез - как бы тогда его мог видеть пользователь <code>demo</code>? Как вы уже, вероятно, догадались, произошло только одно: удаление той самой символьной ссылки на пакет <code>vim</code> из профиля <code>demo2</code>. И это вполне логично: если с конкретным пакетом пользователя связывает лишь соответствующая ссылка из его профиля, тогда удаление пакета сводится к удалению этой ссылки. Это похоже на указатель в языке C: если мы потеряли некую “ссылку” на область памяти в куче - всё, эта память потеряна для нас навсегда, однако это вовсе не означает, что эта память тут же была очищена, ведь на эту же область памяти вполне может ссылаться кто-то другой.</p>
+<p>Пока пользователь <code>demo</code> продолжает ссылаться на пакет <code>vim</code>, этот пакет никак не может быть удалён. Оно и понятно: если бы мы могли удалить пакет, на который кто-то ссылается, тогда у кого-то что-нибудь сломалось бы, а это недопустимо.</p>
+<p>Ну хорошо, а что же будет, если и <code>demo</code> удалит <code>vim</code>? Сказано - сделано:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">nix-env</span> --uninstall vim
+<span class="kw">uninstalling</span> ‘vim-7.4.827’
+
+$ <span class="kw">vim</span>
+<span class="kw">vim</span>: command not found</code></pre></div>
+<p>Всё, скончался наш <code>vim</code>. Впрочем, скончался ли? Ведь мы же помним тот самый хэш, ну-ка проверим:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span> -al /nix/store/yblqgyrn4jgwfg89qp9041i0n2z26v5b-vim-7.4.827/bin/vim
+<span class="kw">...</span> /nix/store/yblqgyrn4jgwfg89qp9041i0n2z26v5b-vim-7.4.827/bin/vim</code></pre></div>
+<p>Опа… А почему же <code>vim</code> никуда не исчез? А потому что мы мусор не почистили.</p>
+<p>Помните идею GC (сборщика мусора)? Удалять только то, что никому не нужно. Так вот в Nix есть собственный GC. Пакет <code>vim</code> больше никому не нужен, ведь оба пользователя, когда-то работающие с ним, удалили его. Значит, теперь можно почистить мусор. Это не происходит автоматически, нужно запустить команду:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">nix-collect-garbage</span> -d</code></pre></div>
+<p>И вот теперь - всё. Помимо всего прочего, мы увидим строку:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">deleting</span> ‘/nix/store/yblqgyrn4jgwfg89qp9041i0n2z26v5b-vim-7.4.827’</code></pre></div>
+<p>Покойся с миром, <code>vim</code>.</p>
+<h2 id="а-если-воскресить">А если воскресить?</h2>
+<p>Давайте заново установим <code>vim</code>. В конце концов, он мне нужен, привык я к нему:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">nix-env</span> -iA nixos.pkgs.vim
+<span class="kw">installing</span> ‘vim-7.4.827’
+<span class="kw">...</span></code></pre></div>
+<p>И вот <code>vim</code> вновь с нами. Но самое интересное в том, что если мы посмотрим в <code>/nix/store/</code>, то увидим:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span> /nix/store/ <span class="kw">|</span> <span class="kw">grep</span> vim
+<span class="kw">yblqgyrn4jgwfg89qp9041i0n2z26v5b-vim-7.4.827</span></code></pre></div>
+<p>Круто, правда? Хэш-то тот же самый! А всё потому, что это не просто какое-то случайное криптозначение, а хэш от входных конфигурационных параметров для данного пакета. Ну а раз <code>vim</code> тот же самый и входные параметры те же - значит и хэш останется прежним. И сколько бы раз мы ни удаляли и не устанавливали пакет <code>vim</code> одной и той же версии - результат будет гарантированно одинаковым. Да-да, это хорошо нам знакомая философия чистой функции - если на вход подали те же значения, то и на выходе всегда получим одно и то же.</p>
+<h2 id="в-итоге">В итоге</h2>
+<p>В итоге мы поняли, что Nix - весьма умная система. Лишнюю работу не делает, чистоту хранит, безопасно удаляет. Ну точно в духе Haskell! ;-)</p>
+<p>Разумеется, всё вышеизложенное - это лишь азы азов. А вот в следующих статьях начнутся вещи поинтереснее.</p>
+
+<div id="socialButtons">
+    <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ru">Твитнуть</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+    <div class="g-plus" data-action="share" data-annotation="bubble"></div>
+</div>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'ruhaskell'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+
+        </div>
+
+        <div id="searchForm">
+            <script>
+              (function() {
+                var cx = '007697214108744450483:w49n7qbvpdy';
+                var gcse = document.createElement('script');
+                gcse.type = 'text/javascript';
+                gcse.async = true;
+                gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                    '//www.google.com/cse/cse.js?cx=' + cx;
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(gcse, s);
+              })();
+            </script>
+            <gcse:search></gcse:search>
+        </div>
+
+        <footer class="footer">
+            Сайт работает на <strong><a href="http://jaspervdj.be/hakyll/" target="_blank">Hakyll</a></strong> и живёт на <strong><a href="https://github.com/ruHaskell/ruhaskell" target="_blank">GitHub</a></strong>.
+            <div class="stargaze">
+                <a data-count-api="/repos/ruHaskell/ruhaskell#stargazers_count" data-count-href="/ruHaskell/ruhaskell/stargazers" data-icon="octicon-star" href="https://github.com/ruHaskell/ruhaskell" class="github-button">Star</a>
+
+                <span style="padding-left: 20px;"></span>
+
+                <a data-count-api="/repos/ruHaskell/ruhaskell#forks_count" data-count-href="/ruHaskell/ruhaskell/network" data-icon="octicon-git-branch" href="https://github.com/ruHaskell/ruhaskell" class="github-button">Fork</a>
+            </div>
+
+            <div class="copyright-note">
+                Исходный код данного сайта, а также все опубликованные на нём материалы распространяются на условиях <a href="https://github.com/ruHaskell/ruhaskell/blob/master/LICENSE" target="_blank">свободной лицензии MIT</a>.
+            </div>
+        </footer>
+    </div>
+
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'ruhaskell'; // required: replace example with your forum shortname
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function () {
+var s = document.createElement('script'); s.async = true;
+s.type = 'text/javascript';
+s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+  </body>
+</html>
