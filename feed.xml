@@ -7,8 +7,16 @@
         <description><![CDATA[Русскоязычное сообщество Haskell-разработчиков]]></description>
         <atom:link href="http://ruhaskell.org/feed.xml" rel="self"
                    type="application/rss+xml" />
-        <lastBuildDate>Thu, 05 Nov 2015 00:00:00 UT</lastBuildDate>
+        <lastBuildDate>Wed, 25 Nov 2015 00:00:00 UT</lastBuildDate>
         <item>
+    <title>Nix: идея</title>
+    <link>http://ruhaskell.org/posts/utils/2015/11/25/nix-idea.html</link>
+    <description><![CDATA[Первая (и надеюсь, не последняя) статья про Nix. Уж очень интересный инструмент оказался...]]></description>
+    <pubDate>Wed, 25 Nov 2015 00:00:00 UT</pubDate>
+    <guid>http://ruhaskell.org/posts/utils/2015/11/25/nix-idea.html</guid>
+    <dc:creator>Денис Шевченко</dc:creator>
+</item>
+<item>
     <title>Регистрация на зимнюю московскую встречу</title>
     <link>http://ruhaskell.org/posts/events/2015/11/05/meetup-winter-register.html</link>
     <description><![CDATA[Регистрация на зимнюю московскую встречу открыта. Приходите, приводите друзей. Можно пожертвовать немножко на наём оператора.]]></description>
@@ -78,14 +86,6 @@
     <description><![CDATA[Экспериментальный интерпретатор языка Lisp, реализованный на Haskell.]]></description>
     <pubDate>Fri, 04 Sep 2015 00:00:00 UT</pubDate>
     <guid>http://ruhaskell.org/posts/projects/2015/09/04/liscript.html</guid>
-    <dc:creator>Денис Шевченко</dc:creator>
-</item>
-<item>
-    <title>Выпуск 4</title>
-    <link>http://ruhaskell.org/posts/cast/2015/09/04/issue4.html</link>
-    <description><![CDATA[Четвёртый выпуск нашего подкаста, посвящённого Haskell и всему вокруг него.]]></description>
-    <pubDate>Fri, 04 Sep 2015 00:00:00 UT</pubDate>
-    <guid>http://ruhaskell.org/posts/cast/2015/09/04/issue4.html</guid>
     <dc:creator>Денис Шевченко</dc:creator>
 </item>
 
