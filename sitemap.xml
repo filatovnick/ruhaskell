@@ -2,6 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
+        <loc>http://ruhaskell.org/posts/utils/2015/11/30/nix-with-haskell.html</loc>
+    </url>
+
+    <url>
         <loc>http://ruhaskell.org/posts/utils/2015/11/26/nix-hello-world.html</loc>
     </url>
 

@@ -7,8 +7,16 @@
         <description><![CDATA[Русскоязычное сообщество Haskell-разработчиков]]></description>
         <atom:link href="http://ruhaskell.org/feed.xml" rel="self"
                    type="application/rss+xml" />
-        <lastBuildDate>Thu, 26 Nov 2015 00:00:00 UT</lastBuildDate>
+        <lastBuildDate>Mon, 30 Nov 2015 00:00:00 UT</lastBuildDate>
         <item>
+    <title>Nix и Haskell: первая встреча</title>
+    <link>http://ruhaskell.org/posts/utils/2015/11/30/nix-with-haskell.html</link>
+    <description><![CDATA[Продолжаем разбираться с Nix, теперь уже в свете нашего любимого языка. Давайте уже создадим что-нибудь!]]></description>
+    <pubDate>Mon, 30 Nov 2015 00:00:00 UT</pubDate>
+    <guid>http://ruhaskell.org/posts/utils/2015/11/30/nix-with-haskell.html</guid>
+    <dc:creator>Денис Шевченко</dc:creator>
+</item>
+<item>
     <title>Nix: начало</title>
     <link>http://ruhaskell.org/posts/utils/2015/11/26/nix-hello-world.html</link>
     <description><![CDATA[Пробуем Nix на вкус...]]></description>
@@ -78,14 +86,6 @@
     <description><![CDATA[Шестой выпуск нашего подкаста, посвящённого Haskell и всему вокруг него.]]></description>
     <pubDate>Fri, 25 Sep 2015 00:00:00 UT</pubDate>
     <guid>http://ruhaskell.org/posts/cast/2015/09/25/issue6.html</guid>
-    <dc:creator>Денис Шевченко</dc:creator>
-</item>
-<item>
-    <title>Выпуск 5</title>
-    <link>http://ruhaskell.org/posts/cast/2015/09/10/issue5.html</link>
-    <description><![CDATA[Пятый выпуск нашего подкаста, посвящённого Haskell и всему вокруг него.]]></description>
-    <pubDate>Thu, 10 Sep 2015 00:00:00 UT</pubDate>
-    <guid>http://ruhaskell.org/posts/cast/2015/09/10/issue5.html</guid>
     <dc:creator>Денис Шевченко</dc:creator>
 </item>
 

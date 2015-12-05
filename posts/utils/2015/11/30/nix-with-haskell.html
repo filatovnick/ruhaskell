@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content>
+        <meta name="author" content>
+        <link rel="icon" href="../../../../../static/images/favicon.ico">
+
+        <title>Nix и Haskell: первая встреча</title>
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+        <link href="../../../../../static/css/default.css" rel="stylesheet">
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+        <script>
+          window.___gcfg = {
+            lang: 'ru'
+          };
+        </script>
+
+        <script src="https://apis.google.com/js/platform.js" async defer>
+        </script>
+
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="http://ruhaskell.org/feed.xml" />
+
+        <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+    </head>
+
+  <body>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-58217738-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+    <div class="container">
+        <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <div id="ruhaskell-logo">
+                <a class="navbar-brand" href="../../../../../" title="Домой">
+                  <img alt="ruHaskell" src="../../../../../static/images/logo.png" width="60">
+                </a>
+              </div>
+            </div>
+
+            <div id="navbar" class="collapse navbar-collapse">
+              <ul class="nav navbar-nav">
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Публикации<span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a href="../../../../../archive.html">
+                            <span class="archive-link">
+                                <span class="fa fa-pencil"></span>
+                            </span>Статьи
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../../../../../tags.html">
+                            <span class="tags-link">
+                                <span class="fa fa-tags"></span>
+                            </span>Теги
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../../../../../categories.html">
+                            <span class="categories-link">
+                                <span class="fa fa-star"></span>
+                            </span>Категории
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../../../../../authors.html">
+                            <span class="authors-link">
+                                <span class="fa fa-users"></span>
+                            </span>Авторы
+                        </a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Общение<span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a href="https://gitter.im/ruHaskell/forall" target="_blank">
+                            <span class="chat-link">
+                                <span class="fa fa-smile-o"></span>
+                            </span>Чат
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://forum.ruhaskell.org" target="_blank">
+                            <span class="group-link">
+                                <span class="fa fa-group"></span>
+                            </span>Форум
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../../../../../maillist.html">
+                            <span class="group-link">
+                                <span class="fa fa-group"></span>
+                            </span>Список рассылки
+                        </a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li><a href="../../../../../links.html">Ссылки</a></li>
+              </ul>
+
+              <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Присоединяйтесь!<span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a href="https://twitter.com/RuHaskell" target="_blank">
+                            <span id="twitter-link">
+                                <span class="fa fa-twitter-square"></span>
+                            </span>Twitter
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/ruHaskell/ruhaskell" target="_blank">
+                            <span id="github-link">
+                                <span class="fa fa-github-square"></span>
+                            </span>GitHub
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://plus.google.com/communities/117343381540538069054" target="_blank">
+                            <span id="google-plus-link">
+                                <span class="fa fa-google-plus-square"></span>
+                            </span>Google+
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../../../../../feed.xml">
+                            <span id="rss-link">
+                                <span class="fa fa-rss-square"></span>
+                            </span>RSS
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://bananasandlenses.net/" target="_blank">
+                            <span id="bananasandlenses-link">
+                                <span class="fa fa-headphones"></span>
+                            </span>Подкаст
+                        </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+        <div id="content">
+            <h1>Nix и Haskell: первая встреча</h1>
+
+<div class="row">
+    <div class="col-xs-9 col-sm-8 col-md-8 col-lg-8">
+        <div class="post-info">
+            <strong>let</strong> author&nbsp;&nbsp;&nbsp;= "<a href="../../../../../authors/%D0%94%D0%B5%D0%BD%D0%B8%D1%81%20%D0%A8%D0%B5%D0%B2%D1%87%D0%B5%D0%BD%D0%BA%D0%BE.html">Денис Шевченко</a>"<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= fromGregorian 2015 nov 30<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;category = "<a href="../../../../../categories/utils.html">Утилиты</a>"<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;tags&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= [&quot;<a href="../../../../../tags/Nix.html">Nix</a>&quot;, &quot;<a href="../../../../../tags/Haskell.html">Haskell</a>&quot;]
+        </div>
+    </div>
+
+    <div class="col-xs-3 col-sm-4 col-md-4 col-lg-4">
+        
+    </div>
+</div>
+
+<p>Всем привет!</p>
+<p><a href="http://ruhaskell.org/posts/utils/2015/11/26/nix-hello-world.html">Попробовав Nix на вкус</a>, идём далее. Хватит нам играться с <code>vim</code>, давайте приступим к нашему любимому Haskell!</p>
+<h2 id="готовимся">Готовимся</h2>
+<p>Для начала нам понадобится <code>cabal-install</code>, без него никак:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">nix-env</span> -iA nixos.pkgs.cabal-install</code></pre></div>
+<p><strong>ПОЯСНЕНИЕ</strong>: В рамках данного цикла статей я не планирую использовать <code>stack</code>.</p>
+<p>Готово. Посмотрим, что же у нас получилось, заглянем в окружение:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span> -al /nix/var/nix/profiles/per-user/demo/profile-4-link/bin/
+<span class="kw">...</span> cabal -<span class="kw">&gt;</span> /nix/store/n3dw12h5w0pm3001f5645xqsnqrsv42z-cabal-install-1.22.6.0/bin/cabal
+<span class="kw">...</span>
+<span class="kw">...</span> vim -<span class="kw">&gt;</span> /nix/store/yblqgyrn4jgwfg89qp9041i0n2z26v5b-vim-7.4.827/bin/vim</code></pre></div>
+<p>Естественно, окружение расширилось, теперь мне доступны обе команды, <code>vim</code> и <code>cabal</code>.</p>
+<p>Второй инструмент, который нам понадобится, это <code>cabal2nix</code>:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">nix-env</span> -iA nixos.pkgs.cabal2nix</code></pre></div>
+<p>Готово. Назначение этого инструмента я поясню ниже.</p>
+<p>Ну хорошо, давайте уже что-нибудь сотворим!</p>
+<h2 id="hello">hello</h2>
+<p>Создадим простейшую программу и назовём её “hello”:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cd</span>
+
+$ <span class="kw">cabal</span> init
+<span class="kw">Config</span> file path source is default config file.
+<span class="kw">Config</span> file /home/demo/.cabal/config not found.
+<span class="kw">Writing</span> default configuration to /home/demo/.cabal/config
+<span class="kw">cabal</span>: The program <span class="st">'ghc'</span> version <span class="kw">&gt;</span>=6.4 is required but it could not be found.</code></pre></div>
+<p>Так, стоп, <code>ghc</code> же у нас есть вроде. Проверяем:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ghc</span>
+<span class="kw">ghc</span>: command not found</code></pre></div>
+<p>Нет, нету. Установим:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">nix-env</span> -iA nixos.pkgs.ghc
+<span class="kw">installing</span> ‘ghc-7.10.2’
+<span class="kw">building</span> path(s) ‘<span class="kw">/nix/store</span>/<span class="kw">m209df88gnyqmlczk8g29mwvcbiwbmd0-user-environment</span>’
+<span class="kw">created</span> 62 symlinks in user environment
+
+$ <span class="kw">ghc</span> --version
+<span class="kw">The</span> Glorious Glasgow Haskell Compilation System, version 7.10.2</code></pre></div>
+<p>Ок, как вы уже поняли, никакой установки не было, просто появились новые символьные ссылки в моём профиле.</p>
+<p>Возвращаемся к проекту. Прохожу диалог с <code>cabal init</code>, всё как обычно, в результате чего получаю простейший проектик:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">tree</span>
+<span class="kw">.</span>
+├── <span class="kw">hello.cabal</span>
+├── <span class="kw">LICENSE</span>
+├── <span class="kw">Setup.hs</span>
+└── <span class="kw">src</span>
+    └── <span class="kw">Main.hs</span>
+
+<span class="kw">1</span> directory, 4 files</code></pre></div>
+<p>Никаких зависимостей, кроме как от <code>base</code>, никакой полезной работы, кроме вывода строки “hello”. Всё стандартно и примитивно.</p>
+<h2 id="nix-ификация">Nix-ификация</h2>
+<p>А вот теперь начинается самое интересное. Давайте сделаем нашу программку Nix-пакетом. Но вначале необходимо определиться с понятиями.</p>
+<p>Когда мы говорим о Nix-пакетах, это отнюдь не то же самое, что, например, <code>deb</code>-пакеты. Как вы уже помните, в основе Nix лежит чисто-функциональных подход к управлению пакетами. Но что ещё важно, Nix - это и особый язык программирования! И когда мы говорим о создании Nix-пакета, мы на самом деле подразумеваем написание маленькой программки на языке Nix. Результатом выполнения этой маленькой программки и будет наш пакет! Это примерно как в <a href="http://jaspervdj.be/hakyll/">Hakyll</a>: чтобы построить статический сайт, нужно написать программу на Haskell, результатом выполнения которой и будет наш сайт.</p>
+<p>Язык Nix похож на Haskell, но это не Haskell. Чрезмерно углубляться в детали его синтаксиса мы не станем, тем более что есть уже <a href="https://medium.com/@MrJamesFisher/nix-by-example-a0063a1a4c55#.1aal323q4">отличная статья об этом</a> (я уже не говорю про <a href="http://nixos.org/nix/manual/#ch-expression-language">исчерпывающее официальное руководство</a>). Будем вникать в этот язык настолько, насколько это необходимо.</p>
+<p>Та самая маленькая программка на языке Nix, на основе которой будет построен наш будущий пакет, должна сохраняться в файле <code>default.nix</code>. Строго говоря, имя файла может быть и другим, но по умолчанию ожидается именно такое имя.</p>
+<p>Ок, но как же мы её напишем? Да вот так и напишем:</p>
+<pre class="nixos"><code>{ pkgs ? import &lt;nixpkgs&gt; {} }:
+
+let command = name: pathToNix: 
+        pkgs.runCommand name {} ''
+            ${pkgs.cabal2nix}/bin/cabal2nix ${pathToNix} &gt; $out
+        '';
+
+    haskellPackages = pkgs.haskellPackages.override {
+        overrides = self: _: {
+            hello = self.callPackage (command &quot;hello.nix&quot; ./.) {};
+        };
+    };
+in haskellPackages.hello</code></pre>
+<p>Пока просто скопируйте это содержимое в файл <code>default.nix</code>. Я специально не стану рассказывать вам о содержимом этого файла, потому что этот вопрос заслуживает одной из будущих статей. Лишь обратите внимание на команду <code>cabal2nix</code>: вот для чего нужна была установка <code>cabal2nix</code>, о которой упомянуто ранее.</p>
+<p>Теперь, когда у нас есть программка на языке Nix, нам нужно её собрать и запустить. Но поскольку Nix не является компилируемым языком, нам следует всего лишь передать её на вход команды <code>nix-build</code> - и работа будет сделана. Делается это так:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">nix-build</span> --dry-run</code></pre></div>
+<p>Обратите внимание, что имя <code>.nix</code> файла не передаётся команде явно. Вот почему нужно было назвать его <code>default.nix</code>: команда <code>nix-build</code> ищет в текущем каталоге файл именно с таким именем.</p>
+<p>Вы спросите, а зачем нужен <code>--dry-run</code>? Это - холостой прогон, ничего в действительности не строящий, а лишь показывающий, что <em>произойдёт</em> при постройке. И вот что он нам покажет:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">building</span> path(s) ‘<span class="kw">/nix/store</span>/<span class="kw">7pxxlhd1ypzikqmznh67igp7vabrlk5w-hello.nix</span>’
+<span class="kw">these</span> derivations will be built:
+  <span class="kw">/nix/store/ir5ig6dn02arjwbnkx6m008m3rqa97n2-hello-0.1.0.0.drv</span></code></pre></div>
+<p>То, что нам и нужно! Когда мы запустим эту команду по-настоящему, наш проектик станет частью <code>/nix/store/</code>, как и все остальные пакеты! Сделаем же это:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">nix-build</span></code></pre></div>
+<p>Сборка завершится, а последней строкой будет вот что:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">/nix/store/jkq9ynd6zsz9rbl1rjb7dbm0rg9dimkb-hello-0.1.0.0</span></code></pre></div>
+<p>Проверим:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span> /nix/store/jkq9ynd6zsz9rbl1rjb7dbm0rg9dimkb-hello-0.1.0.0/bin/
+<span class="kw">hello</span></code></pre></div>
+<p>Оно. А теперь пробуем запустить нашу программку:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">hello</span>
+<span class="kw">hello</span>: command not found</code></pre></div>
+<p>Хм… Установить установили, а запустить не можем. К счастью, в каталоге проекта появилась специальная символьная ссылка <code>result</code>. Именно она и ведёт к нашей программке. Убедимся в этом:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span> -al result
+<span class="kw">...</span> result -<span class="kw">&gt;</span> /nix/store/jkq9ynd6zsz9rbl1rjb7dbm0rg9dimkb-hello-0.1.0.0</code></pre></div>
+<p>Тот самый хэш. Таким образом, можем запускать следующим образом:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">./result/bin/hello</span> 
+<span class="kw">hello</span></code></pre></div>
+<p>Победа.</p>
+<p>Итак, теперь наш пакетик является частью <code>/nix/store/</code>, и поэтому его содержимое теперь неизменно аки египетские пирамиды:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cd</span> /nix/store/jkq9ynd6zsz9rbl1rjb7dbm0rg9dimkb-hello-0.1.0.0/bin/
+
+$ <span class="kw">mv</span> hello hello_
+<span class="kw">mv</span>: cannot move ‘hello’ to ‘hello_’: Read-only file system</code></pre></div>
+<p>Да, но что же будет, если мы продолжим разработку нашего проекта? Ну, скажем, изменим выводимую на консоль строку. Откроем <code>src/Main.hs</code> и напишем:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span> putStrLn <span class="st">&quot;Hi, Nix world!&quot;</span></code></pre></div>
+<p>Если мы заново соберём этот проект командой <code>nix-build</code> и запустим через <code>result</code>, мы увидим новую строку, как и ожидается. Но тут возникает вопрос: если там, в <code>/nix/store/</code>, проект неизменен, как же произошло обновление? Давайте заглянем:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span> /nix/store/ <span class="kw">|</span> <span class="kw">grep</span> hello
+<span class="kw">...</span>
+<span class="kw">jkq9ynd6zsz9rbl1rjb7dbm0rg9dimkb-hello-0.1.0.0</span>
+<span class="kw">bv51yc31qb70mdb6yzqxsi079ywhrspm-hello-0.1.0.0</span>
+<span class="kw">...</span></code></pre></div>
+<p>Как видите, пакетов стало два, и ссылка <code>result</code> ведёт теперь на последнюю, свежую сборку. Вспомните чисто-функциональный подход: значение, будучи однажды созданным, уже не может быть изменено.</p>
+<p>Вы спросите, как же быть с накоплениями? Ведь мы, может быть, сделаем сто правок кода, прежде чем перейдём на следующую версию проекта. Это что же, у нас в хранилище появится сто сборок версии <code>0.1.0.0</code> с разными префиксами?! Да, именно так. Но вспомните про сборку мусора. Выполним знакомую нам команду:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">nix-collect-garbage</span> -d</code></pre></div>
+<p>и тогда всё старьё уничтожиться, а останется лишь самая последняя сборка, на которую и ведёт ссылка <code>result</code>. Таким образом, если вдруг мы осознали, что наша программа не должна быть частью нашей системы - ну не знаю, передумали её делать - её очень просто удалить. Нужно всего лишь удалить ту самую символьную ссылку <code>result</code>, а затем повторно выполнить команду <code>nix-collect-garbage -d</code>. Всё, программы в хранилище больше нет.</p>
+<h2 id="заключение">Заключение</h2>
+<p>Вот наше первое знакомство с Haskell-разработкой в среде Nix. В следующих статьях мы продолжим наше Nix-путешествие и узнаем ещё очень много интересного.</p>
+
+<div id="socialButtons">
+    <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ru">Твитнуть</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+    <div class="g-plus" data-action="share" data-annotation="bubble"></div>
+</div>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'ruhaskell'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+
+        </div>
+
+        <div id="searchForm">
+            <script>
+              (function() {
+                var cx = '007697214108744450483:w49n7qbvpdy';
+                var gcse = document.createElement('script');
+                gcse.type = 'text/javascript';
+                gcse.async = true;
+                gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                    '//www.google.com/cse/cse.js?cx=' + cx;
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(gcse, s);
+              })();
+            </script>
+            <gcse:search></gcse:search>
+        </div>
+
+        <footer class="footer">
+            Сайт работает на <strong><a href="http://jaspervdj.be/hakyll/" target="_blank">Hakyll</a></strong> и живёт на <strong><a href="https://github.com/ruHaskell/ruhaskell" target="_blank">GitHub</a></strong>.
+            <div class="stargaze">
+                <a data-count-api="/repos/ruHaskell/ruhaskell#stargazers_count" data-count-href="/ruHaskell/ruhaskell/stargazers" data-icon="octicon-star" href="https://github.com/ruHaskell/ruhaskell" class="github-button">Star</a>
+
+                <span style="padding-left: 20px;"></span>
+
+                <a data-count-api="/repos/ruHaskell/ruhaskell#forks_count" data-count-href="/ruHaskell/ruhaskell/network" data-icon="octicon-git-branch" href="https://github.com/ruHaskell/ruhaskell" class="github-button">Fork</a>
+            </div>
+
+            <div class="copyright-note">
+                Исходный код данного сайта, а также все опубликованные на нём материалы распространяются на условиях <a href="https://github.com/ruHaskell/ruhaskell/blob/master/LICENSE" target="_blank">свободной лицензии MIT</a>.
+            </div>
+        </footer>
+    </div>
+
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'ruhaskell'; // required: replace example with your forum shortname
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function () {
+var s = document.createElement('script'); s.async = true;
+s.type = 'text/javascript';
+s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+  </body>
+</html>
