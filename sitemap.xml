@@ -2,6 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
+        <loc>http://ruhaskell.org/posts/talks/2016/03/20/database-storage.html</loc>
+    </url>
+
+    <url>
+        <loc>http://ruhaskell.org/posts/theory/2016/01/06/serialization-with-deptypes.html</loc>
+    </url>
+
+    <url>
+        <loc>http://ruhaskell.org/posts/events/2015/12/30/ruhaskell-one-year.html</loc>
+    </url>
+
+    <url>
         <loc>http://ruhaskell.org/posts/utils/2015/11/30/nix-with-haskell.html</loc>
     </url>
 
