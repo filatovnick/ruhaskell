@@ -7,8 +7,16 @@
         <description><![CDATA[Русскоязычное сообщество Haskell-разработчиков]]></description>
         <atom:link href="http://ruhaskell.org/feed.xml" rel="self"
                    type="application/rss+xml" />
-        <lastBuildDate>Sun, 20 Mar 2016 00:00:00 UT</lastBuildDate>
+        <lastBuildDate>Sat, 26 Mar 2016 00:00:00 UT</lastBuildDate>
         <item>
+    <title>Монады для барабанщиков</title>
+    <link>http://ruhaskell.org/posts/talks/2016/03/26/monads-for-drummers.html</link>
+    <description><![CDATA[Доклад-введение в монады.]]></description>
+    <pubDate>Sat, 26 Mar 2016 00:00:00 UT</pubDate>
+    <guid>http://ruhaskell.org/posts/talks/2016/03/26/monads-for-drummers.html</guid>
+    <dc:creator>Денис Шевченко</dc:creator>
+</item>
+<item>
     <title>Как написать хранилище БД и не сойти с ума</title>
     <link>http://ruhaskell.org/posts/talks/2016/03/20/database-storage.html</link>
     <description><![CDATA[Доклад об использовании дерева слияния журналов (log structured merge tree) в качестве хранилища базы данных, о том, как сделать быстрое хранилище для базы данных, с гарантиями надежности, с разными уровнями изоляции и при этом не сойти с ума. Упоминается B+-tree и прочее.]]></description>
@@ -78,14 +86,6 @@
     <description><![CDATA[Наш подкаст "Бананы и линзы" обрёл новый уютный дом.]]></description>
     <pubDate>Fri, 16 Oct 2015 00:00:00 UT</pubDate>
     <guid>http://ruhaskell.org/posts/events/2015/10/16/bananasandlenses.html</guid>
-    <dc:creator>Денис Шевченко</dc:creator>
-</item>
-<item>
-    <title>Зимняя встреча: вопросы, темы, пожелания</title>
-    <link>http://ruhaskell.org/posts/events/2015/10/10/meetup-winter-2015.html</link>
-    <description><![CDATA[Объявляем общий сбор докладчиков!]]></description>
-    <pubDate>Sat, 10 Oct 2015 00:00:00 UT</pubDate>
-    <guid>http://ruhaskell.org/posts/events/2015/10/10/meetup-winter-2015.html</guid>
     <dc:creator>Денис Шевченко</dc:creator>
 </item>
 
