@@ -7,8 +7,16 @@
         <description><![CDATA[Русскоязычное сообщество Haskell-разработчиков]]></description>
         <atom:link href="http://ruhaskell.org/feed.xml" rel="self"
                    type="application/rss+xml" />
-        <lastBuildDate>Sat, 26 Mar 2016 00:00:00 UT</lastBuildDate>
+        <lastBuildDate>Sun, 27 Mar 2016 00:00:00 UT</lastBuildDate>
         <item>
+    <title>Зависимые типы в GHC 8</title>
+    <link>http://ruhaskell.org/posts/talks/2016/03/27/dependent-types-in-haskell-ghc-8.html</link>
+    <description><![CDATA[Доклад о зависимых типах в GHC 8.0, зачем они нужны, почему пришлось так долго ждать, и в чём отличие от Coq и Idris.]]></description>
+    <pubDate>Sun, 27 Mar 2016 00:00:00 UT</pubDate>
+    <guid>http://ruhaskell.org/posts/talks/2016/03/27/dependent-types-in-haskell-ghc-8.html</guid>
+    <dc:creator>Денис Шевченко</dc:creator>
+</item>
+<item>
     <title>Монады для барабанщиков</title>
     <link>http://ruhaskell.org/posts/talks/2016/03/26/monads-for-drummers.html</link>
     <description><![CDATA[Доклад-введение в монады.]]></description>
@@ -78,14 +86,6 @@
     <description><![CDATA[Использование Lua-скриптов в Haskell-программах]]></description>
     <pubDate>Wed, 21 Oct 2015 00:00:00 UT</pubDate>
     <guid>http://ruhaskell.org/posts/packages/2015/10/21/HaskellLuaHowTo.html</guid>
-    <dc:creator>Денис Шевченко</dc:creator>
-</item>
-<item>
-    <title>"Бананы и линзы" переехали!</title>
-    <link>http://ruhaskell.org/posts/events/2015/10/16/bananasandlenses.html</link>
-    <description><![CDATA[Наш подкаст "Бананы и линзы" обрёл новый уютный дом.]]></description>
-    <pubDate>Fri, 16 Oct 2015 00:00:00 UT</pubDate>
-    <guid>http://ruhaskell.org/posts/events/2015/10/16/bananasandlenses.html</guid>
     <dc:creator>Денис Шевченко</dc:creator>
 </item>
 
