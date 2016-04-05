@@ -7,8 +7,16 @@
         <description><![CDATA[Русскоязычное сообщество Haskell-разработчиков]]></description>
         <atom:link href="http://ruhaskell.org/feed.xml" rel="self"
                    type="application/rss+xml" />
-        <lastBuildDate>Sun, 27 Mar 2016 00:00:00 UT</lastBuildDate>
+        <lastBuildDate>Tue, 05 Apr 2016 00:00:00 UT</lastBuildDate>
         <item>
+    <title>Делаем свою жизнь проще с Servant</title>
+    <link>http://ruhaskell.org/posts/talks/2016/04/05/better-services-with-servant.html</link>
+    <description><![CDATA[Улучшаем веб-сервисы и делаем свою жизнь проще с Servant]]></description>
+    <pubDate>Tue, 05 Apr 2016 00:00:00 UT</pubDate>
+    <guid>http://ruhaskell.org/posts/talks/2016/04/05/better-services-with-servant.html</guid>
+    <dc:creator>Денис Шевченко</dc:creator>
+</item>
+<item>
     <title>Зависимые типы в GHC 8</title>
     <link>http://ruhaskell.org/posts/talks/2016/03/27/dependent-types-in-haskell-ghc-8.html</link>
     <description><![CDATA[Доклад о зависимых типах в GHC 8.0, зачем они нужны, почему пришлось так долго ждать, и в чём отличие от Coq и Idris.]]></description>
@@ -78,14 +86,6 @@
     <description><![CDATA[Регистрация на зимнюю московскую встречу открыта. Приходите, приводите друзей. Можно пожертвовать немножко на наём оператора.]]></description>
     <pubDate>Thu, 05 Nov 2015 00:00:00 UT</pubDate>
     <guid>http://ruhaskell.org/posts/events/2015/11/05/meetup-winter-register.html</guid>
-    <dc:creator>Денис Шевченко</dc:creator>
-</item>
-<item>
-    <title>Haskell + Lua = дружба!</title>
-    <link>http://ruhaskell.org/posts/packages/2015/10/21/HaskellLuaHowTo.html</link>
-    <description><![CDATA[Использование Lua-скриптов в Haskell-программах]]></description>
-    <pubDate>Wed, 21 Oct 2015 00:00:00 UT</pubDate>
-    <guid>http://ruhaskell.org/posts/packages/2015/10/21/HaskellLuaHowTo.html</guid>
     <dc:creator>Денис Шевченко</dc:creator>
 </item>
 
