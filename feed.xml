@@ -7,8 +7,16 @@
         <description><![CDATA[Русскоязычное сообщество Haskell-разработчиков]]></description>
         <atom:link href="http://ruhaskell.org/feed.xml" rel="self"
                    type="application/rss+xml" />
-        <lastBuildDate>Tue, 05 Apr 2016 00:00:00 UT</lastBuildDate>
+        <lastBuildDate>Wed, 01 Jun 2016 00:00:00 UT</lastBuildDate>
         <item>
+    <title>Улучшение тестов для statistics, часть 1</title>
+    <link>http://ruhaskell.org/posts/numeric/2016/06/01/statistics-test-suite-part1.html</link>
+    <description><![CDATA[Длинная история об отладке тестов для statistics и пакета math-functions]]></description>
+    <pubDate>Wed, 01 Jun 2016 00:00:00 UT</pubDate>
+    <guid>http://ruhaskell.org/posts/numeric/2016/06/01/statistics-test-suite-part1.html</guid>
+    <dc:creator>Денис Шевченко</dc:creator>
+</item>
+<item>
     <title>Делаем свою жизнь проще с Servant</title>
     <link>http://ruhaskell.org/posts/talks/2016/04/05/better-services-with-servant.html</link>
     <description><![CDATA[Улучшаем веб-сервисы и делаем свою жизнь проще с Servant]]></description>
@@ -78,14 +86,6 @@
     <description><![CDATA[Первая (и надеюсь, не последняя) статья про Nix. Уж очень интересный инструмент оказался...]]></description>
     <pubDate>Wed, 25 Nov 2015 00:00:00 UT</pubDate>
     <guid>http://ruhaskell.org/posts/utils/2015/11/25/nix-idea.html</guid>
-    <dc:creator>Денис Шевченко</dc:creator>
-</item>
-<item>
-    <title>Регистрация на зимнюю московскую встречу</title>
-    <link>http://ruhaskell.org/posts/events/2015/11/05/meetup-winter-register.html</link>
-    <description><![CDATA[Регистрация на зимнюю московскую встречу открыта. Приходите, приводите друзей. Можно пожертвовать немножко на наём оператора.]]></description>
-    <pubDate>Thu, 05 Nov 2015 00:00:00 UT</pubDate>
-    <guid>http://ruhaskell.org/posts/events/2015/11/05/meetup-winter-register.html</guid>
     <dc:creator>Денис Шевченко</dc:creator>
 </item>
 

@@ -19,6 +19,7 @@
         <link href="../../../../../static/css/default.css" rel="stylesheet">
 
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
         <script>
           window.___gcfg = {
@@ -206,7 +207,7 @@
 <h2 id="обзор">Обзор</h2>
 <p>Позвольте мне сначала дать краткий обзор обычной реализации биномиальнух очередей. Вспомним, что биномиальное дерево имеет следующую форму:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Tree</span> a <span class="fu">=</span> <span class="dt">Node</span> a [<span class="dt">Tree</span> a]</code></pre></div>
-<p>У биномиального дерева ранга <span class="math inline"><em>k</em></span> есть <span class="math inline"><em>k</em></span> детей рангов <span class="math inline"><em>k</em> − 1…0</span> сохраненных в списке с в порядке убывания ранга. Заметьте, что мы можем объединять два пирамидально-упорядоченных (heap-ordered) биномиальных дерева ранга <span class="math inline"><em>k</em></span>, получая пирамидально-упорядоченное дерево ранга <span class="math inline"><em>k</em> + 1</span> следующим образом:</p>
+<p>У биномиального дерева ранга <span class="math inline">\(k\)</span> есть <span class="math inline">\(k\)</span> детей рангов <span class="math inline">\(k-1 \ldots 0\)</span> сохраненных в списке с в порядке убывания ранга. Заметьте, что мы можем объединять два пирамидально-упорядоченных (heap-ordered) биномиальных дерева ранга <span class="math inline">\(k\)</span>, получая пирамидально-упорядоченное дерево ранга <span class="math inline">\(k+1\)</span> следующим образом:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">combine a<span class="fu">@</span>(<span class="dt">Node</span> x xs) b<span class="fu">@</span>(<span class="dt">Node</span> y ys)
    <span class="fu">|</span> x <span class="fu">&lt;=</span> y    <span class="fu">=</span> <span class="dt">Node</span> x (b <span class="fu">:</span> xs)
    <span class="fu">|</span> otherwise <span class="fu">=</span> <span class="dt">Node</span> y (a <span class="fu">:</span> ys)</code></pre></div>
@@ -257,7 +258,7 @@ list2binom (<span class="dt">Node</span> x xs <span class="fu">:</span> ys) h <s
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  (<span class="dt">Node</span> x3 xs3 <span class="fu">:</span> <span class="dt">Node</span> x2 xs2 <span class="fu">:</span> <span class="dt">Node</span> x1 xs1 <span class="fu">:</span> <span class="dt">Node</span> x0 xs0 <span class="fu">:</span> [])</code></pre></div>
 <p>будет представлен вложенными тройками</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  (xs3,xs3', (x2,xs2', (x1,xs1', (x0,xs0', ()))))</code></pre></div>
-<p>(где <span class="math inline"><em>x</em><em>s</em><em>N</em>′</span> - соотвествующее преобразование <span class="math inline"><em>x</em><em>s</em><em>N</em></span>)</p>
+<p>(где <span class="math inline">\(xsN'\)</span> - соотвествующее преобразование <span class="math inline">\(xsN\)</span>)</p>
 <p>Все функции записываются очень просто, за исключением <code>getMin</code> и <code>getMin_</code> которые должны инкрементально строить функцию разворота, для того, чтобы превратить</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  (xs3,xs3', (x2,xs2', (x1,xs1', (x0,xs0', ()))))</code></pre></div>
 <p>в</p>
@@ -295,7 +296,7 @@ rev xs = xs []</code></pre>
 <span class="kw">data</span> <span class="dt">Binom_</span> a b <span class="fu">=</span> <span class="dt">Nil</span>
                 <span class="fu">|</span> <span class="dt">Zero</span> (<span class="dt">Binom_</span> a (<span class="dt">Succ</span> b))
                 <span class="fu">|</span> <span class="dt">One</span> a (<span class="dt">Binom_</span> a <span class="fu">???</span> <span class="ot">-&gt;</span> <span class="dt">Binom_</span> a <span class="fu">???</span>) (<span class="dt">Binom_</span> a (<span class="dt">Succ</span> b))</code></pre></div>
-<p>Теперь, какие типы мы должны подставить в конструктур <code>One</code>? Так.. функция <code>(Binom_ a ??? -&gt;  Binom_ a ???)</code> описывает дочерние элементы текущего узла. Если у текущего узла ранг <span class="math inline"><em>k</em></span> то, эти элементы имеют ранги <span class="math inline">0..<em>k</em> − 1</span>. Функция <code>(Binom_ a ??? -&gt; Binom_ a ???)</code> получает очередь, начинающуюся на ранге <span class="math inline"><em>k</em></span>, и добавляет детей перед ним, возвращая очередь, начинающуюся с ранга <span class="math inline">0</span>. Т.о. <code>???</code> может быть заполнено как</p>
+<p>Теперь, какие типы мы должны подставить в конструктур <code>One</code>? Так.. функция <code>(Binom_ a ??? -&gt;  Binom_ a ???)</code> описывает дочерние элементы текущего узла. Если у текущего узла ранг <span class="math inline">\(k\)</span> то, эти элементы имеют ранги <span class="math inline">\(0 .. k-1\)</span>. Функция <code>(Binom_ a ??? -&gt; Binom_ a ???)</code> получает очередь, начинающуюся на ранге <span class="math inline">\(k\)</span>, и добавляет детей перед ним, возвращая очередь, начинающуюся с ранга <span class="math inline">\(0\)</span>. Т.о. <code>???</code> может быть заполнено как</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">                <span class="fu">|</span> <span class="dt">One</span> a (<span class="dt">Binom_</span> a b <span class="ot">-&gt;</span> <span class="dt">Binom_</span> a <span class="dt">Base</span>) (<span class="dt">Binom_</span> a (<span class="dt">Succ</span> b))</code></pre></div>
 <p>или просто</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">                <span class="fu">|</span> <span class="dt">One</span> a (<span class="dt">Binom_</span> a b <span class="ot">-&gt;</span> <span class="dt">Binom</span> a) (<span class="dt">Binom_</span> a (<span class="dt">Succ</span> b))</code></pre></div>

@@ -19,6 +19,7 @@
         <link href="../../../../../static/css/default.css" rel="stylesheet">
 
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
         <script>
           window.___gcfg = {
@@ -312,7 +313,7 @@ replicateM <span class="dv">3</span> <span class="fu">$</span> forkIO <span clas
 <blockquote>
 <p>Ни один поток не может заблокироваться на <code>MVar</code> навечно, за исключением случая, если другой поток вечно “держит” <code>MVar</code>.</p>
 </blockquote>
-<p>Другими словами, если поток <span class="math inline"><em>τ</em></span> вызывает <code>takeMVar</code> и выполняются регулярные операции <code>putMVar</code> на той же переменной, то <code>takeMVar</code> когда-нибудь завершится. В GHC данная гарантия реализована при помощи хранения всех потоков, заблокированных на <code>MVar</code> в очереди (FIFO), и при осводождении <code>MVar</code> выполнение пробуждения потока и выполнения операции над <code>MVar</code> за один атомарный шаг.</p>
+<p>Другими словами, если поток <span class="math inline">\(\tau\)</span> вызывает <code>takeMVar</code> и выполняются регулярные операции <code>putMVar</code> на той же переменной, то <code>takeMVar</code> когда-нибудь завершится. В GHC данная гарантия реализована при помощи хранения всех потоков, заблокированных на <code>MVar</code> в очереди (FIFO), и при осводождении <code>MVar</code> выполнение пробуждения потока и выполнения операции над <code>MVar</code> за один атомарный шаг.</p>
 <p>Важным следствием гарантии справедливости является то, что достаточно будить только один поток, что уменьшает нагрузку (это несправедливо для случая <code>STM</code>, где в при обновлении <code>TVar</code> должны быть пробужены все заблокированные потоки).</p>
 <h3 id="исключения-и-mvar">Исключения и <code>MVar</code></h3>
 <p>Особенно аккуратным при работе с <code>MVar</code> нужно быть в случае возможных асинхронных исключений. Поскольку необходимо следить за тем, чтобы даже в при наличии исключений актуальность <code>MVar</code> не терялась.</p>
