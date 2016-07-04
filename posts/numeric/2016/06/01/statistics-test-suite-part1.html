@@ -207,7 +207,7 @@
 <center>
 <img src="../../../../../files/posts/2016-06-01/loss_of_precision.png" alt />
 </center>
-<p>Предоставив читателю шанс подумать о том, откуда взялись катастрофические ошибки округления, рассмотрим, к чему приводит неизбежная потеря точности при композиции функций в деле написания тестов. В том случае,если мы хотим просто проверить, что <em>f x ≈ y</em> (<em>y</em> мы вычислили каким-то другим способом и знаем точно), написать тест просто. Достаточно проверить, что вычисленное значение отличается от точного не более чем на <nobr><em>n</em> ULP</nobr>.</p>
+<p>Предоставив читателю шанс подумать о том, откуда взялись катастрофические ошибки округления, рассмотрим, к чему приводит неизбежная потеря точности при композиции функций в деле написания тестов. В том случае,если мы хотим просто проверить, что <nobr><em>f x ≈ y</em></nobr> (<em>y</em> мы вычислили каким-то другим способом и знаем точно), написать тест просто. Достаточно проверить, что вычисленное значение отличается от точного не более чем на <nobr><em>n</em> ULP</nobr>.</p>
 <p>Но как только мы хотим написать тест для композиции функций, например <span class="math inline">\((f^{-1}\circ{}f)(x)\approx{}x\)</span>, нам придётся учитывать ошибки округления. Наивный подход состоит в том, чтобы сделать консервативную оценку ошибки, не зависящую от <em>x</em>. Но он не работает: с большой вероятностью найдётся угол в пространстве параметров, где ошибки округления будут хуже, а для большей части параметров оценка будет слишком консервативной. Таким образом мы приходим к необходимости оценки ошибок округления.</p>
 <h2 id="распространение-ошибок">Распространение ошибок</h2>
 <p>Ошибки округления удобнее всего выражать в виде относительных ошибок: <span class="math inline">\(x(1+\varepsilon)\)</span>, так как приключаются они как раз в последних битах мантиссы, и потому всегда составляют некоторую долю числа. Для начала рассмотрим, какой ответ даёт <em>точная</em> функция, которой на вход подано число, заданное с ошибкой. Будем полагать функцию дифференцируемой, и, считая ε малым, ограничимся линейным членом в ряде Тейлора.</p>
@@ -215,7 +215,7 @@
  \approx f(x) + f'(x)\cdot x\varepsilon
  = f(x)\left[1 + \frac{xf'(x)}{f(x)}\varepsilon\right]
 \]</span></p>
-<p>Отсюда видно, что относительная ошибка изменяется в <span class="math inline">\(|xf'(x) / f(x)|\)</span> раз. Пусть теперь у нас есть две функции <span class="math inline">\(f,g :: \mathbb{R}\rightarrow\mathbb{R}\)</span> и их приближение числами с плавающей точкой: <span class="math inline">\(\bar{f},\bar{g}\)</span>. С этого момента будем обозначать приближённые значения чертой над функцией/значением. Теперь нам надо найти ответ на вопрос, чему равна ошибка округления для <span class="math inline">\(\bar{g}(\bar{f}(x))\)</span>ю Введём следующие обозначения:</p>
+<p>Отсюда видно, что относительная ошибка изменяется в <span class="math inline">\(|xf'(x) / f(x)|\)</span> раз. Пусть теперь у нас есть две функции <span class="math inline">\(f,g :: \mathbb{R}\rightarrow\mathbb{R}\)</span> и их приближение числами с плавающей точкой: <span class="math inline">\(\bar{f},\bar{g}\)</span>. С этого момента будем обозначать приближённые значения чертой над функцией/значением. Теперь нам надо найти ответ на вопрос, чему равна ошибка округления для <span class="math inline">\(\bar{g}(\bar{f}(x))\)</span>. Введём следующие обозначения:</p>
 <p><span class="math display">\[\begin{aligned}
 y &amp;= f(x) \\
 z &amp;= g(y) \\
@@ -226,7 +226,7 @@ z &amp;= g(y) \\
 <p><span class="math display">\[g(\bar{y}) = g(y)\left[1 + \frac{yg'(y)}{g(y)}\varepsilon_f\right]\]</span></p>
 <p>Но вычисление <span class="math inline">\(\bar{g}\)</span> само по себе вносит ошибку округления, так что окончательным ответом будет:</p>
 <p><span class="math display">\[\bar{g}(\bar{f}(x))=g(y)\left(1+\frac{yg'(y)}{g(y)}\varepsilon_f+\varepsilon_g\right)\]</span></p>
-<p>Теперь мы можем сделать консервативную оценку сверху на относительную погрешность <span class="math inline">\(\bar{g}(\bar{f}(x))\)</span>. Если мы будем считать максимальную ошибку округления для обоих функций одинаковой и равной ε, то</p>
+<p>Теперь мы можем сделать консервативную оценку сверху на относительную погрешность <span class="math inline">\(\bar{g}(\bar{f}(x))\)</span>. Если мы будем считать максимальную ошибку округления для обоих функций одинаковой и равной <em>ε</em>, то</p>
 <p><span class="math display">\[\varepsilon_{g\circ{}f} \leq \varepsilon\left[1+\left|\frac{yg'(y)}{g(y)}\right|\right]\]</span></p>
 <p>Это выражение нетрудно обобщить и на композицию большего числа функций, но нам этого не нужно, и мы перейдём к написанию тестов.</p>
 <h2 id="тесты-для-квантилей">Тесты для квантилей</h2>
@@ -238,10 +238,12 @@ z &amp;= g(y) \\
 \]</span></p>
 <p>Или в виде кода на Хаскелле:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">roundtripError ::</span> <span class="dt">ContDistr</span> d <span class="ot">=&gt;</span> d <span class="ot">-&gt;</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span>
-roundtripError d p
-  <span class="fu">=</span> m_epsilon<span class="fu">/</span><span class="dv">2</span> <span class="fu">*</span> (<span class="dv">1</span> <span class="fu">+</span> abs ((x <span class="fu">/</span> p) <span class="fu">*</span> density d x))
+roundtripError d x
+  <span class="fu">=</span> m_epsilon<span class="fu">/</span><span class="dv">2</span> <span class="fu">*</span> (<span class="dv">1</span> <span class="fu">+</span> abs (y <span class="fu">/</span> x <span class="fu">*</span> f_inv' y))
   <span class="kw">where</span>
-    x <span class="fu">=</span> quantile d p</code></pre></div>
+    f <span class="fu">=</span> quantile d
+    f_inv' <span class="fu">=</span> density d
+    y <span class="fu">=</span> f x</code></pre></div>
 <p>Теперь можно начать строить картинки с оценкой ошибки и фактической ошибкой при вычислении <code>cumulative . quantile</code>. Первой жертвой будет <a href="https://en.wikipedia.org/wiki/Beta_distribution">бета-распределение</a>, как первое по алфавиту. Кроме того, QuickCheck каждый раз находит для него какую-нибудь ошибку. Ниже приведён график для параметров <nobr><em>a</em> = 7</nobr> и <nobr><em>b</em> = 0.07</nobr> (на них указал QuickCheck). Ошибки приведены в логарифмическом масштабе, по оси Y отложен десятичный логарифм относительной ошибки.</p>
 <center>
 <img src="../../../../../files/posts/2016-06-01/beta_distr_lin_scale.png" alt />
@@ -250,11 +252,11 @@ roundtripError d p
 <center>
 <img src="../../../../../files/posts/2016-06-01/beta_distr_log_scale.png" alt />
 </center>
-<p>Что мы видим? При малых <em>p</em> функция начинают терять точность, где на один десятичный знак. И ЧТО ЗА КОЛ торчит посредине графика? Запустив тесты несколько раз можно наткнуться и на другие ошибки, хотя и менее впечатляющие: например, для <nobr><em>a</em> = <em>b</em> = 4.5</nobr>.</p>
+<p>Что мы видим? При малых <em>p</em> функция начинает терять точность, где-то на один десятичный знак. И ЧТО ЗА КОЛ торчит посредине графика? Запустив тесты несколько раз, можно наткнуться и на другие ошибки, хотя и менее впечатляющие: например, для <nobr><em>a</em> = <em>b</em> = 4.5</nobr>.</p>
 <center>
 <img src="../../../../../files/posts/2016-06-01/beta_distr_stake.png" alt />
 </center>
-<p>Итого у нас есть работающий метод оценки ошибок округления и баги (если посмотреть на определение <code>cumulative</code> и <code>quantile</code>) в неполной бета-функции и обратной неполной бета-функции. Но охота за этими багами — уже другая история.</p>
+<p>Итого у нас есть работающий метод оценки ошибок округления и баги (если посмотреть на определения <code>cumulative</code> и <code>quantile</code>) в неполной бета-функции и обратной неполной бета-функции. Но охота за этими багами — уже другая история.</p>
 
 <div id="socialButtons">
     <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ru">Твитнуть</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
