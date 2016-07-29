@@ -2,6 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
+        <loc>http://ruhaskell.org/posts/events/2016/07/28/meetup-summer.html</loc>
+    </url>
+
+    <url>
         <loc>http://ruhaskell.org/posts/numeric/2016/06/01/statistics-test-suite-part1.html</loc>
     </url>
 

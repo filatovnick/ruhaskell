@@ -7,8 +7,16 @@
         <description><![CDATA[Русскоязычное сообщество Haskell-разработчиков]]></description>
         <atom:link href="http://ruhaskell.org/feed.xml" rel="self"
                    type="application/rss+xml" />
-        <lastBuildDate>Wed, 01 Jun 2016 00:00:00 UT</lastBuildDate>
+        <lastBuildDate>Thu, 28 Jul 2016 00:00:00 UT</lastBuildDate>
         <item>
+    <title>Митап 1.0</title>
+    <link>http://ruhaskell.org/posts/events/2016/07/28/meetup-summer.html</link>
+    <description><![CDATA[18 августа сообщество RuHaskell и «Лаборатории Касперского» приглашают всех заинтересованных, чтобы обсудить Haskell и другие языки в функциональной парадигме, поделиться опытом их применения в решении прикладных задач бизнеса, позадавать вопросы и пообщаться.]]></description>
+    <pubDate>Thu, 28 Jul 2016 00:00:00 UT</pubDate>
+    <guid>http://ruhaskell.org/posts/events/2016/07/28/meetup-summer.html</guid>
+    <dc:creator>Денис Шевченко</dc:creator>
+</item>
+<item>
     <title>Улучшение тестов для statistics, часть 1</title>
     <link>http://ruhaskell.org/posts/numeric/2016/06/01/statistics-test-suite-part1.html</link>
     <description><![CDATA[Длинная история об отладке тестов для statistics и пакета math-functions]]></description>
@@ -78,14 +86,6 @@
     <description><![CDATA[Пробуем Nix на вкус...]]></description>
     <pubDate>Thu, 26 Nov 2015 00:00:00 UT</pubDate>
     <guid>http://ruhaskell.org/posts/utils/2015/11/26/nix-hello-world.html</guid>
-    <dc:creator>Денис Шевченко</dc:creator>
-</item>
-<item>
-    <title>Nix: идея</title>
-    <link>http://ruhaskell.org/posts/utils/2015/11/25/nix-idea.html</link>
-    <description><![CDATA[Первая (и надеюсь, не последняя) статья про Nix. Уж очень интересный инструмент оказался...]]></description>
-    <pubDate>Wed, 25 Nov 2015 00:00:00 UT</pubDate>
-    <guid>http://ruhaskell.org/posts/utils/2015/11/25/nix-idea.html</guid>
     <dc:creator>Денис Шевченко</dc:creator>
 </item>
 
