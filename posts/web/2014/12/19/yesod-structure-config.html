@@ -201,31 +201,31 @@
 <p>Приветствую!</p>
 <p>После <a href="http://blog.dshevchenko.biz/2014/12/18/yesod-hello-world.html">первого знакомства</a> с Yesod пришла пора заглянуть внутрь нашего проекта. Должны же мы узнать, что сделала команда <code>yesod init</code>, не так ли? Давайте же заглянем в корень:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Application.hs</span>
-<span class="kw">Foundation.hs</span> 
-<span class="kw">Model.hs</span>       
-<span class="kw">Settings.hs</span>    
-<span class="kw">devel.hs</span>       
+<span class="kw">Foundation.hs</span>
+<span class="kw">Model.hs</span>
+<span class="kw">Settings.hs</span>
+<span class="kw">devel.hs</span>
 <span class="kw">webhs.cabal</span>
-<span class="kw">Import.hs</span>      
-<span class="kw">Handler/</span>        
-<span class="kw">config/</span>         
-<span class="kw">messages/</span>       
-<span class="kw">templates/</span>      
-<span class="kw">Settings/</span>       
-<span class="kw">app/</span>            
-<span class="kw">deploy/</span>         
-<span class="kw">dist/</span>           
-<span class="kw">static/</span>         
-<span class="kw">test/</span>           
+<span class="kw">Import.hs</span>
+<span class="kw">Handler/</span>
+<span class="kw">config/</span>
+<span class="kw">messages/</span>
+<span class="kw">templates/</span>
+<span class="kw">Settings/</span>
+<span class="kw">app/</span>
+<span class="kw">deploy/</span>
+<span class="kw">dist/</span>
+<span class="kw">static/</span>
+<span class="kw">test/</span>
 <span class="kw">yesod-devel/</span></code></pre></div>
 <p>В этой заметке мы рассмотрим содержимое одного-единственного каталога, <code>config</code>. В этом каталоге содержатся базовые конфигурационные файлы, без которых приложение категорически откажется работать.</p>
 <p>Вот содержимое, созданное по умолчанию:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">favicon.ico</span>    
-<span class="kw">robots.txt</span>     
-<span class="kw">postgresql.yml</span> 
-<span class="kw">keter.yml</span>      
-<span class="kw">models</span>         
-<span class="kw">routes</span>         
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">favicon.ico</span>
+<span class="kw">robots.txt</span>
+<span class="kw">postgresql.yml</span>
+<span class="kw">keter.yml</span>
+<span class="kw">models</span>
+<span class="kw">routes</span>
 <span class="kw">settings.yml</span></code></pre></div>
 <p>Полагаю, назначение файлов <code>favicon.ico</code> и <code>robots.txt</code> вопросов не вызывает, не правда ли? С файлом <code>postgresql.yml</code> вы уже познакомились, когда настраивали параметры доступа приложения к Postgres.</p>
 <h2 id="сетевая-конфигурация">Сетевая конфигурация</h2>
@@ -279,10 +279,10 @@
 <p>Теперь взглянем на файл <code>routes</code>. Этот файл - один из самых важных для нашего приложения. Взглянем внутрь:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">/static</span>         StaticR     Static getStatic
 <span class="kw">/auth</span>           AuthR       Auth   getAuth
-   
+
 <span class="kw">/favicon.ico</span>    FaviconR    GET
 <span class="kw">/robots.txt</span>     RobotsR     GET
-   
+
 <span class="kw">/</span>               HomeR       GET POST</code></pre></div>
 <p>Перед нами маршруты (routes). Обычный маршрут определяет три сущности (слева направо):</p>
 <ol style="list-style-type: decimal">
@@ -309,7 +309,7 @@
     <span class="kw">user</span> UserId Maybe
     <span class="kw">verkey</span> Text Maybe
     <span class="kw">UniqueEmail</span> email
- 
+
 <span class="kw">--</span> By default this file is used in Model.hs (which is imported by Foundation.hs)</code></pre></div>
 <p>Перед нами - модели для работы с БД. Но об этом мы поговорим особо. Поверьте, эта тема достойна отдельной заметки.</p>
 <h2 id="расположение">Расположение</h2>

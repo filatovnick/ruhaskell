@@ -200,7 +200,7 @@
 
 <p>Задача появилась в сети <a href="http://juick.com/2816427">juick</a> у <span class="citation">[@ndtimofeev]</span>(https://github.com/ndtimofeev). Соответственно основная часть кода, не относящегося к сериализации, принадлежит ему. Переформулированная задача: есть формат данных из сети, а именно <a href="https://otr.cypherpunks.ca/">Otr</a> сообщение, в котором передается заголовок, описывающий тип данных (payload), передаваемый далее. Варианты типов являются закрытым множеством.</p>
 <div class="figure">
-<img src="../../../../../files/posts/2016-01-06/message.png" alt />
+<img src="../../../../../files/posts/2016-01-06/message.png" />
 
 </div>
 <p>Хотелось бы создать для таких сообщений удобное внутреннее представление, которое будет предоставлять гарантии безопасности, удобный API и невысокие дополнительные расходы, и позволяющее сериализовать и десериализовать сообщения.</p>
@@ -240,13 +240,13 @@
   put <span class="dt">Signature</span>           <span class="fu">=</span> putWord8 <span class="bn">0x12</span></code></pre></div>
 <p>Теперь хотелось бы сделать так, чтобы значение типа <code>MessageType</code> определяло бы payload в <code>OtrMessage</code>, в котором он хранится. Сложность тут заключается в том, что значение хранится “на уровне значений”, т.е. во время исполнения, а тип payload на уровне типов, т.е. во время компиляции. Если тип <code>payload</code> будет определен, то мы сможем получить соответствующий этому типу сериализатор.</p>
 <div class="figure">
-<img src="../../../../../files/posts/2016-01-06/step-1.png" alt />
+<img src="../../../../../files/posts/2016-01-06/step-1.png" />
 
 </div>
 <p>Для того, чтобы построить такую связь, нам надо поднять информацию о конструкторах <code>MessageType</code> на уровень типов. Это возможно благодаря расширению <a href="https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/promotion.html">DataKinds</a>. Данное расширение позволяет определять новые сорта (kinds), соответствующие типу данных и населенные конструкторами данного типа. Т.е. на уровне типов мы можем создать параметризованный другим типом сорта <code>MessageType</code>, который может принимать значения (на уровне типов <code>'DiffieHellmanCommit</code>, <code>'DiffieHellmanKey</code>,…).</p>
 <p>Таким образом мы получаем диаграмму</p>
 <div class="figure">
-<img src="../../../../../files/posts/2016-01-06/step-2.png" alt />
+<img src="../../../../../files/posts/2016-01-06/step-2.png" />
 
 </div>
 <p>Имея информацию о конструкторах <code>MessageType</code> на уровне типов, мы можем построить отображения этой информации в типы данных, которые хранятся в сообщении. Т.к. это операция на уровне типов, то мы её можем записать при помощи одного из следующих методов:</p>
@@ -282,7 +282,7 @@
 <p>Т.к. одно из полей - это выражение на уровне типов, то мы не можем воспользоваться механизмом автоопределения реализаций классов типов. Поэтому используем расширение <code>StandaloneDeriving</code> (и <code>UndecidableInstances</code>, т.к. инстанс имеет форму отличную от <code>(C1 x, C2 x,...) =&gt; Eq x)</code></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">deriving</span> <span class="kw">instance</span> <span class="dt">Eq</span> (<span class="dt">OtrMessagePayload</span> payload) <span class="ot">=&gt;</span> <span class="dt">Eq</span> (<span class="dt">OtrMessage</span> payload)
 <span class="kw">deriving</span> <span class="kw">instance</span> <span class="dt">Show</span> (<span class="dt">OtrMessagePayload</span> payload) <span class="ot">=&gt;</span> <span class="dt">Show</span> (<span class="dt">OtrMessage</span> payload)</code></pre></div>
-<p>Казалось бы уже все готово, т.к. у нас есть диаграмма: <img src="../../../../../files/posts/2016-01-06/step-3.png" alt /></p>
+<p>Казалось бы уже все готово, т.к. у нас есть диаграмма: <img src="../../../../../files/posts/2016-01-06/step-3.png" /></p>
 <p>Однако, все не так и хорошо, т.к. часть выражений в диаграмме у нас присутствует только на уровне типов, таким образом, если у нас они в программе статически известны, то мы можем переходить по стрелкам и получать <code>OtrMessage (..)</code> и инстансы для него. Но наша задача состоит в том, чтобы суметь осуществить этот выбор, стартуя с уровня значений, где у нас есть определенное значение типа <code>MessageType</code>.</p>
 <p>Существуют различные способы связи уровня значений с уровнем типов, один из наиболее базовых вариантов - это создание <code>Proxy</code> значения. <code>Proxy</code> - это такой тип, который полиморфен по сортам. Таким образом, в случае если хочется передать тип на уровне значений, то можно воспользоваться этим типом и создать <code>Proxy :: Proxy a</code>, в этом случае при использовании данного прокси в контексте появится тип <code>a</code>. Однако этот способ не решает противоположного направления.</p>
 <p>Для полноценного решения этой задачи существуют синглетоны. Синглетоном называется объект, для которого существует однозначная связь между значением и типом.</p>
@@ -301,7 +301,7 @@
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Singleton.TH</span>
 <span class="fu">$</span>(genSingletons [<span class="ch">''</span><span class="dt">MessageType</span>])</code></pre></div>
 <p>сгенерирует необходимый исходный код.</p>
-<p>Мы получаем следующую диаграмму: <img src="../../../../../files/posts/2016-01-06/step-4.png" alt /></p>
+<p>Мы получаем следующую диаграмму: <img src="../../../../../files/posts/2016-01-06/step-4.png" /></p>
 <p>Теперь, когда все красивые и ненужные картинки нарисованы, то можно и написать реализации методов. Для начала определим функцию получения заголовка, данная функция будет считывать заголовок и возвращать полученный там тип сообщения <code>MessageType</code> и функцию создания Otr сообщения. Обратите внимание на <code>forall</code> в сигнатуре, он говорит, что данный тип не должен специализироваться и возвращается полиморфная функция, которая может быть специализирована по месту применения (причем с разными типами при разных применениях).</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">otrHeader ::</span> <span class="dt">Get</span> (<span class="dt">MessageType</span>, forall payload <span class="fu">.</span> <span class="dt">OtrMessagePayload</span> payload <span class="ot">-&gt;</span> <span class="dt">OtrMessage</span> payload)
 otrHeader <span class="fu">=</span> <span class="kw">do</span>

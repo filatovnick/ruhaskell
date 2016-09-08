@@ -215,7 +215,7 @@
 <h3 id="заголовки">Заголовки</h3>
 <p>Откроем файл <code>Handler/Home.hs</code> и найдём нашу функцию <code>getHomeR</code>:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">getHomeR ::</span> <span class="dt">Handler</span> <span class="dt">Html</span>
-getHomeR <span class="fu">=</span> defaultLayout <span class="fu">$</span> <span class="kw">do</span>    
+getHomeR <span class="fu">=</span> defaultLayout <span class="fu">$</span> <span class="kw">do</span>
     setTitle <span class="st">&quot;Welcome To Yesod!&quot;</span>
     <span class="fu">$</span>(widgetFile <span class="st">&quot;homepage&quot;</span>)</code></pre></div>
 <p>Уже известная нам функция <code>setTitle</code> устанавливает заголовок страницы. Но здесь заголовок прописан явно, на английском языке. Давайте же исправим это:</p>

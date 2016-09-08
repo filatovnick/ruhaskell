@@ -215,7 +215,7 @@ getName (<span class="dt">Athlete</span> name) <span class="fu">=</span> name
 setName newName (<span class="dt">Athlete</span> _) <span class="fu">=</span> <span class="dt">Athlete</span> newName</code></pre></div>
 <p>Теперь главный код:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
-main <span class="fu">=</span> 
+main <span class="fu">=</span>
     <span class="kw">let</span> athleteWithoutName <span class="fu">=</span> <span class="dt">Athlete</span> <span class="st">&quot;&quot;</span>
         realAthlete        <span class="fu">=</span> setName <span class="st">&quot;Taylor Fausak&quot;</span> athleteWithoutName
         nameOfRealAthlete  <span class="fu">=</span> getName realAthlete
@@ -229,7 +229,7 @@ main <span class="fu">=</span>
 <span class="kw">data</span> <span class="dt">Athlete</span> <span class="fu">=</span> <span class="dt">Athlete</span> {<span class="ot"> name ::</span> <span class="dt">String</span> }
 
 <span class="ot">main ::</span> <span class="dt">IO</span> ()
-main <span class="fu">=</span> 
+main <span class="fu">=</span>
     <span class="kw">let</span> athleteWithoutName <span class="fu">=</span> <span class="dt">Athlete</span> <span class="st">&quot;&quot;</span>
         realAthlete        <span class="fu">=</span> athleteWithoutName { name <span class="fu">=</span> <span class="st">&quot;Taylor Fausak&quot;</span> }
         nameOfRealAthlete  <span class="fu">=</span> name realAthlete
@@ -265,7 +265,7 @@ main <span class="fu">=</span>
 <span class="kw">import </span><span class="dt">Club</span>
 
 <span class="ot">main ::</span> <span class="dt">IO</span> ()
-main <span class="fu">=</span> 
+main <span class="fu">=</span>
     <span class="kw">let</span> athleteWithoutName <span class="fu">=</span> <span class="dt">Athlete</span> <span class="st">&quot;&quot;</span>
         realAthlete        <span class="fu">=</span> athleteWithoutName { name <span class="fu">=</span> <span class="st">&quot;Taylor Fausak&quot;</span> }
         nameOfRealAthlete  <span class="fu">=</span> name realAthlete
@@ -289,7 +289,7 @@ main <span class="fu">=</span>
 <span class="kw">import </span><span class="dt">Club</span>    <span class="kw">as</span> <span class="dt">C</span>
 
 <span class="ot">main ::</span> <span class="dt">IO</span> ()
-main <span class="fu">=</span> 
+main <span class="fu">=</span>
     <span class="kw">let</span> athleteWithoutName <span class="fu">=</span> <span class="dt">Athlete</span> <span class="st">&quot;&quot;</span>
         realAthlete        <span class="fu">=</span> athleteWithoutName { A.name <span class="fu">=</span> <span class="st">&quot;Taylor Fausak&quot;</span> }
         nameOfRealAthlete  <span class="fu">=</span> A.name realAthlete
@@ -319,7 +319,7 @@ main <span class="fu">=</span>
 <span class="kw">import </span><span class="dt">Club</span>
 
 <span class="ot">main ::</span> <span class="dt">IO</span> ()
-main <span class="fu">=</span> 
+main <span class="fu">=</span>
     <span class="kw">let</span> athleteWithoutName <span class="fu">=</span> <span class="dt">Athlete</span> <span class="st">&quot;&quot;</span>
         realAthlete        <span class="fu">=</span> athleteWithoutName { athleteName <span class="fu">=</span> <span class="st">&quot;Taylor Fausak&quot;</span> }
         nameOfRealAthlete  <span class="fu">=</span> athleteName realAthlete
@@ -345,7 +345,7 @@ main <span class="fu">=</span>
     setName newName club <span class="fu">=</span> club { clubName <span class="fu">=</span> newName }</code></pre></div>
 <p>И теперь пишем:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
-main <span class="fu">=</span> 
+main <span class="fu">=</span>
     <span class="kw">let</span> athleteWithoutName <span class="fu">=</span> <span class="dt">Athlete</span> <span class="st">&quot;&quot;</span>
         realAthlete        <span class="fu">=</span> setName <span class="st">&quot;Taylor Fausak&quot;</span> athleteWithoutName
         nameOfRealAthlete  <span class="fu">=</span> getName realAthlete
@@ -391,7 +391,7 @@ main <span class="fu">=</span>
     setName newName club <span class="fu">=</span> club { clubName <span class="fu">=</span> newName }</code></pre></div>
 <p>Здесь мы учли разность типов имён атлетов и клубов. И теперь пишем:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
-main <span class="fu">=</span> 
+main <span class="fu">=</span>
     <span class="kw">let</span> athleteWithoutName <span class="fu">=</span> <span class="dt">Athlete</span> empty
         realAthlete        <span class="fu">=</span> setName (pack <span class="st">&quot;Taylor Fausak&quot;</span>) athleteWithoutName
         nameOfRealAthlete  <span class="fu">=</span> getName realAthlete
@@ -431,7 +431,7 @@ clubNameLens <span class="fu">=</span> <span class="dt">Lens</span> { get <span 
 <p>Всё сильно упростилось. Класс <code>HasName</code> теперь содержит одно-единственное “линзовое” значение <code>name</code>. Соответственно, в каждом экземпляре этого класса мы просто заявляем: “Значение <code>name</code> теперь связано с конкретной линзой, определённой для данного типа.”</p>
 <p>И вот теперь наш главный код приобретает следующий вид:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
-main <span class="fu">=</span> 
+main <span class="fu">=</span>
     <span class="kw">let</span> athleteWithoutName <span class="fu">=</span> <span class="dt">Athlete</span> empty
         realAthlete        <span class="fu">=</span> set name (pack <span class="st">&quot;Taylor Fausak&quot;</span>) athleteWithoutName
         nameOfRealAthlete  <span class="fu">=</span> get name realAthlete

@@ -225,7 +225,7 @@ Long description:   Not specified</code></pre>
                                  <span class="kw">Dload</span>  Upload   Total   Spent    Left  Speed
 <span class="kw">100</span> 5782k  100 5782k    0     0   601k      0  0:00:09  0:00:09 --:--:--  681k
 
-<span class="kw">building</span> path(s) ‘<span class="kw">/nix/store</span>/<span class="kw">77qhgp784j2qia0v9dj98b76cra70qmm-user-environment</span>’                                                                              
+<span class="kw">building</span> path(s) ‘<span class="kw">/nix/store</span>/<span class="kw">77qhgp784j2qia0v9dj98b76cra70qmm-user-environment</span>’
 <span class="kw">created</span> 2 symlinks in user environment</code></pre></div>
 <p>Сразу после этого команда <code>vim</code> уже доступна в консоли. А теперь давайте разбираться.</p>
 <h2 id="где">Где</h2>
@@ -290,8 +290,8 @@ $ <span class="kw">ls</span> -al /nix/store/77qhgp784j2qia0v9dj98b76cra70qmm-use
 <span class="kw">...</span> share -<span class="kw">&gt;</span> /nix/store/yblqgyrn4jgwfg89qp9041i0n2z26v5b-vim-7.4.827/share</code></pre></div>
 <p>Это именно то, что мы и ожидали увидеть: тот же самый хэш, та же самая версия <code>vim</code>! Таким образом, концептуально сложившуюся ситуацию можно изобразить так:</p>
 <pre><code>demo-profile  -&gt; /nix/store/user-environment -&gt; /nix/store/vim-7.4.827
-              /                          
-demo2-profile </code></pre>
+              /
+demo2-profile</code></pre>
 <p>Два пользователя пользуются общим пакетом <code>vim</code>! Это в высшей степени рациональный подход, поскольку нет никакого дубляжа. Даже если бы в нашей системе было сто пользователей, то, когда все они запросят установку пакета <code>vim</code> одной и той же версии, тогда один-единственный пакет <code>vim</code> просто расшарится между ними, через ссылки в их профилях.</p>
 <h2 id="видит-око-да-зуб-неймёт">Видит око, да зуб неймёт</h2>
 <p>Постойте, возразите вы, но если два пользователя <code>demo</code> и <code>demo2</code> пользуются одним и тем же пакетом <code>vim</code> - это же опасно! А что если <code>demo2</code> возьмёт и удалит его! Ну или сломает чего-нибудь! Это что же, у <code>demo</code> <code>vim</code> тоже исчезнет или поломается??!</p>

@@ -202,61 +202,61 @@
     </div>
 </div>
 
-<h1>Введение</h1>
+<h1 id="введение">Введение</h1>
 <p>Сейчас web-разработка на <strong>Haskell</strong> достаточно проста, даже для новичка. Этому способствует наличие таких пакетов, как <a href="http://www.yesodweb.com/">Yesod</a> и <a href="http://snapframework.com/">Snap</a>. Но не всегда их мощь и полнота охвата необходимы. Порой от “сервера” требуется столь мало, что не хочется иметь в зависимостях подобных “монстров”, особенно в тех случаях, когда задача <em>достаточно легко</em> решаема и более простыми средствами.</p>
 <p>Пусть примером послужит такая задача: требуется реализовать сервис, позволяющий вызывать на сервере некие функции и получать результат вызова, или, говоря общепринятым языком, выполнять <a href="https://en.wikipedia.org/wiki/Remote_procedure_call">RPC</a>.</p>
 <p>Такую задачу можно решить, используя <a href="http://hackage.haskell.org/package/Spock">Spock</a>, <a href="http://hackage.haskell.org/package/scotty">scotty</a> или, скажем, <a href="http://hackage.haskell.org/package/servant">servant</a>, но “мы пойдем другим путем”<a href="https://ru.wikipedia.org/wiki/%D0%9B%D0%B5%D0%BD%D0%B8%D0%BD%D1%81%D0%BA%D0%B8%D0%B5_%D1%84%D1%80%D0%B0%D0%B7%D1%8B">©</a>!</p>
 <p>Большинство библиотек для web-разработки внутри использует так называемый <strong>Web Application Interface</strong> (<a href="http://hackage.haskell.org/package/wai">WAI)</a> - обобщенный <em>протокол общения web-сервера и web-приложения</em>. Приложения, реализующие этот протокол, называют WAI-приложениями и запускают с помощью сервера wai-приложений - <a href="http://www.stackage.org/package/warp">warp</a>.</p>
 <p>Реализуем же и мы простой сервис на чистом WAI!</p>
-<h1>WAI-сервис</h1>
-<h2>Задача</h2>
+<h1 id="wai-сервис">WAI-сервис</h1>
+<h2 id="задача">Задача</h2>
 <p>Реализовать сервис вызова функций типа <code>String -&gt; String</code>. Для примера реализуем функции <code>reverse</code>, <code>upper</code> и <code>lower</code>.</p>
-API будет следующим:
+<p>API будет следующим:</p>
 <ul>
 <li><code>GET</code> на <code>/</code> возвращает список имен доступных функций (по одному на строку),</li>
 <li><code>GET</code> на <code>/&lt;function_name&gt;</code> возвращает описание функции,</li>
 <li><code>GET</code> на <code>/&lt;function_name&gt;?&lt;argument&gt;</code> возвращает результат вызова функции.</li>
 </ul>
-<h2>“Hello, World!”</h2>
+<h2 id="hello-world">“Hello, World!”</h2>
 <p>Для начала создадим проект и реализуем сервер-заглушку, отвечающий известной строкой на любой запрос. <strong>Обратите внимание:</strong> исходники проекта <a href="https://github.com/astynax/wai-rpc">доступны на github</a>.</p>
 <p>Создаем проект:</p>
-<pre class="shell"><code>  $ stack new wai-rpc simple --resolver lts-3.2
+<pre class="shell"><code>$ stack new wai-rpc simple --resolver lts-3.2
 </code></pre>
 <p><strong>ВНИМАНИЕ:</strong> предполагается, что у вас установлена утилита <a href="https://github.com/commercialhaskell/stack">stack</a>, а ключ <code>--resolver lts-3.2</code> означает, что будет использоваться снимок версии 3.2 - именно этот снимок был актуален на момент написания статьи. (подробнее о снимках можно почитать в документации к stack).</p>
 <p>После создания проекта добавляем зависимости <code>http-types</code>, <code>wai</code> и <code>warp</code> в <code>.cabal</code>-файл:</p>
-<pre class="shell"><code>  -- ...часть файла опущена...
-  executable wai-rpc
-    hs-source-dirs:      src
-    main-is:             Main.hs
-    default-language:    Haskell2010
-    build-depends:       base &gt;= 4.7 &amp;&amp; &lt; 5,
-                         http-types, wai, warp -- &lt;-- добавлено
+<pre class="shell"><code>-- ...часть файла опущена...
+executable wai-rpc
+  hs-source-dirs:      src
+  main-is:             Main.hs
+  default-language:    Haskell2010
+  build-depends:       base &gt;= 4.7 &amp;&amp; &lt; 5,
+                       http-types, wai, warp -- &lt;-- добавлено
 </code></pre>
 <p>Затем содержимое файла <code>src/Main.hs</code> заменяем на:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  <span class="ot">{-# LANGUAGE OverloadedStrings #-}</span>
-  <span class="kw">module</span> <span class="dt">Main</span> <span class="kw">where</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">{-# LANGUAGE OverloadedStrings #-}</span>
+<span class="kw">module</span> <span class="dt">Main</span> <span class="kw">where</span>
 
-  <span class="kw">import </span><span class="dt">Network.Wai</span>
-  <span class="kw">import </span><span class="dt">Network.HTTP.Types</span> (status200, hContentType)
-  <span class="kw">import </span><span class="dt">Network.Wai.Handler.Warp</span> (run)
+<span class="kw">import </span><span class="dt">Network.Wai</span>
+<span class="kw">import </span><span class="dt">Network.HTTP.Types</span> (status200, hContentType)
+<span class="kw">import </span><span class="dt">Network.Wai.Handler.Warp</span> (run)
 
-<span class="ot">  application ::</span> <span class="dt">Application</span>
-  application _ respond <span class="fu">=</span> respond <span class="fu">$</span>
-    responseLBS status200
-                [(hContentType, <span class="st">&quot;text/plain&quot;</span>)]
-                <span class="st">&quot;Hello World&quot;</span>
+<span class="ot">application ::</span> <span class="dt">Application</span>
+application _ respond <span class="fu">=</span> respond <span class="fu">$</span>
+  responseLBS status200
+              [(hContentType, <span class="st">&quot;text/plain&quot;</span>)]
+              <span class="st">&quot;Hello World&quot;</span>
 
-<span class="ot">  main ::</span> <span class="dt">IO</span> ()
-  main <span class="fu">=</span> <span class="kw">do</span>
-    putStrLn <span class="st">&quot;Serving...&quot;</span>
-    run <span class="dv">8000</span> application</code></pre></div>
+<span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span> <span class="kw">do</span>
+  putStrLn <span class="st">&quot;Serving...&quot;</span>
+  run <span class="dv">8000</span> application</code></pre></div>
 <p>К слову, этот код практически слово-в-слово повторяет <a href="http://www.yesodweb.com/book/web-application-interface#web-application-interface_hello_world">helloworld</a> от авторов библиотеки WAI ;)</p>
 <p>Осталось собрать проект:</p>
-<pre class="shell"><code>  $ stack build
+<pre class="shell"><code>$ stack build
 </code></pre>
 <p>И запустить:</p>
-<pre class="shell"><code>  $ stack exec wai-rpc
-  Serving (hit Ctrl+C to stop)...
+<pre class="shell"><code>$ stack exec wai-rpc
+Serving (hit Ctrl+C to stop)...
 </code></pre>
 <p>Если при запущенном сервере открыть в браузере url <a href="http://localhost:8000" class="uri">http://localhost:8000</a>, то в окне отобразится ожидаемое приветствие. Сервер работает!</p>
 <p>Теперь стоит разобрать, из чего же состоит наш сервер.</p>
@@ -265,193 +265,193 @@ API будет следующим:
 </code></pre>
 <p>Это запуск сервера <code>warp</code> на порту <code>8000</code> с единственным WAI-приложением - <code>application</code>.</p>
 <p>Приложение <code>application</code> имеет тип <a href="http://haddock.stackage.org/lts-3.2/wai-3.0.3.0/Network-Wai.html#t:Application">Application</a>, который является синонимом для</p>
-<pre class="shell"><code>  type Application = Request
-                     -&gt; (Response -&gt; IO ResponseReceived)
-                     -&gt; IO ResponseReceived
+<pre class="shell"><code>type Application = Request
+                   -&gt; (Response -&gt; IO ResponseReceived)
+                   -&gt; IO ResponseReceived
 </code></pre>
 <p>Здесь первый аргумент, это тип <a href="http://haddock.stackage.org/lts-3.2/wai-3.0.3.0/Network-Wai.html#t:Request">Request</a>, описывающий запрос, а второй, это “ответчик” - функция, призванная возвращать ответ <a href="http://haddock.stackage.org/lts-3.2/wai-3.0.3.0/Network-Wai.html#t:Response">Response</a> в процессе выполнения некой работы (для этого в типе монада <code>IO</code>).</p>
 <p>В данном случае приложение сразу же отвечает фиксированным сообщением, поэтому тело приложения - единственный вызов ответчика <code>respond</code>.</p>
 <p>Ответ же в данном случае выглядит так:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  responseLBS status200
-              <span class="co">-- :: Network.HTTP.Types.Status</span>
-              [(hContentType, <span class="st">&quot;text/plain&quot;</span>)]
-              <span class="co">-- :: [(Network.HTTP.Types.HeaderName</span>
-              <span class="co">--     ,ByteString)]</span>
-              <span class="st">&quot;Hello World!&quot;</span>
-              <span class="co">-- :: Lazy ByteString</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">responseLBS status200
+            <span class="co">-- :: Network.HTTP.Types.Status</span>
+            [(hContentType, <span class="st">&quot;text/plain&quot;</span>)]
+            <span class="co">-- :: [(Network.HTTP.Types.HeaderName</span>
+            <span class="co">--     ,ByteString)]</span>
+            <span class="st">&quot;Hello World!&quot;</span>
+            <span class="co">-- :: Lazy ByteString</span></code></pre></div>
 <p>Всё достаточно привычно: статус, заголовки и тело.</p>
 <p>Вот, собственно и всё! Это уже вполне самостоятельный сервер, можно пускать в production :) И это не шутка - warp испытан и проверен, и, ко всему прочему, <a href="http://www.techempower.com/benchmarks/#section=data-r10&amp;hw=ec2&amp;test=json&amp;c=5&amp;f=28ougw-9zle8-0-0">весьма быстр</a> и <a href="http://www.aosabook.org/en/posa/warp.html">пригоден</a> для “вывешивания наружу” (т.е. не требует заворачивания во всякие Nginx).</p>
-<h2>Маршрутизация</h2>
+<h2 id="маршрутизация">Маршрутизация</h2>
 <p>Сервер работает, настало время решать конкретную задачу. Для начала заведем несколько вспомогательных функций для работы с ответами:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  <span class="kw">import </span><span class="dt">Network.Wai</span> (<span class="dt">Response</span>)
-  <span class="kw">import </span><span class="dt">Network.HTTP.Types</span> (<span class="dt">Status</span>, notFound404,
-                             badRequest400)
-  <span class="kw">import qualified</span> <span class="dt">Data.ByteString.Lazy</span> <span class="kw">as</span> <span class="dt">LBS</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Network.Wai</span> (<span class="dt">Response</span>)
+<span class="kw">import </span><span class="dt">Network.HTTP.Types</span> (<span class="dt">Status</span>, notFound404,
+                           badRequest400)
+<span class="kw">import qualified</span> <span class="dt">Data.ByteString.Lazy</span> <span class="kw">as</span> <span class="dt">LBS</span>
 
-  <span class="co">-- ...</span>
+<span class="co">-- ...</span>
 
-  responseOk, responseNotFound, responseBadRequest
-<span class="ot">    ::</span> <span class="dt">LBS.ByteString</span> <span class="ot">-&gt;</span> <span class="dt">Response</span>
-  responseOk         <span class="fu">=</span> responsePlainText status200
-  responseNotFound   <span class="fu">=</span> responsePlainText notFound404
-  responseBadRequest <span class="fu">=</span> responsePlainText badRequest400
+responseOk, responseNotFound, responseBadRequest
+<span class="ot">  ::</span> <span class="dt">LBS.ByteString</span> <span class="ot">-&gt;</span> <span class="dt">Response</span>
+responseOk         <span class="fu">=</span> responsePlainText status200
+responseNotFound   <span class="fu">=</span> responsePlainText notFound404
+responseBadRequest <span class="fu">=</span> responsePlainText badRequest400
 
-<span class="ot">  responsePlainText ::</span> <span class="dt">Status</span> <span class="ot">-&gt;</span> <span class="dt">LBS.ByteString</span> <span class="ot">-&gt;</span> <span class="dt">Response</span>
-  responsePlainText <span class="fu">=</span>
-    (<span class="ot">`responseLBS`</span> [(hContentType, <span class="st">&quot;text/plain&quot;</span>)])</code></pre></div>
+<span class="ot">responsePlainText ::</span> <span class="dt">Status</span> <span class="ot">-&gt;</span> <span class="dt">LBS.ByteString</span> <span class="ot">-&gt;</span> <span class="dt">Response</span>
+responsePlainText <span class="fu">=</span>
+  (<span class="ot">`responseLBS`</span> [(hContentType, <span class="st">&quot;text/plain&quot;</span>)])</code></pre></div>
 <p>(в зависимости проекта нужно будет добавить <code>bytestring</code>)</p>
 <p>Так как мы собираемся обрабатывать только <code>GET</code>-запросы, добавим отсечку по типу запроса с соответствующим сообщением об ошибке:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  <span class="kw">import </span><span class="dt">Network.Wai</span> (requestMethod)
-  <span class="kw">import </span><span class="dt">Network.HTTP.Types</span> (methodGet)
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Network.Wai</span> (requestMethod)
+<span class="kw">import </span><span class="dt">Network.HTTP.Types</span> (methodGet)
 
-  application req respond <span class="fu">=</span> respond <span class="fu">$</span>
-    <span class="kw">if</span> requestMethod req <span class="fu">/=</span> methodGet
-    <span class="kw">then</span> responseBadRequest <span class="st">&quot;Only GET method is allowed!&quot;</span>
-    <span class="kw">else</span> <span class="co">-- далее всё как раньше с учетом вспом. функций</span>
-      responseOk <span class="st">&quot;Hello World&quot;</span></code></pre></div>
+application req respond <span class="fu">=</span> respond <span class="fu">$</span>
+  <span class="kw">if</span> requestMethod req <span class="fu">/=</span> methodGet
+  <span class="kw">then</span> responseBadRequest <span class="st">&quot;Only GET method is allowed!&quot;</span>
+  <span class="kw">else</span> <span class="co">-- далее всё как раньше с учетом вспом. функций</span>
+    responseOk <span class="st">&quot;Hello World&quot;</span></code></pre></div>
 <p><code>GET</code>-запросы мы уже фильтруем, теперь на запрос к корневому url нужно возвращать список функций. Значит нужна библиотека функций:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  <span class="kw">import </span><span class="dt">Data.Map.Strict</span> (<span class="dt">Map</span>, fromList, lookup, keys)
-  <span class="kw">import qualified</span> <span class="dt">Data.ByteString.Char8</span> <span class="kw">as</span> <span class="dt">BS</span>
-  <span class="kw">import </span><span class="dt">Prelude</span> <span class="kw">hiding</span> (lookup)
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Map.Strict</span> (<span class="dt">Map</span>, fromList, lookup, keys)
+<span class="kw">import qualified</span> <span class="dt">Data.ByteString.Char8</span> <span class="kw">as</span> <span class="dt">BS</span>
+<span class="kw">import </span><span class="dt">Prelude</span> <span class="kw">hiding</span> (lookup)
 
-  <span class="co">-- ...</span>
+<span class="co">-- ...</span>
 
-  <span class="kw">type</span> <span class="dt">FunctionName</span>        <span class="fu">=</span> <span class="dt">BS.ByteString</span>
-  <span class="kw">type</span> <span class="dt">FunctionDescription</span> <span class="fu">=</span> <span class="dt">BS.ByteString</span>
-  <span class="kw">type</span> <span class="dt">FunctionArg</span>         <span class="fu">=</span> <span class="dt">BS.ByteString</span>
-  <span class="kw">type</span> <span class="dt">FunctionResult</span>      <span class="fu">=</span> <span class="dt">BS.ByteString</span>
-  <span class="kw">type</span> <span class="dt">FunctionSpec</span>        <span class="fu">=</span> (<span class="dt">FunctionDescription</span>
-                             ,(<span class="dt">FunctionArg</span> <span class="ot">-&gt;</span> <span class="dt">FunctionResult</span>))
+<span class="kw">type</span> <span class="dt">FunctionName</span>        <span class="fu">=</span> <span class="dt">BS.ByteString</span>
+<span class="kw">type</span> <span class="dt">FunctionDescription</span> <span class="fu">=</span> <span class="dt">BS.ByteString</span>
+<span class="kw">type</span> <span class="dt">FunctionArg</span>         <span class="fu">=</span> <span class="dt">BS.ByteString</span>
+<span class="kw">type</span> <span class="dt">FunctionResult</span>      <span class="fu">=</span> <span class="dt">BS.ByteString</span>
+<span class="kw">type</span> <span class="dt">FunctionSpec</span>        <span class="fu">=</span> (<span class="dt">FunctionDescription</span>
+                           ,(<span class="dt">FunctionArg</span> <span class="ot">-&gt;</span> <span class="dt">FunctionResult</span>))
 
-<span class="ot">  library ::</span> <span class="dt">Map</span> <span class="dt">FunctionName</span> <span class="dt">FunctionSpec</span>
-  library <span class="fu">=</span> fromList []
+<span class="ot">library ::</span> <span class="dt">Map</span> <span class="dt">FunctionName</span> <span class="dt">FunctionSpec</span>
+library <span class="fu">=</span> fromList []
 
-<span class="ot">  getFunctionSpec ::</span> <span class="dt">FunctionName</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">FunctionSpec</span>
-  getFunctionSpec <span class="fu">=</span> (<span class="ot">`lookup`</span> library)
+<span class="ot">getFunctionSpec ::</span> <span class="dt">FunctionName</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">FunctionSpec</span>
+getFunctionSpec <span class="fu">=</span> (<span class="ot">`lookup`</span> library)
 
-<span class="ot">  listOfFunctions ::</span> [<span class="dt">FunctionName</span>]
-  listOfFunctions <span class="fu">=</span> keys library
+<span class="ot">listOfFunctions ::</span> [<span class="dt">FunctionName</span>]
+listOfFunctions <span class="fu">=</span> keys library
 
-<span class="ot">  describe ::</span> <span class="dt">FunctionSpec</span> <span class="ot">-&gt;</span> <span class="dt">FunctionDescription</span>
-  describe <span class="fu">=</span> fst
+<span class="ot">describe ::</span> <span class="dt">FunctionSpec</span> <span class="ot">-&gt;</span> <span class="dt">FunctionDescription</span>
+describe <span class="fu">=</span> fst
 
-<span class="ot">  call ::</span> <span class="dt">FunctionSpec</span> <span class="ot">-&gt;</span> <span class="dt">FunctionArg</span> <span class="ot">-&gt;</span> <span class="dt">FunctionResult</span>
-  call <span class="fu">=</span> snd</code></pre></div>
+<span class="ot">call ::</span> <span class="dt">FunctionSpec</span> <span class="ot">-&gt;</span> <span class="dt">FunctionArg</span> <span class="ot">-&gt;</span> <span class="dt">FunctionResult</span>
+call <span class="fu">=</span> snd</code></pre></div>
 <p>(в зависимости проекта нужно будет добавить <code>containers</code>)</p>
 <p>Самих функций пока нет, но библиотека есть, как есть и функции для работы с ней. Можно уже выводить список функций, но перед этим нужно понять, что запрос производится на “корневой” url и не содержит параметров. Добавим ветвления в наше приложение, заодно переписав <code>if</code>-ветки в виде охранных выражений:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  <span class="kw">import </span><span class="dt">Network.Wai</span> (rawPathInfo, rawQueryString)
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Network.Wai</span> (rawPathInfo, rawQueryString)
 
-  <span class="co">-- ...</span>
+<span class="co">-- ...</span>
 
-  application req respond
-    <span class="fu">|</span> requestMethod req <span class="fu">/=</span> methodGet <span class="fu">=</span>
-      respond
-      <span class="fu">$</span> responseBadRequest <span class="st">&quot;Only GET method is allowed!&quot;</span>
+application req respond
+  <span class="fu">|</span> requestMethod req <span class="fu">/=</span> methodGet <span class="fu">=</span>
+    respond
+    <span class="fu">$</span> responseBadRequest <span class="st">&quot;Only GET method is allowed!&quot;</span>
 
-    <span class="fu">|</span> path <span class="fu">==</span> <span class="st">&quot;&quot;</span> <span class="fu">=</span>
-      respond
-      <span class="fu">$</span> <span class="kw">if</span> query <span class="fu">/=</span> <span class="st">&quot;&quot;</span>
-        <span class="kw">then</span> responseBadRequest <span class="st">&quot;No query parameters needed!&quot;</span>
-        <span class="kw">else</span> responseOk renderedListOfFunctions
+  <span class="fu">|</span> path <span class="fu">==</span> <span class="st">&quot;&quot;</span> <span class="fu">=</span>
+    respond
+    <span class="fu">$</span> <span class="kw">if</span> query <span class="fu">/=</span> <span class="st">&quot;&quot;</span>
+      <span class="kw">then</span> responseBadRequest <span class="st">&quot;No query parameters needed!&quot;</span>
+      <span class="kw">else</span> responseOk renderedListOfFunctions
 
-    <span class="fu">|</span> otherwise <span class="fu">=</span>
-      respond
-      <span class="fu">$</span> responseOk <span class="st">&quot;Hello World&quot;</span>
+  <span class="fu">|</span> otherwise <span class="fu">=</span>
+    respond
+    <span class="fu">$</span> responseOk <span class="st">&quot;Hello World&quot;</span>
 
-    <span class="kw">where</span>
-      query <span class="fu">=</span> rawQueryString req
-      path  <span class="fu">=</span> BS.tail <span class="fu">$</span> rawPathInfo req <span class="co">-- без ведущего '/'</span>
+  <span class="kw">where</span>
+    query <span class="fu">=</span> rawQueryString req
+    path  <span class="fu">=</span> BS.tail <span class="fu">$</span> rawPathInfo req <span class="co">-- без ведущего '/'</span>
 
-      renderedListOfFunctions <span class="fu">=</span>
-        LBS.intercalate <span class="st">&quot;\n&quot;</span>
-        <span class="fu">$</span> <span class="st">&quot;Available functions:&quot;</span>
-          <span class="fu">:</span> map LBS.fromStrict listOfFunctions</code></pre></div>
+    renderedListOfFunctions <span class="fu">=</span>
+      LBS.intercalate <span class="st">&quot;\n&quot;</span>
+      <span class="fu">$</span> <span class="st">&quot;Available functions:&quot;</span>
+        <span class="fu">:</span> map LBS.fromStrict listOfFunctions</code></pre></div>
 <p>Теперь у нашего сервера есть <strong>маршрутизация</strong>, пусть и в зачаточном виде :)</p>
 <p>Проверим работу того, что уже наработано, с помощью <code>curl</code> (предполагается, что сервер запущен в другом окне терминала):</p>
-<pre class="shell"><code>  $ curl http://localhost:8000
-  Available functions:
+<pre class="shell"><code>$ curl http://localhost:8000
+Available functions:
 </code></pre>
-<pre class="shell"><code>  $ curl http://localhost:8000?asdf
-  No query parameters needed!
+<pre class="shell"><code>$ curl http://localhost:8000?asdf
+No query parameters needed!
 </code></pre>
-<h2>Получение описание и вызов функций</h2>
+<h2 id="получение-описание-и-вызов-функций">Получение описание и вызов функций</h2>
 <p>Теперь корневой url обрабатывается. Настало время поиска функции в библиотеке:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  application req respond
-    <span class="co">-- тут существующая маршрутизация</span>
-    <span class="fu">|</span> otherwise <span class="fu">=</span>
-      respond
-      <span class="fu">$</span> maybe
-      (responseNotFound <span class="st">&quot;Unknown function!&quot;</span>)
-      (\spec <span class="ot">-&gt;</span> responseOk
-                <span class="fu">$</span> LBS.fromStrict
-                <span class="fu">$</span> <span class="kw">if</span> query <span class="fu">==</span> <span class="st">&quot;&quot;</span>
-                  <span class="kw">then</span> describe spec
-                  <span class="kw">else</span> call spec query)
-      <span class="fu">$</span> getFunctionSpec path</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">application req respond
+  <span class="co">-- тут существующая маршрутизация</span>
+  <span class="fu">|</span> otherwise <span class="fu">=</span>
+    respond
+    <span class="fu">$</span> maybe
+    (responseNotFound <span class="st">&quot;Unknown function!&quot;</span>)
+    (\spec <span class="ot">-&gt;</span> responseOk
+              <span class="fu">$</span> LBS.fromStrict
+              <span class="fu">$</span> <span class="kw">if</span> query <span class="fu">==</span> <span class="st">&quot;&quot;</span>
+                <span class="kw">then</span> describe spec
+                <span class="kw">else</span> call spec query)
+    <span class="fu">$</span> getFunctionSpec path</code></pre></div>
 <p>Функций пока нет, но поиск уже работает. Проверим:</p>
-<pre class="shell"><code>  $ curl http://localhost:8000/func
-  Unknown function!
+<pre class="shell"><code>$ curl http://localhost:8000/func
+Unknown function!
 </code></pre>
 <p>Добавим же наконец пару функций в библиотеку:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  <span class="kw">import </span><span class="dt">Data.Char</span> (toUpper)
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Char</span> (toUpper)
 
-  <span class="co">-- ...</span>
+<span class="co">-- ...</span>
 
-<span class="ot">  library ::</span> <span class="dt">Map</span> <span class="dt">FunctionName</span> <span class="dt">FunctionSpec</span>
-  library <span class="fu">=</span>
-    fromList [(<span class="st">&quot;reverse&quot;</span>, (<span class="st">&quot;returns string with characters in reverset order&quot;</span>,
-                           BS.reverse ))
-             ,(<span class="st">&quot;upper&quot;</span>,   (<span class="st">&quot;returns string with each character in upper case&quot;</span>,
-                           BS.map toUpper ))]</code></pre></div>
+<span class="ot">library ::</span> <span class="dt">Map</span> <span class="dt">FunctionName</span> <span class="dt">FunctionSpec</span>
+library <span class="fu">=</span>
+  fromList [(<span class="st">&quot;reverse&quot;</span>, (<span class="st">&quot;returns string with characters in reverset order&quot;</span>,
+                         BS.reverse ))
+           ,(<span class="st">&quot;upper&quot;</span>,   (<span class="st">&quot;returns string with each character in upper case&quot;</span>,
+                         BS.map toUpper ))]</code></pre></div>
 <p>И, разумеется, проверим:</p>
-<pre class="shell"><code>  $ curl http://localhost:8000
-  Available functions:
-  reverse
-  upper
+<pre class="shell"><code>$ curl http://localhost:8000
+Available functions:
+reverse
+upper
 </code></pre>
-<pre class="shell"><code>  $ curl http://localhost:8000/reverse
-  returns string with characters in reverset order
+<pre class="shell"><code>$ curl http://localhost:8000/reverse
+returns string with characters in reverset order
 </code></pre>
-<pre class="shell"><code>  $ curl http://localhost:8000/reverse?Hello+World
-  dlroW olleH
+<pre class="shell"><code>$ curl http://localhost:8000/reverse?Hello+World
+dlroW olleH
 </code></pre>
 <p>Готово! Есть функции, и их можно вызывать удалённо!</p>
-<h2>Финальные штрихи</h2>
+<h2 id="финальные-штрихи">Финальные штрихи</h2>
 <p>Сервер у нас есть, но неплохо было бы видеть какие запросы он получает и что на них отвечает, т.е. нам нужно логирование. Существует готовый пакет <a href="http://haddock.stackage.org/lts-3.2/wai-logger-2.2.4.1/Network-Wai-Logger.html">wai-logger</a>, однако для практики мы напишем свою реализацию логирования - тоже простейшую.</p>
 <p>Когда при работе с WAI-приложениями возникает необходимость сделать что-то с запросами и/или ответами на них, на сцену выходит тип <a href="http://haddock.stackage.org/lts-3.2/wai-3.0.3.0/Network-Wai.html#t:Middleware">Middleware</a>:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  <span class="dt">Middleware</span><span class="ot"> ::</span> <span class="dt">Application</span> <span class="ot">-&gt;</span> <span class="dt">Application</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">Middleware</span><span class="ot"> ::</span> <span class="dt">Application</span> <span class="ot">-&gt;</span> <span class="dt">Application</span></code></pre></div>
 <p>Middleware - это преобразователь приложений, настоящая <em>функция высшего порядка</em>! Как же такие преобразователи пишутся? Довольно просто:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  <span class="kw">import </span><span class="dt">Network.Wai</span> (<span class="dt">Middleware</span>, responseStatus)
-  <span class="kw">import </span><span class="dt">Network.HTTP.Types</span> (statusCode)
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Network.Wai</span> (<span class="dt">Middleware</span>, responseStatus)
+<span class="kw">import </span><span class="dt">Network.HTTP.Types</span> (statusCode)
 
-  <span class="co">-- ...</span>
+<span class="co">-- ...</span>
 
-<span class="ot">  withLogging ::</span> <span class="dt">Middleware</span>
-  withLogging app req respond <span class="fu">=</span>
-    app req <span class="fu">$</span> \response <span class="ot">-&gt;</span> <span class="kw">do</span>
-      putStrLn <span class="fu">$</span> statusOf response <span class="fu">++</span> <span class="st">&quot;: &quot;</span> <span class="fu">++</span> query
-      respond response
-    <span class="kw">where</span>
-      query <span class="fu">=</span> BS.unpack
-            <span class="fu">$</span> BS.concat [ rawPathInfo    req
-                        , rawQueryString req ]
-      statusOf <span class="fu">=</span> show <span class="fu">.</span> statusCode <span class="fu">.</span> responseStatus
+<span class="ot">withLogging ::</span> <span class="dt">Middleware</span>
+withLogging app req respond <span class="fu">=</span>
+  app req <span class="fu">$</span> \response <span class="ot">-&gt;</span> <span class="kw">do</span>
+    putStrLn <span class="fu">$</span> statusOf response <span class="fu">++</span> <span class="st">&quot;: &quot;</span> <span class="fu">++</span> query
+    respond response
+  <span class="kw">where</span>
+    query <span class="fu">=</span> BS.unpack
+          <span class="fu">$</span> BS.concat [ rawPathInfo    req
+                      , rawQueryString req ]
+    statusOf <span class="fu">=</span> show <span class="fu">.</span> statusCode <span class="fu">.</span> responseStatus
 
-   main <span class="fu">=</span> <span class="kw">do</span>
-     putStrLn <span class="fu">...</span>
-     run <span class="dv">8000</span> <span class="fu">$</span> withLogging application</code></pre></div>
+ main <span class="fu">=</span> <span class="kw">do</span>
+   putStrLn <span class="fu">...</span>
+   run <span class="dv">8000</span> <span class="fu">$</span> withLogging application</code></pre></div>
 <p>Ничего сверх-естественного, оборачивание вызова функции, как оно есть.</p>
 <p>Выглядит вывод logger’а примерно так:</p>
-<pre class="shell"><code>  $ stack exec wai-rpc
-  Serving (hit Ctrl+C to stop)...
-  200: /reverse?Hello%20World
-  200: /
-  404: /asdf
-  400: /?asdf
-  ...
+<pre class="shell"><code>$ stack exec wai-rpc
+Serving (hit Ctrl+C to stop)...
+200: /reverse?Hello%20World
+200: /
+404: /asdf
+400: /?asdf
+...
 </code></pre>
 <p>Подобным образом можно осуществлять маршрутизацию, проверку на наличие, или отсутствие cookies, оптимизацию(сжатие) ответов и кэширование запросов. Такой подход, на мой взгляд, очень композируем да и просто и элегантен!</p>
-<h1>Заключение</h1>
+<h1 id="заключение">Заключение</h1>
 <p>Даже такой простой пример позволяет понять, что разработка сервисов на “голом” WAI не только довольно проста, но и вполне удобна и приятна :)</p>
 
 <div id="socialButtons">

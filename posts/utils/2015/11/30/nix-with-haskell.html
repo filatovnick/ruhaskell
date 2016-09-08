@@ -254,7 +254,7 @@ $ <span class="kw">ghc</span> --version
 <p>Ок, но как же мы её напишем? Да вот так и напишем:</p>
 <pre class="nixos"><code>{ pkgs ? import &lt;nixpkgs&gt; {} }:
 
-let command = name: pathToNix: 
+let command = name: pathToNix:
         pkgs.runCommand name {} ''
             ${pkgs.cabal2nix}/bin/cabal2nix ${pathToNix} &gt; $out
         '';
@@ -287,7 +287,7 @@ in haskellPackages.hello</code></pre>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span> -al result
 <span class="kw">...</span> result -<span class="kw">&gt;</span> /nix/store/jkq9ynd6zsz9rbl1rjb7dbm0rg9dimkb-hello-0.1.0.0</code></pre></div>
 <p>Тот самый хэш. Таким образом, можем запускать следующим образом:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">./result/bin/hello</span> 
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">./result/bin/hello</span>
 <span class="kw">hello</span></code></pre></div>
 <p>Победа.</p>
 <p>Итак, теперь наш пакетик является частью <code>/nix/store/</code>, и поэтому его содержимое теперь неизменно аки египетские пирамиды:</p>
