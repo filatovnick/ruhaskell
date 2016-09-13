@@ -7,8 +7,16 @@
         <description><![CDATA[Русскоязычное сообщество Haskell-разработчиков]]></description>
         <atom:link href="http://ruhaskell.org/feed.xml" rel="self"
                    type="application/rss+xml" />
-        <lastBuildDate>Sun, 28 Aug 2016 00:00:00 UT</lastBuildDate>
+        <lastBuildDate>Tue, 13 Sep 2016 00:00:00 UT</lastBuildDate>
         <item>
+    <title>Сервер для онлайн профилирования приложений</title>
+    <link>http://ruhaskell.org/posts/projects/2016/09/13/hsoc-live-profile.html</link>
+    <description><![CDATA[Результаты Haskell Summer of Code 2016 проекта по улучшению eventlog.]]></description>
+    <pubDate>Tue, 13 Sep 2016 00:00:00 UT</pubDate>
+    <guid>http://ruhaskell.org/posts/projects/2016/09/13/hsoc-live-profile.html</guid>
+    <dc:creator>Денис Шевченко</dc:creator>
+</item>
+<item>
     <title>Возможности и проблемы FFI в Haskell</title>
     <link>http://ruhaskell.org/posts/talks/2016/08/28/haskell-ffi-abilities-and-issues.html</link>
     <description><![CDATA[Возможности и проблемы FFI в Haskell и примеры его использования.]]></description>
@@ -78,14 +86,6 @@
     <description><![CDATA[Да, друзья, время летит! Нашему сообществу уже один год. Оглянемся назад, подведём итоги и подумаем о будущем...]]></description>
     <pubDate>Wed, 30 Dec 2015 00:00:00 UT</pubDate>
     <guid>http://ruhaskell.org/posts/events/2015/12/30/ruhaskell-one-year.html</guid>
-    <dc:creator>Денис Шевченко</dc:creator>
-</item>
-<item>
-    <title>Nix и Haskell: первая встреча</title>
-    <link>http://ruhaskell.org/posts/utils/2015/11/30/nix-with-haskell.html</link>
-    <description><![CDATA[Продолжаем разбираться с Nix, теперь уже в свете нашего любимого языка. Давайте уже создадим что-нибудь!]]></description>
-    <pubDate>Mon, 30 Nov 2015 00:00:00 UT</pubDate>
-    <guid>http://ruhaskell.org/posts/utils/2015/11/30/nix-with-haskell.html</guid>
     <dc:creator>Денис Шевченко</dc:creator>
 </item>
 
