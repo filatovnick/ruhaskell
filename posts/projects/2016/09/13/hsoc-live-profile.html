@@ -8,7 +8,7 @@
         <meta name="author" content>
         <link rel="icon" href="../../../../../static/images/favicon.ico">
 
-        <title>Сервер для онлайн профилирования приложений</title>
+        <title>Сервер для онлайн-профилирования приложений</title>
 
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
 
@@ -181,7 +181,7 @@
         </nav>
 
         <div id="content">
-            <h1>Сервер для онлайн профилирования приложений</h1>
+            <h1>Сервер для онлайн-профилирования приложений</h1>
 
 <div class="row">
     <div class="col-xs-9 col-sm-8 col-md-8 col-lg-8">
@@ -198,27 +198,27 @@
     </div>
 </div>
 
-<p>Лето закончилось и вместе с ним завершается студенческая программа <a href="https://summer.haskell.org/">Haskell Summer of Code 2016</a>, которая в этом году заменяет Google Summer of Code для хаскеллистов. Мой проект приняли по счастливой случайности: дополнительный спонсор появился к концу Июня. Итого, у меня было всего два месяца для осуществления проекта, и я думаю, что они не пропали даром.</p>
+<p>Лето закончилось, и вместе с ним завершается студенческая программа <a href="https://summer.haskell.org/">Haskell Summer of Code 2016</a>, которая в этом году заменяет Google Summer of Code для хаскеллистов. Мой проект приняли по счастливой случайности: дополнительный спонсор появился к концу июня. Итого, у меня было всего два месяца для осуществления проекта, и я думаю, что они не пропали даром.</p>
 <h1 id="о-чём-проект">О чём проект</h1>
-<p>На текущий момент существует несколько инструментов для профилирования Хаскелль программ:</p>
+<p>На текущий момент существует несколько инструментов для профилирования хаскелльных программ:</p>
 <ol style="list-style-type: decimal">
-<li><p><a href="https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/profiling.html">Сборка с <code>-prof</code></a>, которая позволяет замерять статистику по “cost centers” и использованию heap’а. Для использования этого вида профайлера необходимо перекомпилировать приложение и все его зависимости, что в больших проектах занимает ощутимое время. Но что более важно, это значительный вносимый overhead в работу приложения.</p></li>
-<li><p><a href="https://ghc.haskell.org/trac/ghc/wiki/EventLog">Eventlog</a>, который позволяет записывать события GC, планировшика потоков, пользовательские сообщения и прочее. В лог также попадает также статистика использования памяти, но не так детально, как в “настоящем” профилировании. Главной особенностью данного инструмента является то, что он не требует длительной пересборки и дает малый overhead.</p></li>
-<li><p><a href="https://ghc.haskell.org/trac/ghc/wiki/Debugging/TickyTicky">Ticky-ticky</a> профайлер – довольно специфическая разновидность, которая добавляет счетчики к каждому объекту на уровне <a href="https://ghc.haskell.org/trac/ghc/wiki/Commentary/Compiler/GeneratedCode">STG</a>. Этот вид профайлера нужен в основном разработчикам GHC.</p></li>
+<li><p><a href="https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/profiling.html">Сборка с <code>-prof</code></a>, которая позволяет замерять статистику по «cost centers» и использованию heap’а. Для использования этого вида профайлера необходимо перекомпилировать приложение и все его зависимости, что в больших проектах занимает ощутимое время. Но что более важно, это значительный вносимый overhead в работу приложения.</p></li>
+<li><p><a href="https://ghc.haskell.org/trac/ghc/wiki/EventLog">Eventlog</a>, который позволяет записывать события GC, планировшика потоков, пользовательские сообщения и прочее. В лог также попадает также статистика использования памяти, но не так детально, как в «настоящем» профилировании. Главной особенностью данного инструмента является то, что он не требует длительной пересборки и даёт малый overhead.</p></li>
+<li><p><a href="https://ghc.haskell.org/trac/ghc/wiki/Debugging/TickyTicky">Ticky-ticky</a> профайлер — довольно специфическая разновидность, которая добавляет счетчики к каждому объекту на уровне <a href="https://ghc.haskell.org/trac/ghc/wiki/Commentary/Compiler/GeneratedCode">STG</a>. Этот вид профайлера нужен, в основном, разработчикам GHC.</p></li>
 </ol>
 <p>Для проблем с многопоточностью, проблем, которые проявляются только под нагрузкой, или просто для вероятностных багов целесообразно записывать eventlog и потом анализировать происходящее через специальные инструменты, например, <a href="https://wiki.haskell.org/ThreadScope">ThreadScope</a> и <a href="http://www.well-typed.com/blog/86/">ghc-events-analyze</a>.</p>
-<p>Однако существующая реализация eventlog имеет важный недостаток, которые не позволяет реализовать онлайн профилирование приложений. RTS создает файл для лога и пишет туда все события, гипотетическим инструментам для онлайн профилирования приходилось бы решать проблему чтения из этого файла пока туда ведется запись. Также при значительном потоке сообщений размер лога может прибывать по 100 МБ в минуту, рано или поздно лог займет всё свободное пространство на диске.</p>
+<p>Однако существующая реализация eventlog имеет важный недостаток, которые не позволяет реализовать онлайн профилирование приложений. RTS создаёт файл для лога и пишет туда все события, гипотетическим инструментам для онлайн-профилирования приходилось бы решать проблему чтения из этого файла, пока туда ведется запись. Также при значительном потоке сообщений размер лога может прибывать по 100 МБ в минуту, рано или поздно лог займет всё свободное пространство на диске.</p>
 <h1 id="цели-проекта">Цели проекта</h1>
-<p>Мой HSOC проект направлен на доработку eventlog и реализации proof-of-concept для онлайн профиловщика приложений:</p>
+<p>Мой HSOC-проект направлен на доработку eventlog и реализации proof-of-concept для онлайн-профиловщика приложений:</p>
 <ol style="list-style-type: decimal">
 <li><p>Доработка RTS для возможности перенаправления событий в произвольный файловый дескриптор или передачу событий через память на уровень Haskell. Сюда также входит возможность динамически изменять размер промежуточных буферов лога.</p></li>
 <li><p>Разработка приложения-монитора, которое бы перехватывало поток сообщений из профилируемой программы и отдавала его удаленному инструменту для профилирования.</p></li>
-<li><p>Разработка удаленного инструмента для отображения eventlog на основе веб приложения.</p></li>
+<li><p>Разработка удалённого инструмента для отображения eventlog на основе веб-приложения.</p></li>
 </ol>
 <h1 id="результаты">Результаты</h1>
-<p>В целом, все три задачи были реализованы. Изначально было запланировано гораздо больше, но по тем или иным причинам от фич пришлось отказываться, в основном, из-за дефицита времени.</p>
+<p>В целом, все три задачи были решены. Изначально было запланировано гораздо больше, но по тем или иным причинам от фич пришлось отказываться, в основном, из-за дефицита времени.</p>
 <h2 id="rts">RTS</h2>
-<p>Изменения RTS оформлены в отдельный <a href="https://ghc.haskell.org/trac/ghc/ticket/12582">тикет</a> и залиты на <a href="https://phabricator.haskell.org/D2522">Phabricator</a>, где их ждёт жесткое ревью и доработка.</p>
+<p>Изменения RTS оформлены в отдельный <a href="https://ghc.haskell.org/trac/ghc/ticket/12582">тикет</a> и залиты на <a href="https://phabricator.haskell.org/D2522">Phabricator</a>, где их ждёт жёсткое ревью и доработка.</p>
 <h2 id="monitor">Monitor</h2>
 <p>Полный data flow событий от их создания и до прихода в инструмент профиловщика выглядит так:</p>
 <div class="figure">
@@ -226,7 +226,7 @@
 
 </div>
 <p><a href="https://github.com/NCrashed/live-profile-monitor">Монитор</a> позволяет подключаться к приложениям, к которым добавлена маленькая <a href="https://github.com/NCrashed/live-profile-monitor/tree/master/live-profile-leech">библиотека-пиявка</a>:</p>
-<pre><code>hs-live-profile --RTS myapp +RTS -lm&quot;</code></pre>
+<pre><code>hs-live-profile --RTS myapp +RTS -lm</code></pre>
 <p>и потом передавать сообщения через TCP соединение, где на другом конце профилировщик вешает свои <a href="https://github.com/NCrashed/live-profile-monitor/tree/master/live-profile-client">callback’и</a>:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">ClientBehavior</span> <span class="fu">=</span> <span class="dt">ClientBehavior</span> {
 <span class="ot">  clientOnHeader ::</span> <span class="fu">!</span>(<span class="dt">Header</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> ())  <span class="co">-- ^ Вызывается, когда пришел полный заголовок лога</span>
@@ -235,19 +235,19 @@
 ,<span class="ot"> clientOnState ::</span> <span class="fu">!</span>(<span class="dt">EventlogState</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> ()) <span class="co">-- ^ Вызывается, когда пришел новый снимок состояния лога</span>
 ,<span class="ot"> clientOnExit ::</span> <span class="fu">!</span>(<span class="dt">Maybe</span> <span class="dt">SomeException</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> ()) <span class="co">-- ^ Вызывается при выходе из потока клиента</span>
 }</code></pre></div>
-<h2 id="сервер-профилировщик">Сервер профилировщик</h2>
-<p>Самая сырая часть проекта, так как на нее пришлось самое малое количество времени. Итого, сервер может успешно пародировать <a href="http://www.well-typed.com/blog/86/">ghc-events-analyze</a>, подключаться к монитору, управлять логами через админку:</p>
+<h2 id="сервер-профилировщик">Сервер-профилировщик</h2>
+<p>Самая сырая часть проекта, так как на неё пришлось самое малое количество времени. Итого, сервер может успешно пародировать <a href="http://www.well-typed.com/blog/86/">ghc-events-analyze</a>, подключаться к монитору, управлять логами через админку:</p>
 <div class="figure">
 <img src="../../../../../files/posts/2016-09-13/screen-fib-bined.png#center" />
 
 </div>
-<p><a href="https://github.com/NCrashed/live-profile-server">Сервер</a> можно развернуть у себя локально, так и попробовать <a href="http://liveprofile.teaspotstudio.ru/">развернутый вариант онлайн</a>. Сейчас есть проблемы с производительностью построения диаграмм, для логов размеров около 50 МБ они могут строятся по 5-7 минут.</p>
+<p><a href="https://github.com/NCrashed/live-profile-server">Сервер</a> можно как развернуть у себя локально, так и попробовать <a href="http://liveprofile.teaspotstudio.ru/">развернутый вариант онлайн</a>. Сейчас есть проблемы с производительностью построения диаграмм, для логов размеров около 50 МБ они могут строиться по 5–7 минут.</p>
 <p>Особенностью реализации сервера является то, что он полностью написан на Haskell, в том числе фронтенд, который реализован на GHCJS + <a href="https://github.com/reflex-frp/reflex-platform">reflex</a> + <a href="http://projects.haskell.org/diagrams/#">diagrams</a>, а серверная часть вовсю использует <a href="http://haskell-servant.readthedocs.io/en/stable/">servant</a> и type-level магию.</p>
 <h2 id="сопутствующие-библиотеки">Сопутствующие библиотеки</h2>
 <p>В процессе написания HSOC проекта я старался выносить все полезные куски кода в отдельные библиотеки:</p>
 <ul>
-<li><p><a href="http://hackage.haskell.org/package/aeson-injector">aeson-injector</a> - типы “обертки” для инъекции полей в генерируемые JSON’ы.</p></li>
-<li><p><a href="http://hackage.haskell.org/package/servant-auth-token-api">servant-auth-token-api</a> и <a href="http://hackage.haskell.org/package/servant-auth-token">servant-auth-token</a> - библиотека для token авторизации для servant. Эта библиотека эксплуатирует модульность servant’а и позволяет с минимальными усилиями встроить авторизацию с пользователями и группами пользователей внутрь своего приложения.</p></li>
+<li><p><a href="http://hackage.haskell.org/package/aeson-injector">aeson-injector</a> — типы-обёртки для инъекции полей в генерируемые JSON’ы.</p></li>
+<li><p><a href="http://hackage.haskell.org/package/servant-auth-token-api">servant-auth-token-api</a> и <a href="http://hackage.haskell.org/package/servant-auth-token">servant-auth-token</a> — библиотека для token-авторизации для servant. Эта библиотека эксплуатирует модульность servant’а и позволяет с минимальными усилиями встроить авторизацию с пользователями и группами пользователей внутрь своего приложения.</p></li>
 </ul>
 <h3 id="servant-rest-derive">servant-rest-derive</h3>
 <p>В ходе разработки сервера была получена экспериментальная библиотека, которая может только из описания <a href="http://hackage.haskell.org/package/vinyl">vinyl</a> структур вывести RESTful сервер:</p>
@@ -260,25 +260,25 @@
   , <span class="ch">'(&quot;lastUsed&quot;, Maybe UTCTime)</span>
   ]
 
-<span class="kw">instance</span> <span class="dt">Named</span> <span class="dt">Connection</span> <span class="kw">where</span> 
+<span class="kw">instance</span> <span class="dt">Named</span> <span class="dt">Connection</span> <span class="kw">where</span>
   getName _ <span class="fu">=</span> <span class="st">&quot;Connection&quot;</span>
 
 <span class="co">-- | Correspoinding patch record</span>
-<span class="fu">$</span>(declareVinylPatch <span class="ch">''</span><span class="dt">Connection</span>)
+declareVinylPatch <span class="ch">''</span><span class="dt">Connection</span>
 
 <span class="co">-- | API about connections to remote Haskell applications that we profile</span>
 <span class="kw">type</span> <span class="dt">ConnectionAPI</span> <span class="fu">=</span> <span class="st">&quot;connection&quot;</span> <span class="fu">:&gt;</span> <span class="dt">RESTFull</span> <span class="dt">Connection</span> <span class="st">&quot;connection&quot;</span></code></pre></div>
 <p>Вывод сервера:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">connectionServer ::</span> <span class="dt">ServerT</span> <span class="dt">ConnectionAPI</span> <span class="dt">App</span> 
-connectionServer <span class="fu">=</span> restServer (<span class="dt">Proxy</span><span class="ot"> ::</span> <span class="dt">Proxy</span> <span class="ch">'[ '</span><span class="dt">GET</span>, <span class="ch">'POST, '</span><span class="dt">PUT</span>, <span class="ch">'PATCH, '</span><span class="dt">DELETE</span>]) 
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">connectionServer ::</span> <span class="dt">ServerT</span> <span class="dt">ConnectionAPI</span> <span class="dt">App</span>
+connectionServer <span class="fu">=</span> restServer (<span class="dt">Proxy</span><span class="ot"> ::</span> <span class="dt">Proxy</span> <span class="ch">'[ '</span><span class="dt">GET</span>, <span class="ch">'POST, '</span><span class="dt">PUT</span>, <span class="ch">'PATCH, '</span><span class="dt">DELETE</span>])
   (<span class="dt">Proxy</span><span class="ot"> ::</span> <span class="dt">Proxy</span> <span class="dt">Connection</span>) (<span class="dt">Proxy</span><span class="ot"> ::</span> <span class="dt">Proxy</span> <span class="st">&quot;connection&quot;</span>)
   (<span class="dt">Proxy</span><span class="ot"> ::</span> <span class="dt">Proxy</span> <span class="dt">App</span>)</code></pre></div>
 <p>Данная библиотека заслуживает отдельного поста и будет загружена на Hackage в скором будущем.</p>
 <h1 id="будущее-проекта">Будущее проекта</h1>
-<p>Я не собираюсь бросать проект, так как он еще далеко от стадии “полезный для реальных применений”. Далее перед мной стоят следующие задачи:</p>
+<p>Я не собираюсь бросать проект, так как он ещё далеко от стадии «полезный для реальных применений». Далее перед мной стоят следующие задачи:</p>
 <ul>
-<li><p>Пройти код ревью и смержить изменения RTS в GHC. На момент написания поста, в Phabricator уже выразили пару замечаний по документации и реализации, но принципиальных проблем для попадания новых возможностей в GHC нет.</p></li>
-<li><p>Добиться real-time отрисовки диаграмм, чтобы графики строились для логов инкрементально, а сервер имел опцию держать в базе только определенное временное окно событий.</p></li>
+<li><p>Пройти код-ревью и смержить изменения RTS в GHC. На момент написания поста в Phabricator уже выразили пару замечаний по документации и реализации, но принципиальных проблем для попадания новых возможностей в GHC нет.</p></li>
+<li><p>Добиться real-time отрисовки диаграмм, чтобы графики строились для логов инкрементально, а сервер имел опцию держать в базе только определённое временно́е окно событий.</p></li>
 <li><p>Добавить другие виды графиков и диаграмм. Потенциально сервер может быть полным аналогом ThreadScope и ghc-events-analyze и даже вычленять статистику по используемой памяти.</p></li>
 <li><p>Многопользовательский режим использования сервера. Возможность заливать приватные логи на сервер.</p></li>
 </ul>
