@@ -3,89 +3,89 @@
     xmlns:dc="http://purl.org/dc/elements/1.1/">
     <channel>
         <title>ruHaskell</title>
-        <link>http://ruhaskell.org</link>
+        <link>https://ruhaskell.org</link>
         <description><![CDATA[Русскоязычное сообщество Haskell-разработчиков]]></description>
-        <atom:link href="http://ruhaskell.org/feed.xml" rel="self"
+        <atom:link href="https://ruhaskell.org/feed.xml" rel="self"
                    type="application/rss+xml" />
         <lastBuildDate>Tue, 13 Sep 2016 00:00:00 UT</lastBuildDate>
         <item>
     <title>Сервер для онлайн-профилирования приложений</title>
-    <link>http://ruhaskell.org/posts/projects/2016/09/13/hsoc-live-profile.html</link>
+    <link>https://ruhaskell.org/posts/projects/2016/09/13/hsoc-live-profile.html</link>
     <description><![CDATA[Результаты проекта Haskell Summer of Code 2016 по улучшению eventlog.]]></description>
     <pubDate>Tue, 13 Sep 2016 00:00:00 UT</pubDate>
-    <guid>http://ruhaskell.org/posts/projects/2016/09/13/hsoc-live-profile.html</guid>
+    <guid>https://ruhaskell.org/posts/projects/2016/09/13/hsoc-live-profile.html</guid>
     <dc:creator>Денис Шевченко</dc:creator>
 </item>
 <item>
     <title>Возможности и проблемы FFI в Haskell</title>
-    <link>http://ruhaskell.org/posts/talks/2016/08/28/haskell-ffi-abilities-and-issues.html</link>
+    <link>https://ruhaskell.org/posts/talks/2016/08/28/haskell-ffi-abilities-and-issues.html</link>
     <description><![CDATA[Возможности и проблемы FFI в Haskell и примеры его использования.]]></description>
     <pubDate>Sun, 28 Aug 2016 00:00:00 UT</pubDate>
-    <guid>http://ruhaskell.org/posts/talks/2016/08/28/haskell-ffi-abilities-and-issues.html</guid>
+    <guid>https://ruhaskell.org/posts/talks/2016/08/28/haskell-ffi-abilities-and-issues.html</guid>
     <dc:creator>Денис Шевченко</dc:creator>
 </item>
 <item>
     <title>Митап 1.0</title>
-    <link>http://ruhaskell.org/posts/events/2016/07/28/meetup-summer.html</link>
+    <link>https://ruhaskell.org/posts/events/2016/07/28/meetup-summer.html</link>
     <description><![CDATA[18 августа сообщество RuHaskell и «Лаборатории Касперского» приглашают всех заинтересованных, чтобы обсудить Haskell и другие языки в функциональной парадигме, поделиться опытом их применения в решении прикладных задач бизнеса, позадавать вопросы и пообщаться.]]></description>
     <pubDate>Thu, 28 Jul 2016 00:00:00 UT</pubDate>
-    <guid>http://ruhaskell.org/posts/events/2016/07/28/meetup-summer.html</guid>
+    <guid>https://ruhaskell.org/posts/events/2016/07/28/meetup-summer.html</guid>
     <dc:creator>Денис Шевченко</dc:creator>
 </item>
 <item>
     <title>Улучшение тестов для statistics, часть 1</title>
-    <link>http://ruhaskell.org/posts/numeric/2016/06/01/statistics-test-suite-part1.html</link>
+    <link>https://ruhaskell.org/posts/numeric/2016/06/01/statistics-test-suite-part1.html</link>
     <description><![CDATA[Длинная история об отладке тестов для statistics и пакета math-functions]]></description>
     <pubDate>Wed, 01 Jun 2016 00:00:00 UT</pubDate>
-    <guid>http://ruhaskell.org/posts/numeric/2016/06/01/statistics-test-suite-part1.html</guid>
+    <guid>https://ruhaskell.org/posts/numeric/2016/06/01/statistics-test-suite-part1.html</guid>
     <dc:creator>Денис Шевченко</dc:creator>
 </item>
 <item>
     <title>Делаем свою жизнь проще с Servant</title>
-    <link>http://ruhaskell.org/posts/talks/2016/04/05/better-services-with-servant.html</link>
+    <link>https://ruhaskell.org/posts/talks/2016/04/05/better-services-with-servant.html</link>
     <description><![CDATA[Улучшаем веб-сервисы и делаем свою жизнь проще с Servant]]></description>
     <pubDate>Tue, 05 Apr 2016 00:00:00 UT</pubDate>
-    <guid>http://ruhaskell.org/posts/talks/2016/04/05/better-services-with-servant.html</guid>
+    <guid>https://ruhaskell.org/posts/talks/2016/04/05/better-services-with-servant.html</guid>
     <dc:creator>Денис Шевченко</dc:creator>
 </item>
 <item>
     <title>Зависимые типы в GHC 8</title>
-    <link>http://ruhaskell.org/posts/talks/2016/03/27/dependent-types-in-haskell-ghc-8.html</link>
+    <link>https://ruhaskell.org/posts/talks/2016/03/27/dependent-types-in-haskell-ghc-8.html</link>
     <description><![CDATA[Доклад о зависимых типах в GHC 8.0, зачем они нужны, почему пришлось так долго ждать, и в чём отличие от Coq и Idris.]]></description>
     <pubDate>Sun, 27 Mar 2016 00:00:00 UT</pubDate>
-    <guid>http://ruhaskell.org/posts/talks/2016/03/27/dependent-types-in-haskell-ghc-8.html</guid>
+    <guid>https://ruhaskell.org/posts/talks/2016/03/27/dependent-types-in-haskell-ghc-8.html</guid>
     <dc:creator>Денис Шевченко</dc:creator>
 </item>
 <item>
     <title>Монады для барабанщиков</title>
-    <link>http://ruhaskell.org/posts/talks/2016/03/26/monads-for-drummers.html</link>
+    <link>https://ruhaskell.org/posts/talks/2016/03/26/monads-for-drummers.html</link>
     <description><![CDATA[Доклад-введение в монады.]]></description>
     <pubDate>Sat, 26 Mar 2016 00:00:00 UT</pubDate>
-    <guid>http://ruhaskell.org/posts/talks/2016/03/26/monads-for-drummers.html</guid>
+    <guid>https://ruhaskell.org/posts/talks/2016/03/26/monads-for-drummers.html</guid>
     <dc:creator>Денис Шевченко</dc:creator>
 </item>
 <item>
     <title>Как написать хранилище БД и не сойти с ума</title>
-    <link>http://ruhaskell.org/posts/talks/2016/03/20/database-storage.html</link>
+    <link>https://ruhaskell.org/posts/talks/2016/03/20/database-storage.html</link>
     <description><![CDATA[Доклад об использовании дерева слияния журналов (log structured merge tree) в качестве хранилища базы данных, о том, как сделать быстрое хранилище для базы данных, с гарантиями надежности, с разными уровнями изоляции и при этом не сойти с ума. Упоминается B+-tree и прочее.]]></description>
     <pubDate>Sun, 20 Mar 2016 00:00:00 UT</pubDate>
-    <guid>http://ruhaskell.org/posts/talks/2016/03/20/database-storage.html</guid>
+    <guid>https://ruhaskell.org/posts/talks/2016/03/20/database-storage.html</guid>
     <dc:creator>Денис Шевченко</dc:creator>
 </item>
 <item>
     <title>Десериализация с зависимыми типами (простая версия)</title>
-    <link>http://ruhaskell.org/posts/theory/2016/01/06/serialization-with-deptypes.html</link>
+    <link>https://ruhaskell.org/posts/theory/2016/01/06/serialization-with-deptypes.html</link>
     <description><![CDATA[В данном посте рассмотрена простая задача, которая может приводить к появлению простых зависимых типов. Показано решение и объяснено, как его можно получить.]]></description>
     <pubDate>Wed, 06 Jan 2016 00:00:00 UT</pubDate>
-    <guid>http://ruhaskell.org/posts/theory/2016/01/06/serialization-with-deptypes.html</guid>
+    <guid>https://ruhaskell.org/posts/theory/2016/01/06/serialization-with-deptypes.html</guid>
     <dc:creator>Денис Шевченко</dc:creator>
 </item>
 <item>
     <title>С днём рождения, ruHaskell!</title>
-    <link>http://ruhaskell.org/posts/events/2015/12/30/ruhaskell-one-year.html</link>
+    <link>https://ruhaskell.org/posts/events/2015/12/30/ruhaskell-one-year.html</link>
     <description><![CDATA[Да, друзья, время летит! Нашему сообществу уже один год. Оглянемся назад, подведём итоги и подумаем о будущем...]]></description>
     <pubDate>Wed, 30 Dec 2015 00:00:00 UT</pubDate>
-    <guid>http://ruhaskell.org/posts/events/2015/12/30/ruhaskell-one-year.html</guid>
+    <guid>https://ruhaskell.org/posts/events/2015/12/30/ruhaskell-one-year.html</guid>
     <dc:creator>Денис Шевченко</dc:creator>
 </item>
 
