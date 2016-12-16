@@ -7,8 +7,16 @@
         <description><![CDATA[Русскоязычное сообщество Haskell-разработчиков]]></description>
         <atom:link href="https://ruhaskell.org/feed.xml" rel="self"
                    type="application/rss+xml" />
-        <lastBuildDate>Tue, 13 Sep 2016 00:00:00 UT</lastBuildDate>
+        <lastBuildDate>Fri, 16 Dec 2016 00:00:00 UT</lastBuildDate>
         <item>
+    <title>LiquidHaskell: знакомство</title>
+    <link>https://ruhaskell.org/posts/utils/2016/12/16/liquidhaskell-hello.html</link>
+    <description><![CDATA[LiquidHaskell - статический верификатор Haskell-кода. И поверьте, этот инструмент заслуживает нашего внимания.]]></description>
+    <pubDate>Fri, 16 Dec 2016 00:00:00 UT</pubDate>
+    <guid>https://ruhaskell.org/posts/utils/2016/12/16/liquidhaskell-hello.html</guid>
+    <dc:creator>Денис Шевченко</dc:creator>
+</item>
+<item>
     <title>Сервер для онлайн-профилирования приложений</title>
     <link>https://ruhaskell.org/posts/projects/2016/09/13/hsoc-live-profile.html</link>
     <description><![CDATA[Результаты проекта Haskell Summer of Code 2016 по улучшению eventlog.]]></description>
@@ -78,14 +86,6 @@
     <description><![CDATA[В данном посте рассмотрена простая задача, которая может приводить к появлению простых зависимых типов. Показано решение и объяснено, как его можно получить.]]></description>
     <pubDate>Wed, 06 Jan 2016 00:00:00 UT</pubDate>
     <guid>https://ruhaskell.org/posts/theory/2016/01/06/serialization-with-deptypes.html</guid>
-    <dc:creator>Денис Шевченко</dc:creator>
-</item>
-<item>
-    <title>С днём рождения, ruHaskell!</title>
-    <link>https://ruhaskell.org/posts/events/2015/12/30/ruhaskell-one-year.html</link>
-    <description><![CDATA[Да, друзья, время летит! Нашему сообществу уже один год. Оглянемся назад, подведём итоги и подумаем о будущем...]]></description>
-    <pubDate>Wed, 30 Dec 2015 00:00:00 UT</pubDate>
-    <guid>https://ruhaskell.org/posts/events/2015/12/30/ruhaskell-one-year.html</guid>
     <dc:creator>Денис Шевченко</dc:creator>
 </item>
 

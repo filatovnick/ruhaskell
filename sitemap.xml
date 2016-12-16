@@ -2,6 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
+        <loc>https://ruhaskell.org/posts/utils/2016/12/16/liquidhaskell-hello.html</loc>
+    </url>
+
+    <url>
         <loc>https://ruhaskell.org/posts/projects/2016/09/13/hsoc-live-profile.html</loc>
     </url>
 
