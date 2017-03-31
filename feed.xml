@@ -7,8 +7,24 @@
         <description><![CDATA[Русскоязычное сообщество Haskell-разработчиков]]></description>
         <atom:link href="https://ruhaskell.org/feed.xml" rel="self"
                    type="application/rss+xml" />
-        <lastBuildDate>Sat, 11 Feb 2017 00:00:00 UT</lastBuildDate>
+        <lastBuildDate>Fri, 31 Mar 2017 00:00:00 UT</lastBuildDate>
         <item>
+    <title>Haskell: цель или всё-таки средство?</title>
+    <link>https://ruhaskell.org/posts/theory/2017/03/31/goal-or-instrument.html</link>
+    <description><![CDATA[Я вижу большую проблему в Haskell-сообществе. Вот мои сумбурные мысли на сей счёт.]]></description>
+    <pubDate>Fri, 31 Mar 2017 00:00:00 UT</pubDate>
+    <guid>https://ruhaskell.org/posts/theory/2017/03/31/goal-or-instrument.html</guid>
+    <dc:creator>Денис Шевченко</dc:creator>
+</item>
+<item>
+    <title>CoLaboratory.RuHaskell.2017.Весна</title>
+    <link>https://ruhaskell.org/posts/events/2017/03/28/meetup-spring.html</link>
+    <description><![CDATA[Анонс митапа 6 апреля сообщества RuHaskell и Лаборатории Касперского.]]></description>
+    <pubDate>Tue, 28 Mar 2017 00:00:00 UT</pubDate>
+    <guid>https://ruhaskell.org/posts/events/2017/03/28/meetup-spring.html</guid>
+    <dc:creator>Денис Шевченко</dc:creator>
+</item>
+<item>
     <title>CoLaboratory:RuHaskell:2017:Весна:CFP</title>
     <link>https://ruhaskell.org/posts/events/2017/02/11/meetup-spring-call-for-papers.html</link>
     <description><![CDATA[Собираем доклады к митапу 6 апреля сообщества RuHaskell и Лаборатории Касперского.]]></description>
@@ -70,22 +86,6 @@
     <description><![CDATA[Улучшаем веб-сервисы и делаем свою жизнь проще с Servant]]></description>
     <pubDate>Tue, 05 Apr 2016 00:00:00 UT</pubDate>
     <guid>https://ruhaskell.org/posts/talks/2016/04/05/better-services-with-servant.html</guid>
-    <dc:creator>Денис Шевченко</dc:creator>
-</item>
-<item>
-    <title>Зависимые типы в GHC 8</title>
-    <link>https://ruhaskell.org/posts/talks/2016/03/27/dependent-types-in-haskell-ghc-8.html</link>
-    <description><![CDATA[Доклад о зависимых типах в GHC 8.0, зачем они нужны, почему пришлось так долго ждать, и в чём отличие от Coq и Idris.]]></description>
-    <pubDate>Sun, 27 Mar 2016 00:00:00 UT</pubDate>
-    <guid>https://ruhaskell.org/posts/talks/2016/03/27/dependent-types-in-haskell-ghc-8.html</guid>
-    <dc:creator>Денис Шевченко</dc:creator>
-</item>
-<item>
-    <title>Монады для барабанщиков</title>
-    <link>https://ruhaskell.org/posts/talks/2016/03/26/monads-for-drummers.html</link>
-    <description><![CDATA[Доклад-введение в монады.]]></description>
-    <pubDate>Sat, 26 Mar 2016 00:00:00 UT</pubDate>
-    <guid>https://ruhaskell.org/posts/talks/2016/03/26/monads-for-drummers.html</guid>
     <dc:creator>Денис Шевченко</dc:creator>
 </item>
 
