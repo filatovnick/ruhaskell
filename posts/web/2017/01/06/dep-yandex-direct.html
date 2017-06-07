@@ -158,6 +158,12 @@ a:active
   border-bottom   : solid 0px #ffffff;
 }
 
+#links-link
+{
+  text-decoration : none;
+  border-bottom   : solid 0px #ffffff;
+}
+
 #sl-1
 {
   text-decoration : none;
@@ -552,6 +558,12 @@ ga('send', 'pageview');
                             <a href="../../../../../about.html" id="about-link">
                                 О нас
                             </a>
+                            <span class="links-separator">
+                                
+                            </span>
+                            <a href="../../../../../links.html" id="links-link">
+                                Ресурсы
+                            </a>
                         </div>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
@@ -625,6 +637,8 @@ ga('send', 'pageview');
 
     </div>
 </div>
+
+
 <div>
     <p>Здравствуйте.</p>
 <p>Зависимые типы (<a href="http://strictlypositive.org/vfl.pdf">The view from the left</a>, <a href="http://cs.stackexchange.com/questions/49888/what-is-a-brief-but-complete-explanation-of-a-pure-dependent-type-system">What is a brief but complete explanation of a pure/dependent type system?</a>) набирают популярность и в будущем <a href="https://typesandkinds.wordpress.com/2016/07/24/dependent-types-in-haskell-progress-report">будут добавлены</a> в GHC. Однако, зависимые типы ассоциируются с доказательством теорем и формализацией различных систем, так что их польза может быть неочевидной для рядового программиста. В этом посте мы рассмотрим зависимые типы на примере простой программистской задачи – типобезопасного взаимодействия с <a href="https://tech.yandex.ru/direct/doc/dg/concepts/about-docpage/">Яндекс.Директ API v5</a>.</p>

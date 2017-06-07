@@ -158,6 +158,12 @@ a:active
   border-bottom   : solid 0px #ffffff;
 }
 
+#links-link
+{
+  text-decoration : none;
+  border-bottom   : solid 0px #ffffff;
+}
+
 #sl-1
 {
   text-decoration : none;
@@ -552,6 +558,12 @@ ga('send', 'pageview');
                             <a href="../../../../../about.html" id="about-link">
                                 О нас
                             </a>
+                            <span class="links-separator">
+                                
+                            </span>
+                            <a href="../../../../../links.html" id="links-link">
+                                Ресурсы
+                            </a>
                         </div>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
@@ -629,6 +641,8 @@ ga('send', 'pageview');
 
     </div>
 </div>
+
+
 <div>
     <p>Моисей Котович (Maciej Kotowicz) недавно задал вопрос в спискe рассылки <a href="https://mail.haskell.org/pipermail/haskell-cafe/">Haskell Cafe</a>, о том как реализовать биномиальные очереди (так же известные как биномиальные кучи) используя хитрые возможности системы типов так, чтобы система проверки корректности типов (type-checker) могла проверить все инварианты формы структуры данных. Этот вопрос напомнил мне о дискуссии с коллегой летом 1998 года про использование вложенных типов для гарантии соблюдения инвариантов формы. Немного порывшись в архивах, я нашёл это письмо, которое и представляю здесь.</p>
 <p>Я поиграл с биномиальными очередями как вложенным типом данных, и я думаю, что вы найдете результат интересным.</p>

@@ -158,6 +158,12 @@ a:active
   border-bottom   : solid 0px #ffffff;
 }
 
+#links-link
+{
+  text-decoration : none;
+  border-bottom   : solid 0px #ffffff;
+}
+
 #sl-1
 {
   text-decoration : none;
@@ -552,6 +558,12 @@ ga('send', 'pageview');
                             <a href="../../../../../about.html" id="about-link">
                                 О нас
                             </a>
+                            <span class="links-separator">
+                                
+                            </span>
+                            <a href="../../../../../links.html" id="links-link">
+                                Ресурсы
+                            </a>
                         </div>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
@@ -625,6 +637,8 @@ ga('send', 'pageview');
 
     </div>
 </div>
+
+
 <div>
     <p>Keter это штука для one-click deploy сайтов на Yesod. Если в двух словах, то на production висит демон keter и мониторит свой каталог incoming, куда загружаются пакеты. Из полученых тарболов он достаёт статику, настройки и бинари, проверяет сайт, запускает и переключает на него новые запросы.</p>
 <p>При желании, код включать в пакет не обязательно и можно просто раздавать статику с него же - он вполне себя хорошо чувствует даже не прикрываясь nginx.</p>

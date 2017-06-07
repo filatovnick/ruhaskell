@@ -2,6 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
+        <loc>https://ruhaskell.org/posts/talks/2017/04/06/react-flux-gui-for-haskell.html</loc>
+    </url>
+
+    <url>
+        <loc>https://ruhaskell.org/posts/talks/2017/04/06/haskell-as-db.html</loc>
+    </url>
+
+    <url>
+        <loc>https://ruhaskell.org/posts/talks/2017/04/06/haskell-anyway.html</loc>
+    </url>
+
+    <url>
+        <loc>https://ruhaskell.org/posts/talks/2017/04/06/external-api-integration.html</loc>
+    </url>
+
+    <url>
+        <loc>https://ruhaskell.org/posts/events/2017/04/06/meetup-2017-spring-videos.html</loc>
+    </url>
+
+    <url>
         <loc>https://ruhaskell.org/posts/theory/2017/03/31/goal-or-instrument.html</loc>
     </url>
 
@@ -27,6 +47,26 @@
 
     <url>
         <loc>https://ruhaskell.org/posts/talks/2016/08/28/haskell-ffi-abilities-and-issues.html</loc>
+    </url>
+
+    <url>
+        <loc>https://ruhaskell.org/posts/talks/2016/08/18/simple-mmo-games-in-haskell.html</loc>
+    </url>
+
+    <url>
+        <loc>https://ruhaskell.org/posts/talks/2016/08/18/ivory-high-performance-code-for-haskell.html</loc>
+    </url>
+
+    <url>
+        <loc>https://ruhaskell.org/posts/talks/2016/08/18/elm-almost-painless-frontend.html</loc>
+    </url>
+
+    <url>
+        <loc>https://ruhaskell.org/posts/talks/2016/08/18/cpp-concepts-and-haskell-type-classes.html</loc>
+    </url>
+
+    <url>
+        <loc>https://ruhaskell.org/posts/events/2016/08/18/meetup-2016-summer-videos.html</loc>
     </url>
 
     <url>
@@ -59,6 +99,14 @@
 
     <url>
         <loc>https://ruhaskell.org/posts/events/2015/12/30/ruhaskell-one-year.html</loc>
+    </url>
+
+    <url>
+        <loc>https://ruhaskell.org/posts/talks/2015/12/06/postgresql-hasql-haskell.html</loc>
+    </url>
+
+    <url>
+        <loc>https://ruhaskell.org/posts/events/2015/12/06/meetup-2015-winter-videos.html</loc>
     </url>
 
     <url>

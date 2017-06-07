@@ -158,6 +158,12 @@ a:active
   border-bottom   : solid 0px #ffffff;
 }
 
+#links-link
+{
+  text-decoration : none;
+  border-bottom   : solid 0px #ffffff;
+}
+
 #sl-1
 {
   text-decoration : none;
@@ -552,6 +558,12 @@ ga('send', 'pageview');
                             <a href="../../../../../about.html" id="about-link">
                                 О нас
                             </a>
+                            <span class="links-separator">
+                                
+                            </span>
+                            <a href="../../../../../links.html" id="links-link">
+                                Ресурсы
+                            </a>
                         </div>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
@@ -629,6 +641,8 @@ ga('send', 'pageview');
 
     </div>
 </div>
+
+
 <div>
     <p>Это руководство описывает общую архитектуру, которую вы встретите во всех приложениях на <a href="http://elm-lang.org/">Elm</a>, от <a href="https://github.com/evancz/elm-todomvc">TodoMVC</a> до <a href="https://github.com/rtfeldman/dreamwriter#dreamwriter">dreamwriter</a>.</p>
 <p>Мы изучим очень простой способ компоновки приложения, представляющий собой бесконечно вкладываемые блоки. Он сильно улучшает модульность, упрощает повторное использование кода и тестирование. С его помощью можно создавать сложные приложения, разбивая их на составные части. Мы начнём с маленького примера и будем постепенно расширять его, используя эти базовые принципы.</p>

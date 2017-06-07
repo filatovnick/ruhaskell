@@ -7,8 +7,48 @@
         <description><![CDATA[Русскоязычное сообщество Haskell-разработчиков]]></description>
         <atom:link href="https://ruhaskell.org/feed.xml" rel="self"
                    type="application/rss+xml" />
-        <lastBuildDate>Fri, 31 Mar 2017 00:00:00 UT</lastBuildDate>
+        <lastBuildDate>Thu, 06 Apr 2017 00:00:00 UT</lastBuildDate>
         <item>
+    <title>react-flux: React-powered Web GUI на Haskell</title>
+    <link>https://ruhaskell.org/posts/talks/2017/04/06/react-flux-gui-for-haskell.html</link>
+    <description><![CDATA[Доклад призван продемонстрировать возможность построения Web GUI с использованием GHCJS и библиотеки react-flux - "обертки" над ReactJS, отличающейся использованием подхода "Flux" для работы с состоянием приложения.]]></description>
+    <pubDate>Thu, 06 Apr 2017 00:00:00 UT</pubDate>
+    <guid>https://ruhaskell.org/posts/talks/2017/04/06/react-flux-gui-for-haskell.html</guid>
+    <dc:creator>Денис Шевченко</dc:creator>
+</item>
+<item>
+    <title>Haskell вместо СУБД</title>
+    <link>https://ruhaskell.org/posts/talks/2017/04/06/haskell-as-db.html</link>
+    <description><![CDATA[Опыт отказа от реляционной СУБД в веб-проекте в пользу in-memory структуры данных и CAS (Content-addressable storage). Зачем это было сделано и что получилось в итоге.]]></description>
+    <pubDate>Thu, 06 Apr 2017 00:00:00 UT</pubDate>
+    <guid>https://ruhaskell.org/posts/talks/2017/04/06/haskell-as-db.html</guid>
+    <dc:creator>Денис Шевченко</dc:creator>
+</item>
+<item>
+    <title>Если нельзя писать на Haskell, но очень хочется</title>
+    <link>https://ruhaskell.org/posts/talks/2017/04/06/haskell-anyway.html</link>
+    <description><![CDATA[Мы рассмотрим задачу построение OSC-контроллеров с графическим интерфейсом (в духе TouchOSC) и как писать таким образом UI на Haskell. На примере этой задачи мы рассмотрим альтернативный способ написание программ на Haskell. Мы можем написать небольшой интерпретатор на языке, который лучше справляется с данной задачей и можем генерировать код для интерпретатора из Haskell.]]></description>
+    <pubDate>Thu, 06 Apr 2017 00:00:00 UT</pubDate>
+    <guid>https://ruhaskell.org/posts/talks/2017/04/06/haskell-anyway.html</guid>
+    <dc:creator>Денис Шевченко</dc:creator>
+</item>
+<item>
+    <title>Интеграция с API внешних сервисов</title>
+    <link>https://ruhaskell.org/posts/talks/2017/04/06/external-api-integration.html</link>
+    <description><![CDATA[Опыт использования Haskell для для генерации HTTP клиентов для внешнего API. О проблемах, с которыми приходится сталкиваться во время разработки, возможных способах их минимизировать, а также о том, как Haskell помогает нам генерировать адекватную и всегда актуальную документацию для нашего API.]]></description>
+    <pubDate>Thu, 06 Apr 2017 00:00:00 UT</pubDate>
+    <guid>https://ruhaskell.org/posts/talks/2017/04/06/external-api-integration.html</guid>
+    <dc:creator>Денис Шевченко</dc:creator>
+</item>
+<item>
+    <title>Видео докладов 4 митапа</title>
+    <link>https://ruhaskell.org/posts/events/2017/04/06/meetup-2017-spring-videos.html</link>
+    <description><![CDATA[Видео со второй встречи нашего сообщества 6 апреля 2017 года.]]></description>
+    <pubDate>Thu, 06 Apr 2017 00:00:00 UT</pubDate>
+    <guid>https://ruhaskell.org/posts/events/2017/04/06/meetup-2017-spring-videos.html</guid>
+    <dc:creator>Денис Шевченко</dc:creator>
+</item>
+<item>
     <title>Haskell: цель или всё-таки средство?</title>
     <link>https://ruhaskell.org/posts/theory/2017/03/31/goal-or-instrument.html</link>
     <description><![CDATA[Я вижу большую проблему в Haskell-сообществе. Вот мои сумбурные мысли на сей счёт.]]></description>
@@ -46,46 +86,6 @@
     <description><![CDATA[LiquidHaskell - статический верификатор Haskell-кода. И поверьте, этот инструмент заслуживает нашего внимания.]]></description>
     <pubDate>Fri, 16 Dec 2016 00:00:00 UT</pubDate>
     <guid>https://ruhaskell.org/posts/utils/2016/12/16/liquidhaskell-hello.html</guid>
-    <dc:creator>Денис Шевченко</dc:creator>
-</item>
-<item>
-    <title>Сервер для онлайн-профилирования приложений</title>
-    <link>https://ruhaskell.org/posts/projects/2016/09/13/hsoc-live-profile.html</link>
-    <description><![CDATA[Результаты проекта Haskell Summer of Code 2016 по улучшению eventlog.]]></description>
-    <pubDate>Tue, 13 Sep 2016 00:00:00 UT</pubDate>
-    <guid>https://ruhaskell.org/posts/projects/2016/09/13/hsoc-live-profile.html</guid>
-    <dc:creator>Денис Шевченко</dc:creator>
-</item>
-<item>
-    <title>Возможности и проблемы FFI в Haskell</title>
-    <link>https://ruhaskell.org/posts/talks/2016/08/28/haskell-ffi-abilities-and-issues.html</link>
-    <description><![CDATA[Возможности и проблемы FFI в Haskell и примеры его использования.]]></description>
-    <pubDate>Sun, 28 Aug 2016 00:00:00 UT</pubDate>
-    <guid>https://ruhaskell.org/posts/talks/2016/08/28/haskell-ffi-abilities-and-issues.html</guid>
-    <dc:creator>Денис Шевченко</dc:creator>
-</item>
-<item>
-    <title>Митап 1.0</title>
-    <link>https://ruhaskell.org/posts/events/2016/07/28/meetup-summer.html</link>
-    <description><![CDATA[18 августа сообщество RuHaskell и «Лаборатории Касперского» приглашают всех заинтересованных, чтобы обсудить Haskell и другие языки в функциональной парадигме, поделиться опытом их применения в решении прикладных задач бизнеса, позадавать вопросы и пообщаться.]]></description>
-    <pubDate>Thu, 28 Jul 2016 00:00:00 UT</pubDate>
-    <guid>https://ruhaskell.org/posts/events/2016/07/28/meetup-summer.html</guid>
-    <dc:creator>Денис Шевченко</dc:creator>
-</item>
-<item>
-    <title>Улучшение тестов для statistics, часть 1</title>
-    <link>https://ruhaskell.org/posts/numeric/2016/06/01/statistics-test-suite-part1.html</link>
-    <description><![CDATA[Длинная история об отладке тестов для statistics и пакета math-functions]]></description>
-    <pubDate>Wed, 01 Jun 2016 00:00:00 UT</pubDate>
-    <guid>https://ruhaskell.org/posts/numeric/2016/06/01/statistics-test-suite-part1.html</guid>
-    <dc:creator>Денис Шевченко</dc:creator>
-</item>
-<item>
-    <title>Делаем свою жизнь проще с Servant</title>
-    <link>https://ruhaskell.org/posts/talks/2016/04/05/better-services-with-servant.html</link>
-    <description><![CDATA[Улучшаем веб-сервисы и делаем свою жизнь проще с Servant]]></description>
-    <pubDate>Tue, 05 Apr 2016 00:00:00 UT</pubDate>
-    <guid>https://ruhaskell.org/posts/talks/2016/04/05/better-services-with-servant.html</guid>
     <dc:creator>Денис Шевченко</dc:creator>
 </item>
 

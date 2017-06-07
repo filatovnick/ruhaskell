@@ -158,6 +158,12 @@ a:active
   border-bottom   : solid 0px #ffffff;
 }
 
+#links-link
+{
+  text-decoration : none;
+  border-bottom   : solid 0px #ffffff;
+}
+
 #sl-1
 {
   text-decoration : none;
@@ -552,6 +558,12 @@ ga('send', 'pageview');
                             <a href="../../../../../about.html" id="about-link">
                                 О нас
                             </a>
+                            <span class="links-separator">
+                                
+                            </span>
+                            <a href="../../../../../links.html" id="links-link">
+                                Ресурсы
+                            </a>
                         </div>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
@@ -625,6 +637,8 @@ ga('send', 'pageview');
 
     </div>
 </div>
+
+
 <div>
     <p>Существует много различных библиотек для разбора опций командной строки, таких как <a href="http://hackage.haskell.org/package/optparse-applicative">optparse-aplicative</a>, <a href="https://hackage.haskell.org/package/options">options</a>, и <a href="https://www.haskell.org/haskellwiki/Command_line_option_parsers">прочие</a>. Однако в данном посте я хочу рассмотреть необычную библиотеку для разбора опций командной строки <a href="https://hackage.haskell.org/package/hflags-0.4">hflags</a>.</p>
 <p>Библиотека <code>hflags</code> была написана (экс-?)работниками Google, теперь работающими в <a href="http://nilcons.com/">Nilcons</a>, на основе библиотеки <a href="https://code.google.com/p/gflags/">flags</a>, для проектов на C++. Как хорошо известно в Google придерживаются мнения, что все опции для программы должны быть опциями командной строки, и библиотеки оптимизированы именно под такой случай.</p>
